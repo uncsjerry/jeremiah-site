@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /posts/{postId} {
+      // Anyone can read (public feed)
+      allow read: if true;
+      // Only authenticated users can write
+      allow create, update, delete: if request.auth != null;
+    }
+  }
+}

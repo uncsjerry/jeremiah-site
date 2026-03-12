@@ -1,0 +1,13 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /family-photos/{allPaths=**} {
+      // Anyone can read (images displayed on public page)
+      allow read: if true;
+      // Only authenticated users can upload — 10MB max, images only
+      allow write: if request.auth != null
+                   && request.resource.size < 10 * 1024 * 1024
+                   && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

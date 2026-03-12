@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Jeremiah Gutierrez</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/family.css">
+</head>
+<body class="admin-body">
+
+  <!-- No custom cursor on admin — too many form interactions -->
+
+  <nav class="admin-nav">
+    <a href="index.html" class="logo admin-logo">JG</a>
+    <span class="admin-badge">Admin</span>
+    <button class="logout-btn" id="logoutBtn" style="display: none;">Logout</button>
+  </nav>
+
+  <!-- Login Gate -->
+  <section class="login-gate" id="loginGate">
+    <div class="login-card">
+      <h2 class="login-title">Admin Access</h2>
+      <form class="login-form" id="loginForm">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+        </div>
+        <div class="login-error" id="loginError" style="display: none;"></div>
+        <button type="submit" class="submit-btn">Sign in &rarr;</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Admin Panel (hidden until authenticated) -->
+  <section class="admin-panel" id="adminPanel" style="display: none;">
+
+    <!-- Upload Form -->
+    <div class="admin-section">
+      <h2 class="admin-heading">New Post</h2>
+      <form class="upload-form" id="uploadForm">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="photoInput" accept="image/*" class="file-input">
+          <div class="dropzone-content" id="dropzoneContent">
+            <span class="dropzone-icon">+</span>
+            <span class="dropzone-text">Drop a photo or click to select</span>
+          </div>
+          <img class="preview-img" id="previewImg" style="display: none;" alt="Preview">
+        </div>
+        <div class="field">
+          <label for="caption">Caption</label>
+          <textarea id="caption" name="caption" rows="3" placeholder="What's happening..."></textarea>
+        </div>
+        <div class="field">
+          <label for="location">Location <span class="optional">(optional)</span></label>
+          <input type="text" id="location" name="location" placeholder="Fort Lauderdale, FL">
+        </div>
+        <div class="upload-actions">
+          <button type="submit" class="submit-btn" id="uploadBtn">Post it &rarr;</button>
+          <div class="upload-progress" id="uploadProgress" style="display: none;">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Existing Posts -->
+    <div class="admin-section">
+      <h2 class="admin-heading">All Posts</h2>
+      <div class="admin-posts" id="adminPosts">
+        <!-- Rendered by JS -->
+      </div>
+      <div class="admin-empty" id="adminEmpty" style="display: none;">
+        <p>No posts yet. Create your first one above.</p>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

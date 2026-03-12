@@ -4,419 +4,349 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeremiah Gutierrez — Leadership That Hits Different</title>
-  <meta name="description" content="Leadership development, employee training, and C-level coaching that actually moves the needle. No fluff. No corporate bingo. Just results.">
+  <meta name="description" content="Leadership development, employee training, and C-level coaching. No fluff. No corporate bingo. Just results.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Grain overlay for texture -->
-  <div class="grain"></div>
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
 
-  <!-- Navigation -->
-  <nav id="navbar" class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="nav-logo">JG<span class="logo-dot">.</span></a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="hamburger"></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#approach">Approach</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#contact" class="nav-cta">Let's Work</a></li>
-      </ul>
+  <!-- Navigation — minimal, left-aligned -->
+  <nav id="navbar">
+    <a href="#" class="logo">Jeremiah<br>Gutierrez</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <div class="nav-overlay" id="navOverlay">
+      <div class="nav-overlay-content">
+        <div class="nav-links-big">
+          <a href="#about" class="nav-link-big" data-num="01">About</a>
+          <a href="#services" class="nav-link-big" data-num="02">Services</a>
+          <a href="#philosophy" class="nav-link-big" data-num="03">Philosophy</a>
+          <a href="#proof" class="nav-link-big" data-num="04">Proof</a>
+          <a href="#contact" class="nav-link-big" data-num="05">Contact</a>
+          <a href="family.html" class="nav-link-big" data-num="06">Family</a>
+        </div>
+        <div class="nav-overlay-footer">
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Email</span>
+            <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+          </div>
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Location</span>
+            <span>Fort Lauderdale, FL</span>
+          </div>
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Social</span>
+            <div class="nav-social">
+              <a href="#">LinkedIn</a>
+              <a href="#">Instagram</a>
+              <a href="#">X</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero — full viewport, editorial -->
   <header class="hero">
-    <div class="hero-bg-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
-    <div class="container hero-content">
-      <div class="hero-badge">
-        <span class="badge-pulse"></span>
-        Available for Q2 2026 engagements
-      </div>
-      <h1 class="hero-title">
-        <span class="title-line">I help leaders</span>
-        <span class="title-line accent-text">stop playing small.</span>
+    <div class="hero-inner">
+      <p class="hero-tag">Leadership Development / Executive Coaching / Employee Training</p>
+      <h1 class="hero-headline">
+        <span class="line"><span class="line-inner">I help leaders</span></span>
+        <span class="line"><span class="line-inner"><em>stop</em> playing</span></span>
+        <span class="line"><span class="line-inner">small<span class="period">.</span></span></span>
       </h1>
-      <p class="hero-subtitle">Leadership development, employee training, and executive coaching for companies that are done with mediocre. I work with teams and C-suite leaders who want real growth — not another PowerPoint.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">
-          <span>Book a Call</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#services" class="btn btn-outline">See What I Do</a>
-      </div>
-      <div class="hero-proof">
-        <div class="proof-item">
-          <span class="proof-number counter" data-target="500">0</span><span class="proof-number">+</span>
-          <span class="proof-label">Leaders Developed</span>
+      <div class="hero-bottom">
+        <div class="hero-scroll-indicator">
+          <div class="scroll-line"></div>
+          <span>Scroll</span>
         </div>
-        <div class="proof-divider"></div>
-        <div class="proof-item">
-          <span class="proof-number counter" data-target="20">0</span><span class="proof-number">+</span>
-          <span class="proof-label">Years Experience</span>
-        </div>
-        <div class="proof-divider"></div>
-        <div class="proof-item">
-          <span class="proof-number">Fortune 500</span>
-          <span class="proof-label">Clients Served</span>
-        </div>
+        <p class="hero-intro">20+ years turning good managers into great leaders and disengaged teams into high-performers. No trust falls. No motivational posters. Just the work that works.</p>
+        <a href="#contact" class="hero-cta">Book a call &darr;</a>
       </div>
     </div>
   </header>
 
-  <!-- Scrolling text banner -->
-  <section class="marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-content">
-        <span>Leadership Development</span>
-        <span class="marquee-dot"></span>
-        <span>Executive Coaching</span>
-        <span class="marquee-dot"></span>
+  <!-- Ticker -->
+  <section class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-content">
         <span>Employee Training</span>
-        <span class="marquee-dot"></span>
-        <span>Team Building</span>
-        <span class="marquee-dot"></span>
-        <span>C-Suite Advisory</span>
-        <span class="marquee-dot"></span>
-        <span>Culture Transformation</span>
-        <span class="marquee-dot"></span>
-        <!-- Duplicate for seamless loop -->
-        <span>Leadership Development</span>
-        <span class="marquee-dot"></span>
-        <span>Executive Coaching</span>
-        <span class="marquee-dot"></span>
+        <span class="ticker-sep">/</span>
+        <span>Leadership Programs</span>
+        <span class="ticker-sep">/</span>
+        <span>C-Suite Coaching</span>
+        <span class="ticker-sep">/</span>
+        <span>Culture Design</span>
+        <span class="ticker-sep">/</span>
+        <span>Team Dynamics</span>
+        <span class="ticker-sep">/</span>
+        <span>Keynote Speaking</span>
+        <span class="ticker-sep">/</span>
         <span>Employee Training</span>
-        <span class="marquee-dot"></span>
-        <span>Team Building</span>
-        <span class="marquee-dot"></span>
-        <span>C-Suite Advisory</span>
-        <span class="marquee-dot"></span>
-        <span>Culture Transformation</span>
-        <span class="marquee-dot"></span>
+        <span class="ticker-sep">/</span>
+        <span>Leadership Programs</span>
+        <span class="ticker-sep">/</span>
+        <span>C-Suite Coaching</span>
+        <span class="ticker-sep">/</span>
+        <span>Culture Design</span>
+        <span class="ticker-sep">/</span>
+        <span>Team Dynamics</span>
+        <span class="ticker-sep">/</span>
+        <span>Keynote Speaking</span>
+        <span class="ticker-sep">/</span>
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="section about">
-    <div class="container">
-      <div class="about-layout">
-        <div class="about-left reveal">
-          <div class="section-eyebrow">Who I Am</div>
-          <h2 class="section-title">Not your typical <span class="accent-text">leadership guru.</span></h2>
-          <p class="about-lead">I've spent 20+ years in the trenches — building teams, scaling companies, and learning what actually makes people step up and lead. Spoiler: it's not trust falls.</p>
-          <p class="about-body">I've led organizations, coached C-suite executives, and trained thousands of employees across industries. My approach is direct, human, and built on real experience — not theory from a textbook I read once.</p>
-          <p class="about-body">Whether you're a CEO trying to build a leadership pipeline, an HR director looking to level up your team, or a founder figuring out how to lead without burning out — I've been there, and I can help.</p>
-          <div class="about-values">
-            <div class="value-tag">Straight Talk</div>
-            <div class="value-tag">Real Results</div>
-            <div class="value-tag">No BS</div>
-            <div class="value-tag">People First</div>
-          </div>
+  <!-- About — split screen -->
+  <section id="about" class="about">
+    <div class="split">
+      <div class="split-left">
+        <div class="sticky-block">
+          <span class="label">01 / About</span>
+          <h2 class="split-heading">Not your<br>typical<br><em>leadership</em><br>guru.</h2>
         </div>
-        <div class="about-right reveal">
-          <div class="about-image-wrapper">
-            <!-- WHY: Placeholder gradient card used until a real headshot is provided -->
-            <div class="about-photo-placeholder">
-              <span class="placeholder-initials">JG</span>
-            </div>
-            <div class="about-float-card">
-              <span class="float-card-number">20+</span>
-              <span class="float-card-label">Years leading<br>& coaching</span>
-            </div>
+      </div>
+      <div class="split-right">
+        <div class="text-block reveal-up">
+          <p class="big-text">I've spent two decades in the trenches — building teams, scaling companies, and figuring out what actually makes people step up and lead.</p>
+        </div>
+        <div class="text-block reveal-up">
+          <p>I've sat in the CEO chair. I've coached executives through the kind of decisions that keep you up at night. I've trained thousands of employees across industries — and I've seen what works and what's just expensive theater.</p>
+        </div>
+        <div class="text-block reveal-up">
+          <p>My approach is direct, human, and built on real experience. I'm not here to give you a framework you'll forget by Friday. I'm here to change how your people show up — permanently.</p>
+        </div>
+        <div class="stat-row reveal-up">
+          <div class="stat">
+            <span class="stat-num counter" data-target="500">0</span>
+            <span class="stat-label">Leaders<br>developed</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num counter" data-target="20">0</span><span class="stat-num">+</span>
+            <span class="stat-label">Years in<br>the arena</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">F500</span>
+            <span class="stat-label">Clients<br>served</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="section services">
-    <div class="container">
-      <div class="section-header-center reveal">
-        <div class="section-eyebrow">What I Do</div>
-        <h2 class="section-title">Three ways I help you <span class="accent-text">level up.</span></h2>
-        <p class="section-desc">Every engagement is custom. Cookie-cutter programs are for cookies.</p>
-      </div>
-      <div class="services-grid">
+  <!-- Services — horizontal scroll panels -->
+  <section id="services" class="services">
+    <div class="services-header">
+      <span class="label">02 / Services</span>
+      <h2 class="section-mega-title reveal-up">What I <em>actually</em> do.</h2>
+      <p class="services-sub reveal-up">Every engagement is custom-built. Cookie-cutter programs are for cookies.</p>
+    </div>
+    <div class="hscroll-wrapper">
+      <div class="hscroll-track" id="hscrollTrack">
 
-        <div class="service-card reveal">
-          <div class="card-accent-bar"></div>
-          <div class="card-number">01</div>
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          </div>
-          <h3>Employee Training</h3>
-          <p class="card-subtitle">Build teams that don't need babysitting.</p>
-          <p>Custom training programs that turn disengaged employees into owners. Communication, accountability, emotional intelligence — the skills that actually drive performance.</p>
-          <ul class="card-features">
+        <article class="panel panel-dark">
+          <span class="panel-num">01</span>
+          <h3 class="panel-title">Employee<br>Training</h3>
+          <p class="panel-subtitle">Build teams that don't need babysitting.</p>
+          <p class="panel-body">Custom programs that turn disengaged employees into owners. Communication, accountability, emotional intelligence — the stuff that actually drives performance.</p>
+          <ul class="panel-list">
             <li>Custom curriculum design</li>
-            <li>On-site and virtual delivery</li>
+            <li>On-site & virtual delivery</li>
             <li>Team dynamics workshops</li>
             <li>Measurable outcome tracking</li>
           </ul>
-          <a href="#contact" class="card-link">Get started <span>&rarr;</span></a>
-        </div>
+          <a href="#contact" class="panel-cta">Start here &rarr;</a>
+        </article>
 
-        <div class="service-card service-card-featured reveal">
-          <div class="card-accent-bar"></div>
-          <div class="card-number">02</div>
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <h3>Leadership Development</h3>
-          <p class="card-subtitle">Grow leaders at every level.</p>
-          <p>From frontline managers to VPs, I build leadership programs that create real capability — not just attendance certificates. Your people learn to lead, not just manage.</p>
-          <ul class="card-features">
+        <article class="panel panel-accent">
+          <span class="panel-num">02</span>
+          <h3 class="panel-title">Leadership<br>Development</h3>
+          <p class="panel-subtitle">Grow leaders at every level.</p>
+          <p class="panel-body">From frontline managers to VPs — I build leadership programs that create real capability. Not attendance certificates. Your people learn to lead, not just manage.</p>
+          <ul class="panel-list">
             <li>Emerging leader programs</li>
             <li>Manager-to-leader transitions</li>
             <li>Leadership pipeline strategy</li>
             <li>360-degree assessments</li>
           </ul>
-          <a href="#contact" class="card-link">Get started <span>&rarr;</span></a>
-        </div>
+          <a href="#contact" class="panel-cta">Start here &rarr;</a>
+        </article>
 
-        <div class="service-card reveal">
-          <div class="card-accent-bar"></div>
-          <div class="card-number">03</div>
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4h-1"/><circle cx="15" cy="7" r="4"/><path d="M8 21v-2a4 4 0 00-4-4H3"/><path d="M12 17l-2-2 2-2"/><path d="M12 13l2-2-2-2"/></svg>
-          </div>
-          <h3>C-Level Coaching</h3>
-          <p class="card-subtitle">The advisor in your corner.</p>
-          <p>Being at the top is lonely. I work 1-on-1 with CEOs, COOs, and senior leaders who need a confidential thinking partner — someone who'll tell them the truth, not what they want to hear.</p>
-          <ul class="card-features">
+        <article class="panel panel-dark">
+          <span class="panel-num">03</span>
+          <h3 class="panel-title">C-Level<br>Coaching</h3>
+          <p class="panel-subtitle">The advisor in your corner.</p>
+          <p class="panel-body">Being at the top is lonely. I work 1-on-1 with CEOs, COOs, and senior leaders who need a confidential thinking partner — someone who tells the truth, not what you want to hear.</p>
+          <ul class="panel-list">
             <li>1-on-1 executive coaching</li>
             <li>Strategic decision support</li>
-            <li>Transition & succession planning</li>
+            <li>Succession planning</li>
             <li>Conflict resolution</li>
           </ul>
-          <a href="#contact" class="card-link">Get started <span>&rarr;</span></a>
-        </div>
+          <a href="#contact" class="panel-cta">Start here &rarr;</a>
+        </article>
 
       </div>
     </div>
   </section>
 
-  <!-- Approach -->
-  <section id="approach" class="section approach">
-    <div class="container">
-      <div class="approach-layout">
-        <div class="approach-text reveal">
-          <div class="section-eyebrow">My Approach</div>
-          <h2 class="section-title">I don't do <span class="accent-text">death by PowerPoint.</span></h2>
-          <p class="approach-lead">Most leadership training is forgotten by Monday. Mine sticks because it's built on real psychology, practiced in real scenarios, and measured by real results.</p>
+  <!-- Philosophy — manifesto style -->
+  <section id="philosophy" class="philosophy">
+    <div class="philosophy-inner">
+      <span class="label">03 / Philosophy</span>
+      <div class="manifesto reveal-up">
+        <p><span class="strike">Death by PowerPoint.</span></p>
+        <p><span class="strike">Trust falls.</span></p>
+        <p><span class="strike">Motivational posters.</span></p>
+        <p><span class="strike">Corporate buzzword bingo.</span></p>
+      </div>
+      <h2 class="philosophy-title reveal-up">Here's what I <em>do</em> believe in.</h2>
+      <div class="beliefs-grid">
+        <div class="belief reveal-up">
+          <span class="belief-num">01</span>
+          <h3>Diagnose first.</h3>
+          <p>I dig into what's actually happening — not the sanitized version. Culture audits, stakeholder interviews, the uncomfortable truths nobody says out loud.</p>
         </div>
-        <div class="approach-steps">
-          <div class="approach-step reveal">
-            <div class="step-number">01</div>
-            <div class="step-content">
-              <h3>Diagnose</h3>
-              <p>I dig into what's actually happening — not the sanitized version. Culture audits, stakeholder interviews, the uncomfortable truths nobody wants to say out loud.</p>
-            </div>
-          </div>
-          <div class="approach-step reveal">
-            <div class="step-number">02</div>
-            <div class="step-content">
-              <h3>Design</h3>
-              <p>Custom programs built around your specific challenges. No off-the-shelf modules. Every exercise, conversation, and framework is designed for your people.</p>
-            </div>
-          </div>
-          <div class="approach-step reveal">
-            <div class="step-number">03</div>
-            <div class="step-content">
-              <h3>Deliver</h3>
-              <p>High-energy, interactive sessions that people actually want to attend. I bring the intensity of a keynote and the depth of a workshop — every single time.</p>
-            </div>
-          </div>
-          <div class="approach-step reveal">
-            <div class="step-number">04</div>
-            <div class="step-content">
-              <h3>Sustain</h3>
-              <p>The real work happens after the training. I build in accountability systems, follow-up coaching, and measurement so the growth actually lasts.</p>
-            </div>
-          </div>
+        <div class="belief reveal-up">
+          <span class="belief-num">02</span>
+          <h3>Design for your people.</h3>
+          <p>No off-the-shelf modules. Every exercise, conversation, and framework is built for your specific team and your specific challenges.</p>
+        </div>
+        <div class="belief reveal-up">
+          <span class="belief-num">03</span>
+          <h3>Deliver with intensity.</h3>
+          <p>High-energy sessions people actually want to attend. The intensity of a keynote combined with the depth of a workshop — every single time.</p>
+        </div>
+        <div class="belief reveal-up">
+          <span class="belief-num">04</span>
+          <h3>Make it stick.</h3>
+          <p>The real work happens after training. Accountability systems, follow-up coaching, and measurement so the growth actually lasts.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Results / Testimonials -->
-  <section id="results" class="section results">
-    <div class="container">
-      <div class="section-header-center reveal">
-        <div class="section-eyebrow">Results</div>
-        <h2 class="section-title">Don't take my word for it. <span class="accent-text">Take theirs.</span></h2>
+  <!-- Proof — testimonials -->
+  <section id="proof" class="proof">
+    <div class="proof-inner">
+      <span class="label">04 / Proof</span>
+      <h2 class="section-mega-title reveal-up">Don't take my<br>word for it.</h2>
+
+      <div class="testimonials">
+        <blockquote class="testimonial reveal-up">
+          <p class="testimonial-text">"Jeremiah doesn't sugarcoat anything — and that's exactly what our leadership team needed. Within 6 months, our manager effectiveness scores jumped 40%."</p>
+          <footer>
+            <strong>VP of People Operations</strong>
+            <span>Fortune 500 Retail Company</span>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial reveal-up">
+          <p class="testimonial-text">"He turned our toxic team dynamics into our biggest competitive advantage. The ROI was visible in our first quarter results."</p>
+          <footer>
+            <strong>CEO</strong>
+            <span>Series B Tech Startup</span>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial reveal-up">
+          <p class="testimonial-text">"Best executive coach I've worked with. Jeremiah helped me navigate the hardest transition of my career and come out stronger."</p>
+          <footer>
+            <strong>COO</strong>
+            <span>National Healthcare Organization</span>
+          </footer>
+        </blockquote>
       </div>
-      <div class="results-grid">
-        <div class="result-card reveal">
-          <div class="result-quote">"Jeremiah doesn't sugarcoat anything — and that's exactly what our leadership team needed. Within 6 months, our manager effectiveness scores jumped 40%."</div>
-          <div class="result-author">
-            <div class="author-avatar">VP</div>
-            <div>
-              <strong>VP of People Operations</strong>
-              <span>Fortune 500 Retail Company</span>
-            </div>
-          </div>
+
+      <div class="proof-stats reveal-up">
+        <div class="proof-stat">
+          <span class="proof-stat-num">94%</span>
+          <span class="proof-stat-desc">of clients report measurable improvement in team performance</span>
         </div>
-        <div class="result-card reveal">
-          <div class="result-quote">"He turned our toxic team dynamics into our biggest competitive advantage. The ROI on his program was visible in our first quarter results."</div>
-          <div class="result-author">
-            <div class="author-avatar">CEO</div>
-            <div>
-              <strong>CEO</strong>
-              <span>Series B Tech Startup</span>
-            </div>
-          </div>
+        <div class="proof-stat">
+          <span class="proof-stat-num">3x</span>
+          <span class="proof-stat-desc">average ROI on leadership development investment</span>
         </div>
-        <div class="result-card reveal">
-          <div class="result-quote">"Best executive coach I've worked with. Jeremiah helped me navigate the hardest transition of my career and come out stronger on the other side."</div>
-          <div class="result-author">
-            <div class="author-avatar">COO</div>
-            <div>
-              <strong>COO</strong>
-              <span>National Healthcare Organization</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="results-stats reveal">
-        <div class="rstat">
-          <div class="rstat-number">94<span>%</span></div>
-          <div class="rstat-label">of clients report measurable improvement in team performance</div>
-        </div>
-        <div class="rstat">
-          <div class="rstat-number">3<span>x</span></div>
-          <div class="rstat-label">average ROI on leadership development investment</div>
-        </div>
-        <div class="rstat">
-          <div class="rstat-number">40<span>%</span></div>
-          <div class="rstat-label">increase in employee engagement scores post-program</div>
+        <div class="proof-stat">
+          <span class="proof-stat-num">40%</span>
+          <span class="proof-stat-desc">increase in employee engagement scores post-program</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="section cta-banner">
-    <div class="container">
-      <div class="cta-card reveal">
-        <h2>Ready to build leaders<br>who actually <span class="accent-text">lead?</span></h2>
-        <p>Let's have a real conversation about where your team is and where it needs to go. No pitch decks. No sales pressure. Just a straight-up chat.</p>
-        <a href="#contact" class="btn btn-primary btn-lg">
-          <span>Book a Free Strategy Call</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
+  <!-- Big CTA -->
+  <section class="big-cta">
+    <div class="big-cta-inner reveal-up">
+      <h2>Ready to stop<br>managing and start<br><em>leading?</em></h2>
+      <a href="#contact" class="cta-button">Let's talk &darr;</a>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <div class="contact-layout">
-        <div class="contact-text reveal">
-          <div class="section-eyebrow">Get In Touch</div>
-          <h2 class="section-title">Let's make <span class="accent-text">something happen.</span></h2>
-          <p class="contact-lead">Whether you need a keynote speaker, a full leadership program, or just want to pick my brain — I'm here for it. Fill out the form and I'll get back to you within 24 hours.</p>
-          <div class="contact-details">
-            <a href="mailto:jeremiah@jeremiahgutierrez.com" class="contact-detail">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              jeremiah@jeremiahgutierrez.com
-            </a>
-            <div class="contact-detail">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Fort Lauderdale, FL
-            </div>
-          </div>
-          <div class="contact-social">
-            <a href="#" aria-label="LinkedIn" class="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" aria-label="Instagram" class="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="#" aria-label="X (Twitter)" class="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" aria-label="Facebook" class="social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-          </div>
+  <section id="contact" class="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <span class="label">05 / Contact</span>
+        <h2 class="contact-heading reveal-up">Let's make<br>something<br><em>happen.</em></h2>
+        <div class="contact-info reveal-up">
+          <a href="mailto:jeremiah@jeremiahgutierrez.com" class="contact-link">jeremiah@jeremiahgutierrez.com</a>
+          <span class="contact-location">Fort Lauderdale, FL</span>
         </div>
-        <div class="contact-form-card reveal">
-          <form class="contact-form" id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required placeholder="Your name">
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="you@company.com">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="company">Company</label>
-                <input type="text" id="company" name="company" placeholder="Your organization">
-              </div>
-              <div class="form-group">
-                <label for="interest">I need help with</label>
-                <select id="interest" name="interest" required>
-                  <option value="" disabled selected>Select one</option>
-                  <option value="employee-training">Employee Training</option>
-                  <option value="leadership-development">Leadership Development</option>
-                  <option value="executive-coaching">C-Level / Executive Coaching</option>
-                  <option value="keynote">Keynote Speaking</option>
-                  <option value="other">Something Else</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="message">What's going on?</label>
-              <textarea id="message" name="message" rows="4" placeholder="Tell me about your team, your challenges, and what success looks like..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span>Send It</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </form>
+        <div class="contact-socials reveal-up">
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+          <a href="#">X</a>
+          <a href="#">Facebook</a>
         </div>
+      </div>
+      <div class="contact-right reveal-up">
+        <form class="contact-form" id="contactForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="interest">I need help with</label>
+            <select id="interest" name="interest" required>
+              <option value="" disabled selected>Select</option>
+              <option value="employee-training">Employee Training</option>
+              <option value="leadership">Leadership Development</option>
+              <option value="coaching">C-Level Coaching</option>
+              <option value="keynote">Keynote Speaking</option>
+              <option value="other">Something Else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">What's going on?</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">Send it &rarr;</button>
+        </form>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <a href="#" class="footer-logo">JG<span class="logo-dot">.</span></a>
-          <p>Leadership development that actually works.<br>Fort Lauderdale, FL</p>
-        </div>
-        <div class="footer-nav">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#approach">Approach</a>
-          <a href="#results">Results</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Jeremiah Gutierrez. All rights reserved.</p>
-      </div>
+    <div class="footer-inner">
+      <span class="footer-name">Jeremiah Gutierrez</span>
+      <span class="footer-copy">&copy; 2026</span>
+      <a href="#" class="footer-top">Back to top &uarr;</a>
     </div>
   </footer>
 
