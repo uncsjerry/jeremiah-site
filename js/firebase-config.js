@@ -21,12 +21,12 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-aut
 
 // WHY: Config is safe to expose client-side — security is enforced by Firestore/Storage rules, not by hiding these keys
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDg19UEz1dY4xi3XoFsgvbnbFO0eMWurx8",
+  authDomain: "jeremiah-site.firebaseapp.com",
+  projectId: "jeremiah-site",
+  storageBucket: "jeremiah-site.firebasestorage.app",
+  messagingSenderId: "65615528096",
+  appId: "1:65615528096:web:e4196c7dd2508e5f4849c5"
 };
 
 const app = initializeApp(firebaseConfig);
