@@ -167,10 +167,13 @@ if (uploadForm) {
         (snapshot) => {
           const pct = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           progressBar.style.width = pct + '%';
+          uploadBtn.textContent = `Uploading... ${Math.round(pct)}%`;
         },
         (error) => {
           console.error('Upload error:', error);
-          uploadBtn.textContent = 'Upload failed — try again';
+          console.error('Error code:', error.code);
+          console.error('Error message:', error.message);
+          uploadBtn.textContent = 'Upload failed: ' + (error.code || error.message);
           uploadBtn.disabled = false;
         },
         async () => {

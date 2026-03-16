@@ -1,0 +1,144 @@
+/* ============================================
+   Links / Work & Writing Page
+   ============================================ */
+
+.links-header {
+  min-height: 45vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 40px 60px;
+  position: relative;
+}
+
+.links-header::before {
+  content: '&';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  font-family: var(--serif);
+  font-size: 50vw;
+  font-weight: 900;
+  color: var(--cream-dark);
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.links-header-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.links-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.links-title em {
+  color: var(--coral);
+}
+
+.links-subtitle {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+/* -------------------------------------------
+   Links Container
+   ------------------------------------------- */
+.links-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 40px 120px;
+}
+
+.link-group {
+  margin-bottom: 64px;
+}
+
+.link-group-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+}
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+  transition: padding-left 0.3s ease;
+}
+
+.link-item:first-child {
+  border-top: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.link-item:hover {
+  padding-left: 16px;
+}
+
+.link-item-content h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  transition: color 0.3s;
+}
+
+.link-item:hover .link-item-content h3 {
+  color: var(--coral);
+}
+
+.link-item-content p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.link-arrow {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.link-item:hover .link-arrow {
+  color: var(--coral);
+  transform: translateX(4px);
+}
+
+/* -------------------------------------------
+   Responsive
+   ------------------------------------------- */
+@media (max-width: 768px) {
+  .links-header {
+    padding: 0 24px 40px;
+  }
+
+  .links-container {
+    padding: 60px 24px 80px;
+  }
+}
