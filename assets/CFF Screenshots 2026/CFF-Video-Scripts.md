@@ -40,7 +40,7 @@ The goal: walk into each recording knowing your key message, your real stories, 
 - Spouse Forum Officer for YPO Miami — seeded the chapter's first professional spouse forum
 - Started with strangers, built trust, established norms, created conditions for vulnerability
 - The turning point: 3rd or 4th session, modified life-walk exercise. The incoming moderator called asking how to show she was as invested as you were — that's when the Forum became the group's, not yours
-- Carried that into Forum for Business inside your own organization — adapted Forum model for a leadership team
+- Carried that into seeding a Forum for Business program inside your own organization using the YPO International framework
 
 **Opening hook:** "I've experienced Forum from nearly every angle..."
 
@@ -59,7 +59,7 @@ The goal: walk into each recording knowing your key message, your real stories, 
 **Key message:** EI in facilitation is about noticing what isn't being said and creating space for it — plus managing yourself so you don't get in the way.
 
 **Story beats to draw from:**
-- **Example 1 — Reading the room:** In Forum for Business, you learned to notice the signals — posture changes, voice gets quieter, eye contact drops. You bring it to the surface with curiosity, not judgment: "I noticed the mood shifted... there's something here worth exploring." Then: "What are we solving for?" That question names the issue and gives the group permission to engage honestly.
+- **Example 1 — Reading the room:** In your Forum for Business sessions, you learned to notice the signals — posture changes, voice gets quieter, eye contact drops. You bring it to the surface with curiosity, not judgment: "I noticed the mood shifted... there's something here worth exploring." Then: "What are we solving for?" That question names the issue and gives the group permission to engage honestly.
 - **Example 2 — Managing yourself:** In spouse forum, situations involving personal crises required you to hold space without reacting, stay neutral when you had opinions, prioritize group safety over your own discomfort. The facilitator's job isn't to fix — it's to create conditions where the group does its own work. That requires regulating yourself first.
 
 **Opening hook:** "Emotional intelligence in facilitation isn't about having the right thing to say — it's about noticing what isn't being said."
@@ -161,7 +161,7 @@ The goal: walk into each recording knowing your key message, your real stories, 
 - **Open Area (small at first):** When you first joined spouse forum 10+ years ago, you showed up as the version of yourself you thought the group needed — competent, composed. Genuine, but not complete.
 - **Hidden Area (large at first):** You carried questions about your identity as a leader, what it meant to be a spouse in the YPO world while building your own career and legacy. Didn't share early because you weren't sure the group was ready — or that you were ready to say it out loud. Over time, as trust built, you started sharing from that space.
 - **Blind Spot (shrank through feedback):** You didn't realize your experience building and scaling a business had equipped you to facilitate groups. Forum members pointed out that the way you hold space — asking the right question, reading the room, staying calm in tension — was a skill, not just personality. That feedback led you to pursue facilitation formally, seed the spouse forum, and apply for CFF.
-- **Unknown (revealed through action):** When you built Forum for Business, you discovered you could take a model designed for CEO peer groups and adapt it for a completely different context. That capability was in the Unknown until you put yourself in a situation that demanded it.
+- **Unknown (revealed through action):** When you seeded Forum for Business at your organization using the YPO International framework, you discovered you could take that model and implement it in a completely different context — your own leadership team. That capability was in the Unknown until you put yourself in a situation that demanded it.
 
 **Closing thought:** Every Forum meeting is an act of expanding the Open Area. That expansion is what makes Forum transformative.
 
