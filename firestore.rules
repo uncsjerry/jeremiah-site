@@ -7,5 +7,18 @@ service cloud.firestore {
       // Only authenticated users can write
       allow create, update, delete: if request.auth != null;
     }
+
+    match /photos/{photoId} {
+      // WHY: Public read so the gallery page can display published photos without auth
+      allow read: if true;
+      // WHY: Auth-gated write so only the admin can publish/edit/remove photos
+      allow create, update, delete: if request.auth != null;
+    }
+
+    match /config/{docId} {
+      // WHY: Public read for category list used by the gallery filter bar
+      allow read: if true;
+      allow create, update, delete: if request.auth != null;
+    }
   }
 }

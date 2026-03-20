@@ -39,7 +39,6 @@ body {
   color: var(--ink);
   line-height: 1.6;
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* WHY: Show default cursor on touch devices and form elements */
@@ -48,7 +47,7 @@ body {
   .cursor { display: none !important; }
 }
 
-a { color: inherit; text-decoration: none; cursor: none; }
+a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 em { font-family: var(--serif); font-style: italic; }
@@ -120,15 +119,42 @@ em { font-family: var(--serif); font-style: italic; }
   color: var(--white);
 }
 
+/* WHY: Visible nav links on desktop so users don't have to open the hamburger for basic navigation */
+.nav-inline {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-inline a {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  opacity: 0.7;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.nav-inline a:hover {
+  opacity: 1;
+  color: var(--coral-light);
+}
+
+.nav-inline a.nav-inline-active {
+  opacity: 1;
+  color: var(--coral-light);
+}
+
 .menu-btn {
   background: none;
   border: none;
-  cursor: none;
   display: flex;
   flex-direction: column;
   gap: 6px;
   padding: 8px;
   z-index: 200;
+  cursor: pointer;
 }
 
 .menu-btn span {
@@ -1038,7 +1064,6 @@ em { font-family: var(--serif); font-style: italic; }
   outline: none;
   transition: border-color 0.3s;
   border-radius: 0;
-  cursor: none;
 }
 
 .field input:focus,
@@ -1074,7 +1099,7 @@ em { font-family: var(--serif); font-style: italic; }
   background: var(--cream);
   border: none;
   padding: 18px 40px;
-  cursor: none;
+  cursor: pointer;
   transition: all 0.3s;
   align-self: flex-start;
 }
@@ -1200,6 +1225,11 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 @media (max-width: 768px) {
+  /* WHY: Hide inline nav on mobile — hamburger overlay handles navigation at this size */
+  .nav-inline {
+    display: none;
+  }
+
   #navbar {
     padding: 20px 24px;
   }

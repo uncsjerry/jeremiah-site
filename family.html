@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Family — Jeremiah Gutierrez</title>
-  <meta name="description" content="Family photos and updates from the Gutierrez family.">
+  <title>Life & Work — Jeremiah Gutierrez</title>
+  <meta name="description" content="Family. Facilitation. The work and the life. Photos from Jeremiah Gutierrez.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.gstatic.com">
@@ -19,6 +19,13 @@
   <!-- Navigation -->
   <nav id="navbar">
     <a href="index.html" class="logo">Jeremiah<br>Gutierrez</a>
+    <div class="nav-inline">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="links.html">Writing</a>
+      <a href="family.html" class="nav-inline-active">Gallery</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
     <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span>
     </button>
@@ -31,7 +38,8 @@
           <a href="index.html#credentials" class="nav-link-big" data-num="04">Credentials</a>
           <a href="index.html#proof" class="nav-link-big" data-num="05">Proof</a>
           <a href="index.html#contact" class="nav-link-big" data-num="06">Contact</a>
-          <a href="family.html" class="nav-link-big nav-link-active" data-num="07">Family</a>
+          <a href="links.html" class="nav-link-big" data-num="07">Writing</a>
+          <a href="family.html" class="nav-link-big nav-link-active" data-num="08">Gallery</a>
         </div>
         <div class="nav-overlay-footer">
           <div class="nav-footer-col">
@@ -50,18 +58,34 @@
   <!-- Header -->
   <header class="family-header">
     <div class="family-header-inner">
-      <span class="label">Photos & Updates</span>
+      <span class="label">Life & Work</span>
       <h1 class="family-title">
-        <span class="line"><span class="line-inner"><em>Family.</em></span></span>
+        <span class="line"><span class="line-inner"><em>Gallery.</em></span></span>
       </h1>
-      <p class="family-subtitle">Life as it happens.</p>
+      <p class="family-subtitle">Family. Facilitation. The work and the life.</p>
     </div>
   </header>
 
-  <!-- Feed -->
-  <main class="feed-container">
-    <div class="feed" id="feed">
-      <!-- Posts rendered by JS -->
+  <!-- Filter Bar -->
+  <div class="gallery-filter-bar" id="filterBar">
+    <div class="filter-bar-inner">
+      <div class="category-tabs" id="categoryTabs">
+        <button class="category-tab active" data-category="">All</button>
+        <button class="category-tab" data-category="family">Family</button>
+        <button class="category-tab" data-category="events">Events</button>
+        <button class="category-tab" data-category="forum">Forum</button>
+        <button class="category-tab" data-category="coaching">Coaching</button>
+        <button class="category-tab" data-category="speaking">Speaking</button>
+        <button class="category-tab" data-category="travel">Travel</button>
+      </div>
+      <input type="text" class="gallery-search" id="gallerySearch" placeholder="Search photos...">
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <main class="gallery-container">
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Rendered by JS -->
     </div>
     <div class="feed-empty" id="feedEmpty" style="display: none;">
       <p class="empty-text">Nothing here yet.</p>
@@ -70,13 +94,28 @@
     <div class="feed-loading" id="feedLoading">
       <div class="loader"></div>
     </div>
-    <button class="load-more-btn" id="loadMoreBtn" style="display: none;">Load more &darr;</button>
   </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" style="display: none;">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <button class="lightbox-prev" id="lightboxPrev">&lsaquo;</button>
+    <button class="lightbox-next" id="lightboxNext">&rsaquo;</button>
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="">
+      <div class="lightbox-meta" id="lightboxMeta"></div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <span class="footer-name">Jeremiah Gutierrez</span>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="links.html">Writing</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
       <span class="footer-copy">&copy; 2026</span>
       <a href="#" class="footer-top">Back to top &uarr;</a>
     </div>
