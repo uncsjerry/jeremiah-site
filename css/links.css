@@ -40,7 +40,7 @@
 }
 
 .links-title em {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .links-subtitle {
@@ -108,7 +108,7 @@
 }
 
 .link-item:hover .link-item-content h3 {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .link-item-content p {
@@ -126,7 +126,7 @@
 }
 
 .link-item:hover .link-arrow {
-  color: var(--coral);
+  color: var(--accent);
   transform: translateX(4px);
 }
 

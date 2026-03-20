@@ -44,7 +44,7 @@
 }
 
 .family-title em {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .family-subtitle {
@@ -129,7 +129,7 @@
 }
 
 .gallery-search:focus {
-  border-bottom-color: var(--coral);
+  border-bottom-color: var(--accent);
 }
 
 .gallery-search::placeholder {
@@ -378,7 +378,7 @@
   width: 24px;
   height: 24px;
   border: 2px solid var(--cream-dark);
-  border-top-color: var(--coral);
+  border-top-color: var(--accent);
   animation: spin 0.8s linear infinite;
 }
 
@@ -426,7 +426,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--coral);
+  color: var(--accent);
   background: rgba(232, 68, 58, 0.08);
   padding: 4px 10px;
 }
@@ -445,8 +445,8 @@
 }
 
 .logout-btn:hover {
-  color: var(--coral);
-  border-color: var(--coral);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* -------------------------------------------
@@ -503,7 +503,7 @@
 .login-error {
   font-family: var(--mono);
   font-size: 0.75rem;
-  color: var(--coral);
+  color: var(--accent);
   padding: 16px 0 0;
 }
 
@@ -618,7 +618,7 @@
 
 .queue-item-fields input:focus,
 .queue-item-fields select:focus {
-  border-bottom-color: var(--coral);
+  border-bottom-color: var(--accent);
 }
 
 .queue-remove-btn {
@@ -633,7 +633,7 @@
 }
 
 .queue-remove-btn:hover {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .queue-actions {
@@ -654,8 +654,8 @@
 }
 
 .clear-queue-btn:hover {
-  color: var(--coral);
-  border-color: var(--coral);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 /* -------------------------------------------
@@ -681,7 +681,7 @@
 }
 
 .admin-search:focus {
-  border-bottom-color: var(--coral);
+  border-bottom-color: var(--accent);
 }
 
 .admin-category-filter {
@@ -748,7 +748,7 @@
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--coral);
+  color: var(--accent);
   background: rgba(232, 68, 58, 0.08);
   padding: 2px 8px;
   margin-left: 8px;
@@ -779,8 +779,8 @@
 }
 
 .delete-btn:hover {
-  color: var(--coral);
-  border-color: var(--coral);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .admin-empty {
@@ -854,7 +854,7 @@
 .edit-modal .field input:focus,
 .edit-modal .field textarea:focus,
 .edit-modal .field select:focus {
-  border-bottom-color: var(--coral);
+  border-bottom-color: var(--accent);
 }
 
 .edit-modal-actions {
@@ -884,7 +884,7 @@
    Active nav link
    ------------------------------------------- */
 .nav-link-active {
-  color: var(--coral) !important;
+  color: var(--accent) !important;
 }
 
 /* -------------------------------------------

@@ -1,22 +1,22 @@
 /* ============================================
    Jeremiah Gutierrez — Editorial / Brutalist
-   Light cream base, hot coral accent, massive
-   serif typography, asymmetric layouts, sharp edges
+   Light airy base, sage green accent, massive
+   serif typography, asymmetric layouts, calm authority
    ============================================ */
 
 /* -------------------------------------------
    Variables
    ------------------------------------------- */
 :root {
-  /* WHY: Coral is confident and warm without feeling corporate — pairs well with cream for editorial feel */
-  --coral: #e8443a;
-  --coral-light: #f06b63;
-  --ink: #1a1a1a;
-  --ink-light: #3d3d3d;
-  --cream: #f5f0e8;
-  --cream-dark: #e8e0d4;
-  --white: #fffcf7;
-  --muted: #8a8275;
+  /* WHY: Sage green conveys calm, trust, and natural authority — light and airy without aggression */
+  --accent: #6B9080;
+  --accent-light: #8FB8A0;
+  --ink: #2D3436;
+  --ink-light: #4a5859;
+  --cream: #F8F7F4;
+  --cream-dark: #ECE9E3;
+  --white: #FFFEFA;
+  --muted: #8A9190;
 
   --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -53,7 +53,7 @@ img { max-width: 100%; display: block; }
 em { font-family: var(--serif); font-style: italic; }
 
 ::selection {
-  background: var(--coral);
+  background: var(--accent);
   color: var(--white);
 }
 
@@ -63,7 +63,7 @@ em { font-family: var(--serif); font-style: italic; }
 .cursor {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--coral);
+  border: 2px solid var(--accent);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -76,7 +76,7 @@ em { font-family: var(--serif); font-style: italic; }
 .cursor.hovering {
   width: 50px;
   height: 50px;
-  border-color: var(--coral-light);
+  border-color: var(--accent-light);
   background: rgba(232, 68, 58, 0.08);
 }
 
@@ -138,12 +138,12 @@ em { font-family: var(--serif); font-style: italic; }
 
 .nav-inline a:hover {
   opacity: 1;
-  color: var(--coral-light);
+  color: var(--accent-light);
 }
 
 .nav-inline a.nav-inline-active {
   opacity: 1;
-  color: var(--coral-light);
+  color: var(--accent-light);
 }
 
 .menu-btn {
@@ -221,7 +221,7 @@ em { font-family: var(--serif); font-style: italic; }
   content: attr(data-num);
   font-family: var(--mono);
   font-size: 0.7rem;
-  color: var(--coral);
+  color: var(--accent);
   position: absolute;
   left: -40px;
   top: 50%;
@@ -230,7 +230,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .nav-link-big:hover {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .nav-overlay-footer {
@@ -257,7 +257,7 @@ em { font-family: var(--serif); font-style: italic; }
   display: block;
 }
 
-.nav-footer-col a:hover { color: var(--coral); }
+.nav-footer-col a:hover { color: var(--accent); }
 
 .nav-social {
   display: flex;
@@ -324,11 +324,11 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .hero-headline em {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .hero-headline .period {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 /* WHY: Line-by-line wrapper enables staggered slide-up animation on load */
@@ -390,7 +390,7 @@ em { font-family: var(--serif); font-style: italic; }
   top: -100%;
   width: 100%;
   height: 100%;
-  background: var(--coral);
+  background: var(--accent);
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
@@ -412,9 +412,9 @@ em { font-family: var(--serif); font-style: italic; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--coral);
+  color: var(--accent);
   flex-shrink: 0;
-  border-bottom: 1px solid var(--coral);
+  border-bottom: 1px solid var(--accent);
   padding-bottom: 4px;
   transition: letter-spacing 0.3s;
 }
@@ -455,7 +455,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .ticker-sep {
-  color: var(--coral) !important;
+  color: var(--accent) !important;
   font-weight: 700;
 }
 
@@ -500,7 +500,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .split-heading em {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .split-right {
@@ -576,7 +576,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .section-mega-title em {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .services-sub {
@@ -617,7 +617,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .panel-accent {
-  background: var(--coral);
+  background: var(--accent);
   color: var(--white);
 }
 
@@ -715,7 +715,7 @@ em { font-family: var(--serif); font-style: italic; }
 
 .strike {
   text-decoration: line-through;
-  text-decoration-color: var(--coral);
+  text-decoration-color: var(--accent);
   text-decoration-thickness: 3px;
 }
 
@@ -729,7 +729,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .philosophy-title em {
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .beliefs-grid {
@@ -746,7 +746,7 @@ em { font-family: var(--serif); font-style: italic; }
 .belief-num {
   font-family: var(--mono);
   font-size: 0.7rem;
-  color: var(--coral);
+  color: var(--accent);
   letter-spacing: 0.1em;
   display: block;
   margin-bottom: 16px;
@@ -802,7 +802,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .credential-icon {
-  color: var(--coral);
+  color: var(--accent);
   font-size: 0.8rem;
   display: block;
   margin-bottom: 16px;
@@ -906,7 +906,7 @@ em { font-family: var(--serif); font-style: italic; }
   font-family: var(--serif);
   font-size: 3rem;
   font-weight: 900;
-  color: var(--coral);
+  color: var(--accent);
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -922,7 +922,7 @@ em { font-family: var(--serif); font-style: italic; }
    Big CTA
    ------------------------------------------- */
 .big-cta {
-  background: var(--coral);
+  background: var(--accent);
   padding: 120px 40px;
   text-align: center;
 }
@@ -955,7 +955,7 @@ em { font-family: var(--serif); font-style: italic; }
 
 .cta-button:hover {
   background: var(--white);
-  color: var(--coral);
+  color: var(--accent);
 }
 
 /* -------------------------------------------
@@ -985,7 +985,7 @@ em { font-family: var(--serif); font-style: italic; }
   letter-spacing: -0.02em;
 }
 
-.contact-heading em { color: var(--coral); }
+.contact-heading em { color: var(--accent); }
 
 .contact-info {
   display: flex;
@@ -1005,8 +1005,8 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .contact-link:hover {
-  color: var(--coral);
-  border-color: var(--coral);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .contact-location {
@@ -1028,7 +1028,7 @@ em { font-family: var(--serif); font-style: italic; }
   transition: color 0.3s;
 }
 
-.contact-socials a:hover { color: var(--coral); }
+.contact-socials a:hover { color: var(--accent); }
 
 /* Contact Form */
 .contact-form {
@@ -1069,7 +1069,7 @@ em { font-family: var(--serif); font-style: italic; }
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-bottom-color: var(--coral);
+  border-bottom-color: var(--accent);
 }
 
 .field select {
@@ -1105,7 +1105,7 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .submit-btn:hover {
-  background: var(--coral);
+  background: var(--accent);
   color: var(--white);
 }
 
@@ -1152,7 +1152,7 @@ em { font-family: var(--serif); font-style: italic; }
   transition: color 0.3s;
 }
 
-.footer-top:hover { color: var(--coral); }
+.footer-top:hover { color: var(--accent); }
 
 .footer-links {
   display: flex;
@@ -1168,7 +1168,7 @@ em { font-family: var(--serif); font-style: italic; }
   transition: color 0.3s;
 }
 
-.footer-links a:hover { color: var(--coral); }
+.footer-links a:hover { color: var(--accent); }
 
 /* -------------------------------------------
    Reveal Animations
