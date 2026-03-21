@@ -6,9 +6,13 @@ import { db } from './firebase-config.js';
 import {
   collection,
   query,
+  where,
   orderBy,
   getDocs
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+// WHY: "jeremiah" visibility tag — this site shows only photos tagged for Jeremiah
+const SITE_ID = 'jeremiah';
 
 // -------------------------------------------
 // DOM refs
@@ -39,7 +43,14 @@ let lightboxIndex = -1;
 // -------------------------------------------
 async function loadPhotos() {
   try {
-    const q = query(collection(db, 'photos'), orderBy('publishedAt', 'desc'));
+    // WHY: Only fetch approved photos tagged with this site's SITE_ID
+    // WHY: Requires composite index on (status, visibility, publishedAt)
+    const q = query(
+      collection(db, 'photos'),
+      where('status', '==', 'approved'),
+      where('visibility', 'array-contains', SITE_ID),
+      orderBy('publishedAt', 'desc')
+    );
     const snapshot = await getDocs(q);
 
     feedLoading.style.display = 'none';

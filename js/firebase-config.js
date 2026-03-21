@@ -19,13 +19,15 @@ import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.12.0/firebas
 import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 
 // WHY: Config is safe to expose client-side — security is enforced by Firestore rules, not by hiding these keys
+// WHY: Points to the shared gutierrez-rose-family Firebase project so all 5 family sites
+// share the same Firestore database. Photos published from the family admin panel appear here.
 const firebaseConfig = {
-  apiKey: "AIzaSyDg19UEz1dY4xi3XoFsgvbnbFO0eMWurx8",
-  authDomain: "jeremiah-site.firebaseapp.com",
-  projectId: "jeremiah-site",
-  storageBucket: "jeremiah-site.firebasestorage.app",
-  messagingSenderId: "65615528096",
-  appId: "1:65615528096:web:e4196c7dd2508e5f4849c5"
+  apiKey: "YOUR_FIREBASE_API_KEY",
+  authDomain: "gutierrez-rose-family.firebaseapp.com",
+  projectId: "gutierrez-rose-family",
+  storageBucket: "gutierrez-rose-family.firebasestorage.app",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
