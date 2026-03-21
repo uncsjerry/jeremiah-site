@@ -22,12 +22,12 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-aut
 // WHY: Points to the shared gutierrez-rose-family Firebase project so all 5 family sites
 // share the same Firestore database. Photos published from the family admin panel appear here.
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
+  apiKey: "AIzaSyCRbyzjnKcCv_VZKd8xWUHDWu7rmK943uQ",
   authDomain: "gutierrez-rose-family.firebaseapp.com",
   projectId: "gutierrez-rose-family",
   storageBucket: "gutierrez-rose-family.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  messagingSenderId: "240062290004",
+  appId: "1:240062290004:web:7342cdbb92e05c38c9f5c1"
 };
 
 const app = initializeApp(firebaseConfig);
