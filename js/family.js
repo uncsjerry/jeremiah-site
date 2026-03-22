@@ -37,6 +37,9 @@ let filteredPhotos = [];
 let activeCategory = '';
 let searchTerm = '';
 let lightboxIndex = -1;
+let galleryExpanded = false;
+
+const galleryContainer = document.querySelector('.gallery-container');
 
 // -------------------------------------------
 // Load all photos from Firestore
@@ -65,7 +68,7 @@ async function loadPhotos() {
       allPhotos.push({ id: doc.id, ...doc.data() });
     });
 
-    applyFilters();
+    // WHY: Don't render on load — gallery starts collapsed, photos load silently until user picks a category
   } catch (err) {
     console.error('Error loading photos:', err);
     feedLoading.style.display = 'none';
@@ -111,6 +114,23 @@ function applyFilters() {
 }
 
 // -------------------------------------------
+// Expand / Collapse gallery
+// -------------------------------------------
+function expandGallery() {
+  galleryExpanded = true;
+  if (galleryContainer) galleryContainer.classList.add('gallery-expanded');
+  if (gallerySearch) gallerySearch.style.display = '';
+}
+
+function collapseGallery() {
+  galleryExpanded = false;
+  if (galleryContainer) galleryContainer.classList.remove('gallery-expanded');
+  if (galleryGrid) galleryGrid.innerHTML = '';
+  if (feedEmpty) feedEmpty.style.display = 'none';
+  if (gallerySearch) gallerySearch.style.display = 'none';
+}
+
+// -------------------------------------------
 // Category tabs
 // -------------------------------------------
 if (categoryTabs) {
@@ -118,9 +138,18 @@ if (categoryTabs) {
     const tab = e.target.closest('.category-tab');
     if (!tab) return;
 
+    // WHY: Clicking the already-active tab collapses the gallery back to hidden state
+    if (tab.classList.contains('active') && galleryExpanded) {
+      categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+      activeCategory = '';
+      collapseGallery();
+      return;
+    }
+
     categoryTabs.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     activeCategory = tab.dataset.category;
+    expandGallery();
     applyFilters();
   });
 }
@@ -138,6 +167,9 @@ if (gallerySearch) {
       applyFilters();
     }, 300);
   });
+
+  // WHY: Gallery starts collapsed — hide search until a category is selected
+  gallerySearch.style.display = 'none';
 }
 
 // -------------------------------------------

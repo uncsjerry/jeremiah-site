@@ -112,6 +112,18 @@
   color: var(--cream);
 }
 
+/* WHY: Visual hint that tabs are expandable (+) and collapsible (−) */
+.category-tab::after {
+  content: ' +';
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.category-tab.active::after {
+  content: ' \2212';
+  opacity: 1;
+}
+
 .gallery-search {
   flex: 1;
   min-width: 0;
@@ -139,10 +151,21 @@
 /* -------------------------------------------
    Gallery Grid
    ------------------------------------------- */
+/* WHY: Gallery starts collapsed (max-height: 0) and expands with a smooth transition when a category is selected */
 .gallery-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 40px 120px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+}
+
+.gallery-container.gallery-expanded {
+  max-height: none;
+  overflow: visible;
+  opacity: 1;
 }
 
 .gallery-grid {
