@@ -71,4 +71,8 @@ function loadGoogleApis() {
   ]);
 }
 
-export { app, db, auth, GOOGLE_CLIENT_ID, GOOGLE_API_KEY, SCOPES, loadGoogleApis };
+// WHY: Defense-in-depth — even if Firestore rules are misconfigured, the client
+// rejects non-admin users immediately. Real enforcement is in firestore.rules.
+const ADMIN_EMAILS = ['jeremiah@uncs.com', 'fiveacts@gmail.com'];
+
+export { app, db, auth, GOOGLE_CLIENT_ID, GOOGLE_API_KEY, SCOPES, ADMIN_EMAILS, loadGoogleApis };

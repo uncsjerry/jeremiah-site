@@ -2,7 +2,7 @@
 // Admin Panel — Google Drive Gallery Manager
 // ============================================
 
-import { db, auth, GOOGLE_CLIENT_ID, GOOGLE_API_KEY, SCOPES, loadGoogleApis } from './firebase-config.js';
+import { db, auth, GOOGLE_CLIENT_ID, GOOGLE_API_KEY, SCOPES, ADMIN_EMAILS, loadGoogleApis } from './firebase-config.js';
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -65,11 +65,16 @@ provider.addScope(SCOPES);
 provider.setCustomParameters({ prompt: 'select_account' });
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
+  if (user && ADMIN_EMAILS.includes(user.email)) {
     loginGate.style.display = 'none';
     adminPanel.style.display = 'block';
     logoutBtn.style.display = 'block';
     loadPublishedPhotos();
+  } else if (user) {
+    // WHY: Signed in but not an admin — sign them out and show error
+    signOut(auth);
+    loginError.textContent = 'Access denied. This account is not authorized.';
+    loginError.style.display = 'block';
   } else {
     loginGate.style.display = 'flex';
     adminPanel.style.display = 'none';
