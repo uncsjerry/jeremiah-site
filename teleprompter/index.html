@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CFF Teleprompter — Jeremiah Gutierrez</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #1a1a2e;
+      --text: #e8e8e8;
+      --accent: #6B9080;
+      --accent-light: #8FB8A0;
+      --dim: #555;
+      --danger: #e74c3c;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ---- MENU / SCRIPT SELECTOR ---- */
+    .menu {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .menu h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: var(--accent-light);
+    }
+
+    .menu p.subtitle {
+      color: var(--dim);
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+
+    .menu h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin: 32px 0 16px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 8px;
+    }
+
+    .script-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .script-btn {
+      background: #2a2a3e;
+      border: 1px solid #333;
+      color: var(--text);
+      padding: 16px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .script-btn:hover {
+      border-color: var(--accent);
+      background: #2a2a4e;
+    }
+
+    .script-btn .label {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .script-btn .time {
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      font-family: monospace;
+    }
+
+    /* ---- TELEPROMPTER VIEW ---- */
+    .prompter {
+      display: none;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .prompter.active {
+      display: flex;
+    }
+
+    .menu.hidden {
+      display: none;
+    }
+
+    /* Top bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: #111;
+      border-bottom: 1px solid #333;
+      flex-shrink: 0;
+    }
+
+    .top-bar .title {
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .timer {
+      font-family: monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .timer.warning { color: #f39c12; }
+    .timer.danger { color: var(--danger); }
+
+    .back-btn {
+      background: none;
+      border: 1px solid #555;
+      color: #aaa;
+      padding: 6px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+
+    .back-btn:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* Reading zone */
+    .reading-zone {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* WHY: Center guide line shows where the reader's eyes should focus */
+    .guide-line {
+      position: absolute;
+      top: 38%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.3;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .scroll-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 30vh 10vw 60vh;
+      transition: transform 0.1s linear;
+    }
+
+    .script-text {
+      font-size: 2.8rem;
+      line-height: 1.55;
+      font-weight: 400;
+      color: var(--text);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .script-text .pause {
+      display: block;
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-family: monospace;
+      margin: 24px 0;
+      opacity: 0.7;
+    }
+
+    .script-text .emphasis {
+      color: var(--accent-light);
+      font-weight: 600;
+    }
+
+    .script-text .direction {
+      color: #f39c12;
+      font-size: 1.4rem;
+      font-style: italic;
+      display: block;
+      margin: 20px 0;
+    }
+
+    /* Controls bar */
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      padding: 16px 24px;
+      background: #111;
+      border-top: 1px solid #333;
+      flex-shrink: 0;
+    }
+
+    .ctrl-btn {
+      background: #2a2a3e;
+      border: 1px solid #444;
+      color: var(--text);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .ctrl-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .ctrl-btn.play {
+      width: 64px;
+      height: 64px;
+      background: var(--accent);
+      border-color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .ctrl-btn.play:hover {
+      background: var(--accent-light);
+    }
+
+    .speed-display {
+      font-family: monospace;
+      font-size: 1rem;
+      color: var(--dim);
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .font-size-label {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--dim);
+    }
+
+    /* Keyboard hints */
+    .hints {
+      text-align: center;
+      padding: 8px;
+      font-size: 0.7rem;
+      color: #444;
+      background: #111;
+    }
+
+    /* Countdown overlay */
+    .countdown-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .countdown-overlay.active {
+      display: flex;
+    }
+
+    .countdown-number {
+      font-size: 12rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      animation: pulse 1s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.5); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .script-text {
+        font-size: 1.8rem;
+        line-height: 1.5;
+      }
+      .scroll-container {
+        padding: 30vh 24px 60vh;
+      }
+      .menu {
+        padding: 32px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCRIPT SELECTOR -->
+  <div class="menu" id="menu">
+    <h1>CFF Teleprompter</h1>
+    <p class="subtitle">Jeremiah Gutierrez | YPO Certified Forum Facilitator 2026</p>
+
+    <h2>Part 2: Video Interview (unlimited takes)</h2>
+    <div class="script-list">
+      <button class="script-btn" onclick="loadScript('q1')">
+        <span class="label">Q1: Elevator Pitch for Forum</span>
+        <span class="time">30 sec</span>
+      </button>
+      <button class="script-btn" onclick="loadScript('q2')">
+        <span class="label">Q2: Transformational Work</span>
+        <span class="time">90 sec</span>
+      </button>
+      <button class="script-btn" onclick="loadScript('q3')">
+        <span class="label">Q3: Emotional Intelligence</span>
+        <span class="time">90 sec</span>
+      </button>
+      <button class="script-btn" onclick="loadScript('q4')">
+        <span class="label">Q4: Growth Area</span>
+        <span class="time">90 sec</span>
+      </button>
+      <button class="script-btn" onclick="loadScript('q5')">
+        <span class="label">Q5: When Plans Don't Work</span>
+        <span class="time">90 sec</span>
+      </button>
+    </div>
+
+    <h2>Part 3: Johari Window Teachback (unlimited takes)</h2>
+    <div class="script-list">
+      <button class="script-btn" onclick="loadScript('q6a')">
+        <span class="label">Q6A: What Is the Johari Window</span>
+        <span class="time">2 min</span>
+      </button>
+      <button class="script-btn" onclick="loadScript('q6b')">
+        <span class="label">Q6B: Personal Examples</span>
+        <span class="time">3 min</span>
+      </button>
+    </div>
+
+    <h2>Part 4: Forum Scenarios (1 take each)</h2>
+    <div class="script-list">
+      <button class="script-btn" onclick="loadScript('p4')">
+        <span class="label">Response Framework &amp; Key Phrases</span>
+        <span class="time">Reference</span>
+      </button>
+    </div>
+
+    <div style="margin-top: 48px; padding: 20px; background: #2a2a3e; border-radius: 8px; border: 1px solid #333;">
+      <p style="font-size: 0.9rem; color: #aaa; margin-bottom: 12px;"><strong style="color: var(--accent-light);">Controls:</strong></p>
+      <p style="font-size: 0.85rem; color: #777; line-height: 1.8;">
+        <strong>Space</strong> — Play / Pause<br>
+        <strong>Up/Down arrows</strong> — Adjust speed<br>
+        <strong>+/-</strong> — Font size<br>
+        <strong>R</strong> — Reset to top<br>
+        <strong>Esc</strong> — Back to menu<br>
+        <strong>Mouse scroll</strong> — Manual scroll (while paused)
+      </p>
+    </div>
+  </div>
+
+  <!-- TELEPROMPTER VIEW -->
+  <div class="prompter" id="prompter">
+    <div class="top-bar">
+      <button class="back-btn" onclick="backToMenu()">&#8592; Menu</button>
+      <span class="title" id="scriptTitle"></span>
+      <span class="timer" id="timer">0:00</span>
+    </div>
+
+    <div class="reading-zone">
+      <div class="guide-line"></div>
+      <div class="scroll-container" id="scrollContainer">
+        <div class="script-text" id="scriptText"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <span class="font-size-label" id="fontLabel">2.8rem</span>
+      <button class="ctrl-btn" onclick="changeFontSize(-0.2)" title="Smaller text">A-</button>
+      <button class="ctrl-btn" onclick="changeSpeed(-0.1)" title="Slower">&#9664;</button>
+      <button class="ctrl-btn play" id="playBtn" onclick="togglePlay()">&#9654;</button>
+      <button class="ctrl-btn" onclick="changeSpeed(0.1)" title="Faster">&#9654;</button>
+      <button class="ctrl-btn" onclick="changeFontSize(0.2)" title="Larger text">A+</button>
+      <span class="speed-display" id="speedDisplay">1.0x</span>
+    </div>
+
+    <div class="hints">
+      SPACE = play/pause &nbsp; | &nbsp; UP/DOWN = speed &nbsp; | &nbsp; +/- = font &nbsp; | &nbsp; R = reset &nbsp; | &nbsp; ESC = menu
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-overlay" id="countdown">
+    <span class="countdown-number" id="countdownNum">3</span>
+  </div>
+
+<script>
+// ============================================
+// SCRIPTS
+// ============================================
+const scripts = {
+  q1: {
+    title: 'Q1: Elevator Pitch for Forum — 30 sec',
+    time: 30,
+    text: `Forum is the most powerful room you'll ever sit in.
+
+<span class="pause">[ beat ]</span>
+
+It's a confidential group of peers who meet regularly — not to network, not to advise, not to fix each other — but to share what's <span class="emphasis">actually</span> going on.
+
+<span class="pause">[ beat ]</span>
+
+There's no agenda. No presentations. Just structured exercises and deep trust that create a space where high-performing people can finally stop performing —
+
+<span class="pause">[ beat ]</span>
+
+and start being <span class="emphasis">honest</span>.
+
+That's where the real growth happens.`
+  },
+
+  q2: {
+    title: 'Q2: Transformational Work — 90 sec',
+    time: 90,
+    text: `I've experienced Forum from nearly every angle.
+
+<span class="pause">[ beat ]</span>
+
+Fourteen years combined — first as a spouse forum member, then as a YPO member. But the work that shaped me most was building something from nothing.
+
+As Spouse Forum Officer for YPO Miami, I seeded the chapter's first professional spouse forum. We started with strangers. No existing trust. No shared history. Just a structure and a belief that if we created the right conditions, people would go deep.
+
+<span class="pause">[ beat ]</span>
+
+And they did.
+
+By the third or fourth session, I ran a modified life-walk exercise — and something shifted. People stopped holding back. The room got quiet in a different way. Real things started being said.
+
+<span class="pause">[ beat ]</span>
+
+But here's the moment I knew the Forum had become <span class="emphasis">theirs</span>, not mine —
+
+The incoming moderator called me and asked: "How do I show the group that I'm as invested as you are?"
+
+<span class="pause">[ beat ]</span>
+
+That question told me everything. The group had taken ownership. My job was to step back.
+
+<span class="direction">[ shift tone — grounded, forward-looking ]</span>
+
+I carried that into my own organization — seeding a Forum for Business program inside UNCS using the YPO International framework. Different context. Same principles. Same transformation.
+
+The work is the same everywhere: create safety, build trust, and then get out of the way.`
+  },
+
+  q3: {
+    title: 'Q3: Emotional Intelligence — 90 sec',
+    time: 90,
+    text: `Emotional intelligence in facilitation isn't about having the right thing to say.
+
+It's about noticing what <span class="emphasis">isn't</span> being said.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ Example 1 — lean in, specific ]</span>
+
+In our Forum for Business sessions, I learned to read the signals — posture changes, a voice gets quieter, eye contact drops.
+
+When I see that, I don't push. I bring it to the surface with curiosity:
+
+"I noticed the energy shifted. There's something here worth exploring."
+
+<span class="pause">[ beat ]</span>
+
+And then I ask one question: <span class="emphasis">"What are we solving for?"</span>
+
+That question does two things — it names that something real is happening, and it gives the group permission to engage honestly instead of dancing around it.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ Example 2 — slower, more reflective ]</span>
+
+The second example is about managing <span class="emphasis">myself</span>.
+
+In spouse forum, there were moments involving personal crises — real pain in the room. My instinct was to help. To fix. To react.
+
+But I've learned — the facilitator's job isn't to fix anything. It's to hold the space steady so the group can do its own work.
+
+<span class="pause">[ beat ]</span>
+
+That means staying neutral when I have opinions. Regulating my own discomfort. Prioritizing group safety over my instinct to intervene.
+
+You have to manage yourself first — before you can manage the room.`
+  },
+
+  q4: {
+    title: 'Q4: Growth Area — 90 sec',
+    time: 90,
+    text: `The thing that still stretches me is knowing when to stay <span class="emphasis">silent</span>.
+
+<span class="pause">[ beat ]</span>
+
+I naturally notice patterns quickly. My instinct is to name them — to say, "here's what I'm seeing."
+
+Most of the time, that serves the group. It moves things forward.
+
+<span class="pause">[ beat ]</span>
+
+But sometimes — stepping in too early <span class="emphasis">robs</span> the group of the breakthrough.
+
+The growth happens in the struggle. Not in the shortcut.
+
+<span class="direction">[ shift — honest, specific ]</span>
+
+I've been in sessions where I named a pattern at minute ten that the group would have arrived at by minute twenty — and when I did, the discovery was mine, not theirs.
+
+That's the difference between a good session and a <span class="emphasis">great</span> one.
+
+<span class="pause">[ beat ]</span>
+
+So here's what I'm actively doing about it:
+
+I build in longer pauses after I ask a question. I sit in the discomfort of silence. I trust the group to fill that space with something more honest than anything I could have prompted.
+
+<span class="pause">[ beat ]</span>
+
+And after every session, I debrief with myself — were there moments I intervened too early? Could I have held the space longer?
+
+<span class="direction">[ close — grounded ]</span>
+
+This is the edge between good and great facilitation. And I'm committed to living on that edge.`
+  },
+
+  q5: {
+    title: 'Q5: When Plans Don\'t Work — 90 sec',
+    time: 90,
+    text: `The plan is never the point.
+
+<span class="pause">[ beat ]</span>
+
+In the spouse forum, I had a clear development plan for a session — structured, thoughtful, ready to go.
+
+But a member's behavior had been creating tension for weeks, and in that meeting, a deeper crisis surfaced that no one had anticipated.
+
+<span class="pause">[ beat ]</span>
+
+My prepared agenda became irrelevant.
+
+<span class="direction">[ lean forward — this is the real story ]</span>
+
+So I set it aside. I paused the session, acknowledged what was happening in the room, and said — <span class="emphasis">"We need to talk about this."</span>
+
+We worked through it together. With honesty. With boundaries. With confidentiality.
+
+It wasn't comfortable. But it was <span class="emphasis">real</span>.
+
+<span class="pause">[ beat ]</span>
+
+And that was the best session we ever had.
+
+<span class="direction">[ shift to framework — steady, clear ]</span>
+
+Now I carry a simple check with me into every session. Three questions:
+
+<span class="emphasis">Is the group safe?</span>
+
+<span class="emphasis">Is the group engaged?</span>
+
+<span class="emphasis">Is the group doing real work?</span>
+
+<span class="pause">[ beat ]</span>
+
+If any answer is no — I adapt. The agenda can wait. The group can't.
+
+The best sessions I've ever facilitated were the ones where I threw out the plan and followed the group.`
+  },
+
+  q6a: {
+    title: 'Q6A: Johari Window — What It Is — 2 min',
+    time: 120,
+    text: `<span class="direction">[ If using a visual, hold it up or point to it now ]</span>
+
+The Johari Window is a model for understanding self-awareness — and it's the reason Forum works.
+
+<span class="pause">[ beat ]</span>
+
+It was created by Joseph Luft and Harrington Ingham in 1955. It's a simple two-by-two grid with four quadrants.
+
+<span class="direction">[ walk through each quadrant — point if using visual ]</span>
+
+The first is the <span class="emphasis">Open Area</span> — what you know about yourself and others know too. Your public self. In a new group, this area is small. People are guarded.
+
+The second is the <span class="emphasis">Blind Spot</span> — things others can see about you that you can't. Your patterns. Your strengths you take for granted. The things people notice but never tell you.
+
+<span class="pause">[ beat ]</span>
+
+The third is the <span class="emphasis">Hidden Area</span> — what you know about yourself but keep private. Your fears. Your insecurities. The private truths you carry alone. This is where vulnerability lives.
+
+And the fourth is the <span class="emphasis">Unknown</span> — what neither you nor anyone else is aware of yet. Untapped potential. Unconscious patterns. The things that only surface when you're in the right conditions.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ connect to Forum — this is the key insight ]</span>
+
+Now here's why Forum uses this model:
+
+Forum is <span class="emphasis">designed</span> to expand the Open Area.
+
+When members present and receive feedback — the Blind Spot shrinks.
+
+When members share what they've been carrying alone — the Hidden Area shrinks.
+
+And when a group builds enough safety for real exploration — the Unknown begins to reveal itself.
+
+<span class="pause">[ beat ]</span>
+
+The goal isn't perfection. It's <span class="emphasis">expansion</span>.
+
+A bigger Open Area means more authentic leadership, stronger relationships, and a more honest life.
+
+That's what Forum does — one meeting at a time.`
+  },
+
+  q6b: {
+    title: 'Q6B: Johari Window — Personal Examples — 3 min',
+    time: 180,
+    text: `The Johari Window isn't a teaching tool for me. It's something I've <span class="emphasis">lived</span> — across my entire Forum journey.
+
+Let me walk you through each quadrant from my own experience.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ Quadrant 1 — Open Area ]</span>
+
+When I first joined spouse forum over ten years ago, my Open Area was <span class="emphasis">small</span>.
+
+I showed up as the version of myself I thought the group needed — competent, composed, ready. And that was genuine. But it wasn't complete.
+
+I was sharing the highlights reel. Not the full picture.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ Quadrant 3 — Hidden Area ]</span>
+
+That's because my Hidden Area was <span class="emphasis">large</span>.
+
+I was carrying real questions about my identity as a leader. What it meant to be a spouse in the YPO world while also building my own career — my own company, my own legacy.
+
+I didn't share that early. Partly because I wasn't sure the group was ready. Partly because I wasn't sure <span class="emphasis">I</span> was ready to say it out loud.
+
+<span class="pause">[ beat ]</span>
+
+But over time — as trust built, as the norms held, as I watched others go first — I started sharing from that space.
+
+And every time I did, my Open Area grew.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ Quadrant 2 — Blind Spot ]</span>
+
+Now — the Blind Spot. This one changed the trajectory of my career.
+
+I didn't realize that my experience building and scaling a business had equipped me to <span class="emphasis">facilitate groups</span>.
+
+Forum members pointed it out. They said — the way you hold space, the way you ask the right question, the way you stay calm when things get tense — that's not just personality. That's a <span class="emphasis">skill</span>.
+
+<span class="pause">[ beat ]</span>
+
+That feedback — from people I trusted — is what led me to pursue facilitation formally. To seed the spouse forum. And ultimately, to apply for CFF.
+
+My Blind Spot shrank because the group reflected something back to me that I couldn't see on my own.
+
+<span class="pause">[ beat ]</span>
+
+<span class="direction">[ Quadrant 4 — Unknown ]</span>
+
+And then there's the Unknown.
+
+When I seeded Forum for Business inside my own organization using the YPO International framework — I discovered something I didn't know was there.
+
+I could take a model designed for peer CEOs and implement it in a completely different context — my own leadership team. Different dynamics, different stakes, same principles.
+
+<span class="pause">[ beat ]</span>
+
+That capability was in my Unknown until I put myself in a situation that demanded it.
+
+<span class="direction">[ close — pull it all together ]</span>
+
+<span class="pause">[ beat ]</span>
+
+Every Forum meeting is an act of expanding the Open Area.
+
+That's what happened for me. And it's what I've watched happen for every group I've been part of.
+
+That expansion — from hidden to open, from blind to aware, from unknown to discovered — <span class="emphasis">that</span> is what makes Forum transformative.`
+  },
+
+  p4: {
+    title: 'Part 4: Scenario Response Framework (Reference)',
+    time: 0,
+    text: `<span class="direction">[ REFERENCE ONLY — Not a script. Review before Part 4 recording. ]</span>
+
+<span class="emphasis">YOUR 4-STEP RESPONSE FRAMEWORK:</span>
+
+<span class="pause">[ Step 1 ]</span>
+Pause and name what you see:
+"What I'm noticing in this scenario is..."
+
+<span class="pause">[ Step 2 ]</span>
+Identify the Forum principle at play:
+Confidentiality? Psychological safety? No advice-giving? Gestalt? Boundaries?
+
+<span class="pause">[ Step 3 ]</span>
+Describe what you would do — specific facilitator action.
+
+<span class="pause">[ Step 4 ]</span>
+Explain why — connect it back to group growth and safety.
+
+<span class="pause">[ — ]</span>
+
+<span class="emphasis">KEY PHRASES YOU USE NATURALLY:</span>
+
+"What are we solving for?"
+
+"I'm noticing that..."
+
+"Let's pause and check in with the group."
+
+"The goal here isn't to fix — it's to understand."
+
+"What would serve the group right now?"
+
+"How does this connect to what you shared earlier?"
+
+<span class="pause">[ — ]</span>
+
+<span class="emphasis">PRINCIPLES TO DEMONSTRATE:</span>
+
+Forum is NOT therapy, coaching, or a board meeting — show you know the distinction.
+
+You are the FACILITATOR — not the moderator, not the coach. Know the boundaries.
+
+Authenticity over perfection — there's no single right answer.
+
+Psychological safety comes first — every response should center group safety.
+
+Confidentiality is sacred — if the scenario touches sensitive info, name that.
+
+<span class="pause">[ — ]</span>
+
+<span class="emphasis">REMEMBER:</span>
+
+3 minutes to think. 1 take per question.
+
+You've lived this for 14 years. Trust yourself.`
+  }
+};
+
+// ============================================
+// STATE
+// ============================================
+let currentScript = null;
+let isPlaying = false;
+let scrollSpeed = 1.0; // pixels per frame at 1.0x
+let fontSize = 2.8;
+let scrollPos = 0;
+let timerSeconds = 0;
+let timerInterval = null;
+let animFrame = null;
+// WHY: Base speed calibrated so a 30-second script scrolls in ~30 seconds at 1.0x
+const BASE_SPEED = 1.2;
+
+// ============================================
+// FUNCTIONS
+// ============================================
+function loadScript(key) {
+  currentScript = scripts[key];
+  document.getElementById('menu').classList.add('hidden');
+  document.getElementById('prompter').classList.add('active');
+  document.getElementById('scriptTitle').textContent = currentScript.title;
+  document.getElementById('scriptText').innerHTML = currentScript.text;
+  document.getElementById('timer').textContent = '0:00';
+  document.getElementById('timer').className = 'timer';
+
+  scrollPos = 0;
+  timerSeconds = 0;
+  isPlaying = false;
+  updateScrollPosition();
+  updatePlayBtn();
+}
+
+function backToMenu() {
+  stopAll();
+  document.getElementById('menu').classList.remove('hidden');
+  document.getElementById('prompter').classList.remove('active');
+  currentScript = null;
+}
+
+function togglePlay() {
+  if (!isPlaying) {
+    startCountdown(() => {
+      isPlaying = true;
+      updatePlayBtn();
+      startTimer();
+      scroll();
+    });
+  } else {
+    isPlaying = false;
+    updatePlayBtn();
+    stopTimer();
+    cancelAnimationFrame(animFrame);
+  }
+}
+
+function startCountdown(callback) {
+  const overlay = document.getElementById('countdown');
+  const numEl = document.getElementById('countdownNum');
+  overlay.classList.add('active');
+
+  let count = 3;
+  numEl.textContent = count;
+
+  const interval = setInterval(() => {
+    count--;
+    if (count <= 0) {
+      clearInterval(interval);
+      overlay.classList.remove('active');
+      callback();
+    } else {
+      numEl.textContent = count;
+      // Re-trigger animation
+      numEl.style.animation = 'none';
+      numEl.offsetHeight; // force reflow
+      numEl.style.animation = '';
+    }
+  }, 1000);
+}
+
+function scroll() {
+  if (!isPlaying) return;
+  scrollPos += BASE_SPEED * scrollSpeed;
+  updateScrollPosition();
+  animFrame = requestAnimationFrame(scroll);
+}
+
+function updateScrollPosition() {
+  document.getElementById('scrollContainer').style.transform = `translateY(-${scrollPos}px)`;
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timerSeconds++;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
+function stopAll() {
+  isPlaying = false;
+  cancelAnimationFrame(animFrame);
+  stopTimer();
+}
+
+function updateTimerDisplay() {
+  const min = Math.floor(timerSeconds / 60);
+  const sec = timerSeconds % 60;
+  const timerEl = document.getElementById('timer');
+  timerEl.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+
+  if (currentScript && currentScript.time > 0) {
+    const remaining = currentScript.time - timerSeconds;
+    if (remaining <= 10 && remaining > 0) {
+      timerEl.className = 'timer warning';
+    } else if (remaining <= 0) {
+      timerEl.className = 'timer danger';
+    } else {
+      timerEl.className = 'timer';
+    }
+  }
+}
+
+function updatePlayBtn() {
+  document.getElementById('playBtn').innerHTML = isPlaying ? '&#9646;&#9646;' : '&#9654;';
+}
+
+function changeSpeed(delta) {
+  scrollSpeed = Math.max(0.3, Math.min(3.0, scrollSpeed + delta));
+  scrollSpeed = Math.round(scrollSpeed * 10) / 10;
+  document.getElementById('speedDisplay').textContent = scrollSpeed.toFixed(1) + 'x';
+}
+
+function changeFontSize(delta) {
+  fontSize = Math.max(1.4, Math.min(5.0, fontSize + delta));
+  fontSize = Math.round(fontSize * 10) / 10;
+  document.getElementById('scriptText').style.fontSize = fontSize + 'rem';
+  document.getElementById('fontLabel').textContent = fontSize.toFixed(1) + 'rem';
+}
+
+function resetScroll() {
+  stopAll();
+  scrollPos = 0;
+  timerSeconds = 0;
+  updateScrollPosition();
+  updateTimerDisplay();
+  updatePlayBtn();
+  document.getElementById('timer').className = 'timer';
+}
+
+// ============================================
+// KEYBOARD CONTROLS
+// ============================================
+document.addEventListener('keydown', (e) => {
+  if (!currentScript) return;
+
+  switch(e.code) {
+    case 'Space':
+      e.preventDefault();
+      togglePlay();
+      break;
+    case 'ArrowUp':
+      e.preventDefault();
+      changeSpeed(0.1);
+      break;
+    case 'ArrowDown':
+      e.preventDefault();
+      changeSpeed(-0.1);
+      break;
+    case 'Equal':
+    case 'NumpadAdd':
+      changeFontSize(0.2);
+      break;
+    case 'Minus':
+    case 'NumpadSubtract':
+      changeFontSize(-0.2);
+      break;
+    case 'KeyR':
+      resetScroll();
+      break;
+    case 'Escape':
+      backToMenu();
+      break;
+  }
+});
+
+// WHY: Allow manual scrolling when paused for rehearsal/review
+document.querySelector('.reading-zone')?.addEventListener('wheel', (e) => {
+  if (!isPlaying) {
+    e.preventDefault();
+    scrollPos = Math.max(0, scrollPos + e.deltaY);
+    updateScrollPosition();
+  }
+}, { passive: false });
+</script>
+
+</body>
+</html>
