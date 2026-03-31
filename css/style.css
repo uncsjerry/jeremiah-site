@@ -1170,6 +1170,43 @@ em { font-family: var(--serif); font-style: italic; }
 
 .footer-links a:hover { color: var(--accent); }
 
+.footer-family {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--cream-dark);
+  margin-top: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-family-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.footer-family-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-family-links a {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-family-links a:hover {
+  color: var(--accent);
+}
+
 /* -------------------------------------------
    Reveal Animations
    ------------------------------------------- */
@@ -1291,6 +1328,11 @@ em { font-family: var(--serif); font-style: italic; }
     flex-direction: column;
     gap: 12px;
     text-align: center;
+  }
+
+  .footer-family-links {
+    flex-direction: column;
+    gap: 8px;
   }
 
   .nav-overlay-content {
