@@ -1,22 +1,24 @@
 /* ============================================
    Jeremiah Gutierrez — Editorial / Brutalist
-   Light airy base, sage green accent, massive
-   serif typography, asymmetric layouts, calm authority
+   Spring 2026 refresh — warm sage, soft gold
+   Light airy base, massive serif typography,
+   asymmetric layouts, calm authority
    ============================================ */
 
 /* -------------------------------------------
    Variables
    ------------------------------------------- */
 :root {
-  /* WHY: Sage green conveys calm, trust, and natural authority — light and airy without aggression */
-  --accent: #6B9080;
-  --accent-light: #8FB8A0;
-  --ink: #2D3436;
-  --ink-light: #4a5859;
-  --cream: #F8F7F4;
-  --cream-dark: #ECE9E3;
+  /* WHY: Spring palette — warm sage primary, soft gold secondary. Fresh, authoritative, approachable */
+  --accent: #7B9971;
+  --accent-light: #92AD88;
+  --accent-gold: #C4A265;         /* WHY: Soft gold for warmth and prestige highlights */
+  --ink: #2A2F2C;
+  --ink-light: #4A5550;
+  --cream: #FAFAF5;
+  --cream-dark: #ECEAE3;
   --white: #FFFEFA;
-  --muted: #8A9190;
+  --muted: #7A8278;
 
   --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -39,6 +41,9 @@ body {
   color: var(--ink);
   line-height: 1.6;
   overflow-x: hidden;
+  /* WHY: Prevent text overflow/cutoff at any viewport width */
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* WHY: Show default cursor on touch devices and form elements */
@@ -126,13 +131,14 @@ em { font-family: var(--serif); font-style: italic; }
   align-items: center;
 }
 
+/* WHY: 0.75rem minimum for readable nav text at desktop; was 0.7rem which caused squinting */
 .nav-inline a {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   color: var(--white);
-  opacity: 0.7;
+  opacity: 0.75;
   transition: opacity 0.3s, color 0.3s;
 }
 
@@ -332,9 +338,11 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 /* WHY: Line-by-line wrapper enables staggered slide-up animation on load */
+/* WHY: Padding prevents descender clipping (g, y, p) when overflow:hidden is active */
 .line {
   display: block;
   overflow: hidden;
+  padding-bottom: 0.08em;
 }
 
 .line-inner {
@@ -537,12 +545,14 @@ em { font-family: var(--serif); font-style: italic; }
   gap: 8px;
 }
 
+/* WHY: Gold for stat numbers adds warmth and draws the eye to key metrics */
 .stat-num {
   font-family: var(--serif);
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
+  color: var(--accent-gold, var(--accent));
 }
 
 .stat-label {
@@ -906,7 +916,7 @@ em { font-family: var(--serif); font-style: italic; }
   font-family: var(--serif);
   font-size: 3rem;
   font-weight: 900;
-  color: var(--accent);
+  color: var(--accent-gold, var(--accent));
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -1172,7 +1182,7 @@ em { font-family: var(--serif); font-style: italic; }
 
 .footer-family {
   padding: 1.5rem 0;
-  border-top: 1px solid var(--cream-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 1rem;
   text-align: center;
   width: 100%;
@@ -1198,7 +1208,7 @@ em { font-family: var(--serif); font-style: italic; }
 .footer-family-links a {
   font-family: var(--sans);
   font-size: 0.8rem;
-  color: var(--ink-light);
+  color: var(--cream-dark);
   text-decoration: none;
   transition: color 0.3s ease;
 }
