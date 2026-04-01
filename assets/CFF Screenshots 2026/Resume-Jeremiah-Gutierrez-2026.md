@@ -64,7 +64,7 @@ President and operator with 20+ years of experience building teams, scaling comp
 - Lead board governance, strategic direction, and stakeholder engagement for one of Broward County's largest homeless services organizations
 - Work alongside community leaders, executives, and philanthropists on housing and social impact initiatives
 
-### Spouse Forum Officer — YPO Miami
+### Spouse Forum Officer — YPO Miami (2020–2021)
 - Seeded and facilitated the chapter's first professional spouse forum from the ground up
 - Recruited members, established group norms, led structured exercises, built psychological safety, and developed the group's first moderator
 
