@@ -1130,32 +1130,66 @@ em { font-family: var(--serif); font-style: italic; }
 .footer {
   background: var(--ink);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 24px 40px;
+  padding: 48px 40px 24px;
 }
 
-.footer-inner {
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-col-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--cream-dark);
+  margin-bottom: 6px;
+}
+
+.footer-col-text {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.footer-col-link {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-col-link:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.footer-name {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--muted);
+  padding-top: 20px;
 }
 
 .footer-copy {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--muted);
 }
 
 .footer-top {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -1163,59 +1197,6 @@ em { font-family: var(--serif); font-style: italic; }
 }
 
 .footer-top:hover { color: var(--accent); }
-
-.footer-links {
-  display: flex;
-  gap: 20px;
-}
-
-.footer-links a {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  transition: color 0.3s;
-}
-
-.footer-links a:hover { color: var(--accent); }
-
-.footer-family {
-  padding: 1.5rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 1rem;
-  text-align: center;
-  width: 100%;
-}
-
-.footer-family-label {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.footer-family-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.footer-family-links a {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  color: var(--cream-dark);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-family-links a:hover {
-  color: var(--accent);
-}
 
 /* -------------------------------------------
    Reveal Animations
@@ -1331,18 +1312,12 @@ em { font-family: var(--serif); font-style: italic; }
   }
 
   .footer {
-    padding: 20px 24px;
+    padding: 32px 24px 20px;
   }
 
-  .footer-inner {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
-  }
-
-  .footer-family-links {
-    flex-direction: column;
-    gap: 8px;
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
   }
 
   .nav-overlay-content {
