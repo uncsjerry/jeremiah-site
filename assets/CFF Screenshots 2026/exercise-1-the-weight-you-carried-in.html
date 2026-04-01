@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 1: The Weight You Carried In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --accent: #7B9971;
+      --accent-gold: #C4A265;
+      --ink: #2A2F2C;
+      --ink-light: #4A5550;
+      --muted: #7A8278;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+    }
+    html { font-size: 14px; }
+    body { font-family: var(--sans); color: var(--ink); background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    .page { max-width: 800px; margin: 0 auto; padding: 48px 56px; }
+
+    /* Header */
+    .doc-header { border-bottom: 2px solid var(--ink); padding-bottom: 16px; margin-bottom: 24px; }
+    .doc-format { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
+    .doc-title { font-family: var(--serif); font-size: 2rem; font-weight: 900; line-height: 1.15; margin-bottom: 4px; }
+    .doc-subtitle { font-size: 0.92rem; color: var(--ink-light); font-style: italic; }
+    .doc-author { font-size: 0.82rem; color: var(--muted); margin-top: 8px; }
+
+    /* Sections */
+    .section { margin-bottom: 22px; }
+    .section-title { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 10px; }
+
+    p { font-size: 0.92rem; color: var(--ink-light); text-align: justify; margin-bottom: 8px; }
+    p:last-child { margin-bottom: 0; }
+
+    .when-list { list-style: none; font-size: 0.88rem; color: var(--ink-light); margin-top: 6px; }
+    .when-list li { padding-left: 14px; position: relative; margin-bottom: 3px; }
+    .when-list li::before { content: "\25C6"; position: absolute; left: 0; color: var(--accent-gold); font-size: 0.55rem; top: 5px; }
+
+    /* Instructions sub-sections */
+    .sub-heading { font-weight: 700; font-size: 0.95rem; color: var(--ink); margin-bottom: 4px; margin-top: 14px; }
+    blockquote { border-left: 3px solid var(--accent-gold); padding: 10px 16px; margin: 8px 0; background: #fafaf5; font-style: italic; font-size: 0.9rem; color: var(--ink-light); text-align: justify; }
+
+    ul.rules { list-style: none; font-size: 0.88rem; color: var(--ink-light); margin: 6px 0; }
+    ul.rules li { padding-left: 14px; position: relative; margin-bottom: 3px; }
+    ul.rules li::before { content: "\2014"; position: absolute; left: 0; color: var(--accent); }
+
+    .bold-prompt { font-weight: 700; color: var(--ink); }
+
+    /* Safety */
+    .safety-item { margin-bottom: 6px; font-size: 0.88rem; color: var(--ink-light); text-align: justify; }
+    .safety-label { font-weight: 700; color: var(--ink); }
+
+    /* Example */
+    .example-label { font-weight: 700; color: var(--ink); font-size: 0.9rem; margin-bottom: 2px; }
+    .example-text { font-size: 0.88rem; color: var(--ink-light); text-align: justify; margin-bottom: 10px; }
+
+    @media print {
+      html { font-size: 12.5px; }
+      .page { padding: 0; max-width: none; }
+      .section-title { color: #333; }
+      blockquote { background: #f5f5f5; }
+      .when-list li::before { color: #666; }
+      ul.rules li::before { color: #555; }
+      a { color: inherit; text-decoration: none; }
+      @page { margin: 0.75in; size: letter; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="doc-header">
+    <div class="doc-format">NOISE Format &mdash; Content Example 1: Original Forum Exercise</div>
+    <h1 class="doc-title">"The Weight You Carried In"</h1>
+    <div class="doc-subtitle">Build or Repair Relationships Within a Group</div>
+    <div class="doc-author">Jeremiah Gutierrez &mdash; YPO CFF Application 2026</div>
+  </header>
+
+  <section class="section">
+    <h2 class="section-title">Objective</h2>
+    <p>To rebuild connection and trust in a Forum group that has become surface-level, transactional, or disconnected &mdash; often after a conflict, a membership change, or a period where members have been "showing up but not really showing up."</p>
+    <p>This exercise creates a structured, low-risk entry point for vulnerability by asking members to name something they're currently carrying that the group doesn't know about. It works because it bypasses the instinct to perform and invites honesty without requiring a full presentation or life-walk level of exposure.</p>
+    <p style="font-weight: 600; color: var(--ink); margin-top: 10px;">When to use it:</p>
+    <ul class="when-list">
+      <li>A group has gone flat &mdash; sessions feel routine, updates replace real sharing</li>
+      <li>After a conflict or trust rupture that was addressed but not fully resolved</li>
+      <li>When new members have joined and the group hasn't re-established its depth</li>
+      <li>At the start of a retreat to set the tone for the sessions ahead</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Instructions</h2>
+
+    <div class="sub-heading">Setup (5 minutes)</div>
+    <p>The facilitator frames the exercise:</p>
+    <blockquote>"We're going to do something simple but not easy. Every person in this room is carrying something right now &mdash; a decision, a fear, a question, a weight &mdash; that the rest of us don't know about. Not because you're hiding it, but because we haven't created the space for it. That's what we're going to do right now."</blockquote>
+    <p style="font-weight: 600; color: var(--ink);">Ground rules (restate even if the group knows them):</p>
+    <ul class="rules">
+      <li>Confidentiality applies fully</li>
+      <li>No advice, no fixing, no problem-solving</li>
+      <li>Listening is the response</li>
+      <li>You share what you're ready to share &mdash; there is no minimum or maximum</li>
+    </ul>
+
+    <div class="sub-heading">Round 1: Writing (5 minutes, silent)</div>
+    <p>Each member writes on a card or piece of paper, completing this sentence:</p>
+    <blockquote><span class="bold-prompt">"Something I'm carrying right now that this group doesn't know about is..."</span></blockquote>
+    <p>One sentence. No explanation needed yet. The act of writing it down is the first step.</p>
+
+    <div class="sub-heading">Round 2: Sharing (3&ndash;5 minutes per person)</div>
+    <p>Go around the room. Each person reads their sentence aloud, then &mdash; only if they choose &mdash; expands on it briefly. The facilitator's role:</p>
+    <ul class="rules">
+      <li>Hold the silence after each share. Do not rush to the next person.</li>
+      <li>If someone's share lands heavily, acknowledge it: "Thank you. That took courage."</li>
+      <li>If someone passes, honor it without commentary.</li>
+    </ul>
+
+    <div class="sub-heading">Round 3: Reflection (10 minutes, open)</div>
+    <p>The facilitator opens a group reflection:</p>
+    <blockquote>"What shifted in the room just now? What did you notice &mdash; in yourself or in the group?"</blockquote>
+    <p>This is where the repair happens. Members will often name that they didn't realize others were carrying similar things, or that they'd been holding back without knowing why. The facilitator's job is to let the group make meaning of what just happened &mdash; not to interpret it for them.</p>
+
+    <div class="sub-heading">Close (2 minutes)</div>
+    <p>The facilitator closes with a forward-facing question:</p>
+    <blockquote>"What does this group need from each other going forward to keep this kind of honesty alive?"</blockquote>
+    <p>Let 2&ndash;3 members respond. Do not force a conclusion. The question plants the seed.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Safety</h2>
+    <p class="safety-item"><span class="safety-label">Emotional risk:</span> This exercise asks for vulnerability. The facilitator must read the room before launching it. If a group is actively in conflict or a member is in acute crisis, this exercise may not be appropriate &mdash; address the immediate issue first.</p>
+    <p class="safety-item"><span class="safety-label">Passing is always an option.</span> State this explicitly at the start. No one should feel pressured to share more than they're ready for.</p>
+    <p class="safety-item"><span class="safety-label">No cross-talk during Round 2.</span> The instinct to comfort, relate, or advise is strong. The facilitator must hold the boundary: listening is the response.</p>
+    <p class="safety-item"><span class="safety-label">Facilitator self-regulation:</span> If a member's share triggers a personal reaction in you, notice it and set it aside. Your job is to hold space, not to process your own response in real time.</p>
+    <p class="safety-item"><span class="safety-label">Follow-up:</span> If a member shares something that suggests they need support beyond what Forum provides (mental health crisis, safety concern), the facilitator should check in privately after the session and help connect them with appropriate resources. Forum is not therapy.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Example</h2>
+    <p class="example-label">Context:</p>
+    <p class="example-text">A spouse forum I facilitated had been meeting for several months but had settled into a pattern of surface-level updates &mdash; business wins, kids' milestones, travel plans. The sessions were pleasant but not powerful. Two members had a disagreement outside of Forum that they hadn't addressed in the group, and the unspoken tension was pulling everyone toward safe territory.</p>
+    <p class="example-label">What happened:</p>
+    <p class="example-text">I opened the session with this exercise instead of the planned agenda. During the writing phase, the room went quiet in a way it hadn't before &mdash; the kind of silence where people are actually thinking, not just waiting. When we moved to sharing, one member read her sentence and then paused. She said, "I didn't realize how heavy that was until I said it out loud." Another member shared something about a family situation that he'd been carrying for months. The two members who'd had the disagreement didn't address it directly during the exercise &mdash; but during the reflection round, one of them said, "I think I've been holding back because I wasn't sure this was a safe place to be messy." That opened the door.</p>
+    <p class="example-label">Result:</p>
+    <p class="example-text">The exercise didn't "fix" the group in one session &mdash; that's not how trust works. But it created a reset. The following sessions had noticeably more depth. Members started self-correcting when conversations drifted to surface level: "Are we doing updates, or are we doing Forum?" That question became the group's own accountability mechanism.</p>
+    <p class="example-label">Facilitator learning:</p>
+    <p class="example-text">The most important thing I did was hold the silence. My instinct was to fill the gaps, to affirm, to move things along. Instead, I waited. The group filled the silence with honesty &mdash; which is always better than anything I could have said.</p>
+  </section>
+
+</div>
+</body>
+</html>

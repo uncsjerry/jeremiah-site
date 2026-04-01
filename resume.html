@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Jeremiah Gutierrez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* WHY: Self-contained styles so the resume prints cleanly without external dependencies */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #7B9971;
+      --accent-gold: #C4A265;
+      --ink: #2A2F2C;
+      --ink-light: #4A5550;
+      --cream: #FAFAF5;
+      --muted: #7A8278;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: #fff;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 56px;
+    }
+
+    /* --- Header --- */
+    .resume-header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+
+    .resume-name {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .resume-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      font-size: 0.88rem;
+      color: var(--ink-light);
+    }
+
+    .resume-contact a {
+      color: var(--ink-light);
+      text-decoration: none;
+    }
+
+    .resume-contact span.sep {
+      color: var(--muted);
+    }
+
+    /* --- Sections --- */
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+
+    .summary-text {
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* --- Experience entries --- */
+    .entry {
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+    }
+
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      margin-bottom: 2px;
+    }
+
+    .entry-role {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .entry-org {
+      font-style: italic;
+      color: var(--ink-light);
+    }
+
+    .entry-dates {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .entry ul {
+      margin: 4px 0 0 20px;
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      text-align: justify;
+    }
+
+    .entry li {
+      margin-bottom: 2px;
+    }
+
+    /* --- Board / Certs / Skills --- */
+    .board-entry {
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .board-entry:last-child { margin-bottom: 0; }
+
+    .board-role {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .board-desc {
+      font-size: 0.86rem;
+      color: var(--ink-light);
+      margin-top: 2px;
+      text-align: justify;
+    }
+
+    .cert-list, .edu-list {
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .cert-list li, .edu-list li {
+      margin-bottom: 4px;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .cert-list li::before, .edu-list li::before {
+      content: "\25C6";
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold);
+      font-size: 0.6rem;
+      top: 5px;
+    }
+
+    .cert-label {
+      font-weight: 600;
+    }
+
+    .competencies {
+      text-align: justify;
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    .competencies span {
+      white-space: nowrap;
+    }
+
+    .comp-sep {
+      color: var(--muted);
+      margin: 0 2px;
+    }
+
+    /* --- Print button --- */
+    .print-bar {
+      max-width: 800px;
+      margin: 20px auto 0;
+      padding: 0 56px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .print-btn {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 10px 24px;
+      border: 2px solid var(--ink);
+      background: var(--ink);
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .print-btn:hover {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .back-link {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      color: var(--ink-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .back-link:hover { color: var(--ink); }
+
+    /* --- Print styles --- */
+    @media print {
+      html { font-size: 13px; }
+      body { background: #fff; }
+
+      .page {
+        padding: 0;
+        max-width: none;
+      }
+
+      .print-bar { display: none; }
+      .section-title { color: #333; }
+      .cert-list li::before, .edu-list li::before { color: #666; }
+
+      a { color: inherit; text-decoration: none; }
+
+      /* WHY: 0.75in all around gives comfortable bleed space on letter size — exceeds 0.5in minimum */
+      @page {
+        margin: 0.75in;
+        size: letter;
+      }
+    }
+
+    /* --- Mobile --- */
+    @media (max-width: 600px) {
+      .page { padding: 28px 24px; }
+      .print-bar { padding: 0 24px; }
+      .resume-name { font-size: 1.8rem; }
+      .entry-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+    <a href="index.html" class="back-link">&larr; Back to site</a>
+  </div>
+
+  <div class="page">
+
+    <!-- Header -->
+    <header class="resume-header">
+      <h1 class="resume-name">Jeremiah Gutierrez</h1>
+      <div class="resume-contact">
+        <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+        <span class="sep">|</span>
+        <span>(754) 246-9670</span>
+        <span class="sep">|</span>
+        <span>Fort Lauderdale, FL</span>
+        <span class="sep">|</span>
+        <a href="https://jeremiahgutierrez.com" target="_blank">jeremiahgutierrez.com</a>
+        <span class="sep">|</span>
+        <a href="https://linkedin.com/in/jeremiahgutierrez" target="_blank">linkedin.com/in/jeremiahgutierrez</a>
+      </div>
+    </header>
+
+    <!-- Summary -->
+    <section class="section">
+      <h2 class="section-title">Summary</h2>
+      <p class="summary-text">President and operator with 20+ years of experience building teams, scaling companies, and developing leaders. 14-year YPO member and spouse forum participant who has seeded and facilitated peer forums from the ground up. Proven track record in executive leadership, group facilitation, organizational development, and driving results in high-stakes environments. Currently pursuing YPO Certified Forum Facilitator (CFF) designation.</p>
+    </section>
+
+    <!-- Experience -->
+    <section class="section">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">President</span> <span class="entry-org">— United National Consumer Suppliers (UNCS)</span></div>
+          <span class="entry-dates">Jan 2019 – Present</span>
+        </div>
+        <ul>
+          <li>Lead all operations for a national wholesale distribution company that sources products globally and places them across retail and e-commerce channels</li>
+          <li>Oversee strategic planning, vendor partnerships, supply chain optimization, and team development across the organization</li>
+          <li>Built and sustained long-term vendor and client relationships through a "life-long-transaction" philosophy</li>
+          <li>Seeded a Forum for Business program inside UNCS using the YPO International framework, bringing structured peer group facilitation to the leadership team</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">Human Resources Director</span> <span class="entry-org">— UNCS</span></div>
+          <span class="entry-dates">Oct 2008 – Jan 2019</span>
+        </div>
+        <ul>
+          <li>Designed and implemented HR infrastructure including hiring, onboarding, training, performance management, and compliance</li>
+          <li>Developed employee training programs focused on communication, accountability, and team dynamics</li>
+          <li>Partnered with executive leadership on organizational development, culture building, and succession planning</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">Food Service Director</span> <span class="entry-org">— ARAMARK Corporation</span></div>
+          <span class="entry-dates">Jun 2006 – Mar 2008</span>
+        </div>
+        <ul>
+          <li>Managed food service operations for a Fortune 500 contract services provider</li>
+          <li>Oversaw staff, budgets, and client satisfaction across multi-site operations</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">Private Corporate Chef</span> <span class="entry-org">— Starmark International</span></div>
+          <span class="entry-dates">Jan 2005 – Jun 2006</span>
+        </div>
+        <ul>
+          <li>Provided executive dining and event catering for a national advertising and brand strategy agency</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">Vice President</span> <span class="entry-org">— Health Nuts Cafe</span></div>
+          <span class="entry-dates">Feb 2002 – Jan 2005</span>
+        </div>
+        <ul>
+          <li>Co-led operations for a fresh food concept focused on health-conscious, grab-and-go dining</li>
+          <li>Managed vendor sourcing, menu development, staffing, and daily operations</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">Vice President &amp; Project Manager</span> <span class="entry-org">— LakeRidge Development Group</span></div>
+          <span class="entry-dates">Jan 2000 – Jan 2002</span>
+        </div>
+        <ul>
+          <li>Oversaw real estate development projects from planning through execution</li>
+          <li>Managed budgets, timelines, contractors, and regulatory compliance</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <div><span class="entry-role">General Manager</span> <span class="entry-org">— Lake Ridge Rentals, Inc.</span></div>
+          <span class="entry-dates">Jan 1998 – Jan 2002</span>
+        </div>
+        <ul>
+          <li>Managed full operations of a property rental company including leasing, maintenance, and tenant relations</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Leadership & Board Service -->
+    <section class="section">
+      <h2 class="section-title">Leadership &amp; Board Service</h2>
+
+      <div class="board-entry">
+        <div class="board-role">Chair of the Board — Broward Partnership for the Homeless, Inc. (BPHI)</div>
+        <p class="board-desc">Lead board governance, strategic direction, and stakeholder engagement for one of Broward County's largest homeless services organizations. Work alongside community leaders, executives, and philanthropists on housing and social impact initiatives.</p>
+      </div>
+
+      <div class="board-entry">
+        <div class="board-role">Spouse Forum Officer — YPO Miami</div>
+        <p class="board-desc">Seeded and facilitated the chapter's first professional spouse forum from the ground up. Recruited members, established group norms, led structured exercises, built psychological safety, and developed the group's first moderator.</p>
+      </div>
+    </section>
+
+    <!-- Certifications & Affiliations -->
+    <section class="section">
+      <h2 class="section-title">Certifications &amp; Affiliations</h2>
+      <ul class="cert-list">
+        <li><span class="cert-label">YPO Certified Forum Facilitator (CFF)</span> — Candidate, 2026</li>
+        <li><span class="cert-label">YPO Member &amp; Spouse Forum Participant</span> — 14 years combined</li>
+        <li><span class="cert-label">Founder, Exercise Roulette</span> — AI-powered fitness platform (<a href="https://exerciseroulette.com" target="_blank">exerciseroulette.com</a>)</li>
+        <li><span class="cert-label">Founder, Agent 97 Holdings</span> — Holding company for technology and services ventures</li>
+      </ul>
+    </section>
+
+    <!-- Education -->
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <ul class="edu-list">
+        <li><span class="cert-label">Kaplan University</span> — Business Administration, Human Resources</li>
+        <li><span class="cert-label">Florida Culinary Institute</span> — Culinary Arts</li>
+      </ul>
+    </section>
+
+    <!-- Core Competencies -->
+    <section class="section">
+      <h2 class="section-title">Core Competencies</h2>
+      <p class="competencies">
+        <span>Executive Leadership</span><span class="comp-sep"> | </span>
+        <span>Group Facilitation</span><span class="comp-sep"> | </span>
+        <span>Organizational Development</span><span class="comp-sep"> | </span>
+        <span>Team Building &amp; Training</span><span class="comp-sep"> | </span>
+        <span>Strategic Planning</span><span class="comp-sep"> | </span>
+        <span>Peer Forum Design</span><span class="comp-sep"> | </span>
+        <span>Psychological Safety</span><span class="comp-sep"> | </span>
+        <span>Employee Development</span><span class="comp-sep"> | </span>
+        <span>Vendor &amp; Client Relations</span><span class="comp-sep"> | </span>
+        <span>Supply Chain Management</span><span class="comp-sep"> | </span>
+        <span>Board Governance</span><span class="comp-sep"> | </span>
+        <span>Executive Coaching</span><span class="comp-sep"> | </span>
+        <span>Change Management</span><span class="comp-sep"> | </span>
+        <span>Stakeholder Engagement</span>
+      </p>
+    </section>
+
+  </div>
+
+</body>
+</html>

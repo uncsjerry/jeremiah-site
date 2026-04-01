@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise 2: Below the Waterline Retreat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --accent: #7B9971;
+      --accent-gold: #C4A265;
+      --ink: #2A2F2C;
+      --ink-light: #4A5550;
+      --muted: #7A8278;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+    }
+    html { font-size: 13px; }
+    body { font-family: var(--sans); color: var(--ink); background: #fff; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    .page { max-width: 800px; margin: 0 auto; padding: 48px 56px; }
+
+    .doc-header { border-bottom: 2px solid var(--ink); padding-bottom: 16px; margin-bottom: 22px; }
+    .doc-format { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
+    .doc-title { font-family: var(--serif); font-size: 1.9rem; font-weight: 900; line-height: 1.15; margin-bottom: 4px; }
+    .doc-subtitle { font-size: 0.92rem; color: var(--ink-light); font-style: italic; }
+    .doc-author { font-size: 0.82rem; color: var(--muted); margin-top: 8px; }
+
+    .section { margin-bottom: 18px; }
+    .section-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 8px; }
+
+    p { font-size: 0.9rem; color: var(--ink-light); text-align: justify; margin-bottom: 6px; }
+    p:last-child { margin-bottom: 0; }
+
+    .when-list { list-style: none; font-size: 0.85rem; color: var(--ink-light); margin-top: 4px; }
+    .when-list li { padding-left: 14px; position: relative; margin-bottom: 2px; }
+    .when-list li::before { content: "\25C6"; position: absolute; left: 0; color: var(--accent-gold); font-size: 0.55rem; top: 4px; }
+
+    .day-heading { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--ink); margin: 14px 0 6px; }
+    .session-heading { font-weight: 700; font-size: 0.92rem; color: var(--ink); margin: 10px 0 4px; }
+
+    /* Schedule tables */
+    table { width: 100%; border-collapse: collapse; margin: 6px 0 10px; font-size: 0.82rem; }
+    th { text-align: left; font-weight: 600; color: var(--ink); padding: 4px 8px; border-bottom: 1.5px solid var(--ink); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    td { padding: 4px 8px; border-bottom: 1px solid #eee; color: var(--ink-light); vertical-align: top; text-align: justify; }
+    td:first-child { white-space: nowrap; font-weight: 500; color: var(--muted); width: 50px; }
+    td:nth-child(2) { width: 35%; }
+    td:nth-child(3) { font-style: italic; font-size: 0.8rem; }
+
+    blockquote { border-left: 3px solid var(--accent-gold); padding: 8px 14px; margin: 6px 0; background: #fafaf5; font-style: italic; font-size: 0.85rem; color: var(--ink-light); text-align: justify; }
+
+    .safety-item { margin-bottom: 5px; font-size: 0.85rem; color: var(--ink-light); text-align: justify; }
+    .safety-label { font-weight: 700; color: var(--ink); }
+
+    .example-label { font-weight: 700; color: var(--ink); font-size: 0.88rem; margin-bottom: 2px; }
+    .example-text { font-size: 0.85rem; color: var(--ink-light); text-align: justify; margin-bottom: 8px; }
+
+    @media print {
+      html { font-size: 11.5px; }
+      .page { padding: 0; max-width: none; }
+      .section-title { color: #333; }
+      blockquote { background: #f5f5f5; }
+      .when-list li::before { color: #666; }
+      a { color: inherit; text-decoration: none; }
+      @page { margin: 0.75in; size: letter; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="doc-header">
+    <div class="doc-format">NOISE Format &mdash; Content Example 2: Customized Retreat Agenda</div>
+    <h1 class="doc-title">"Below the Waterline"</h1>
+    <div class="doc-subtitle">A Two-Day Forum Retreat for Re-Deepening</div>
+    <div class="doc-author">Jeremiah Gutierrez &mdash; YPO CFF Application 2026</div>
+  </header>
+
+  <section class="section">
+    <h2 class="section-title">Objective</h2>
+    <p>A retreat designed for an established Forum group (2+ years together) that has built trust but plateaued in depth. The group knows each other well enough to be comfortable &mdash; and that comfort has become the ceiling.</p>
+    <p>The retreat is structured to take the group below their current waterline: past the stories they've already told, into the questions they haven't asked themselves yet. It uses a progression from reflection to vulnerability to forward commitment, with each session building on the one before.</p>
+    <p style="font-weight: 600; color: var(--ink); margin-top: 8px;">This retreat is appropriate when:</p>
+    <ul class="when-list">
+      <li>A Forum group has been together for 2+ years and sessions feel predictable</li>
+      <li>Members report that Forum is "good" but not transformative</li>
+      <li>The group wants to go deeper but doesn't know how to get there</li>
+      <li>A facilitator has been brought in to help the group break through a ceiling</li>
+    </ul>
+    <p style="font-weight: 600; color: var(--ink); margin-top: 8px;">This retreat is NOT appropriate when:</p>
+    <ul class="when-list">
+      <li>The group has active, unresolved conflict (address that first)</li>
+      <li>A member is in acute personal crisis (provide individual support first)</li>
+      <li>The group has fewer than 6 months together (trust foundation isn't ready)</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Instructions</h2>
+
+    <div class="session-heading">Pre-Retreat (2 weeks before)</div>
+    <p>Facilitator sends each member a private prompt:</p>
+    <blockquote>"Think about a question you've been avoiding &mdash; about your business, your relationships, your life, or yourself. You don't have to share it yet. Just know what it is. Bring it with you."</blockquote>
+    <p>This seeds the retreat's theme without prescribing content. Members arrive already in a reflective state. Facilitator also requests a current Forum health check (anonymous, 5 questions: safety, depth, relevance, honesty, commitment) and any topics members want the retreat to address.</p>
+
+    <h3 class="day-heading">Day 1: "What We Show vs. What We Carry"</h3>
+
+    <div class="session-heading">Session 1: Arrival &amp; Grounding (90 minutes)</div>
+    <table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>0:00</td><td>Welcome, ground rules restatement, confidentiality reaffirmation</td><td>Reset the container &mdash; even experienced Forums need this at a retreat</td></tr>
+        <tr><td>0:10</td><td>Check-in round: "What's one word for where you are right now &mdash; and one word for where you want to be by the end of this retreat?"</td><td>Low-barrier entry point; creates a benchmark to revisit at close</td></tr>
+        <tr><td>0:30</td><td>Facilitator shares Forum health check themes (anonymized, no attribution)</td><td>Holds up a mirror &mdash; lets the group see its own patterns</td></tr>
+        <tr><td>0:45</td><td>Open discussion: "What did you notice? What surprised you?"</td><td>Group makes meaning of its own data</td></tr>
+        <tr><td>1:15</td><td>Break</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="session-heading">Session 2: The Iceberg Exercise (2 hours)</div>
+    <table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>0:00</td><td>Facilitator introduces the iceberg metaphor: above the waterline is what the group already knows about you; below is what you haven't shared &mdash; not because you're hiding, but because you haven't been asked or haven't been ready</td><td>Frames vulnerability as expansion, not exposure</td></tr>
+        <tr><td>0:15</td><td>Individual writing (silent, 15 min): Each member draws their own iceberg &mdash; above the line: what this Forum knows about me. Below the line: what they don't.</td><td>The visual makes abstract concepts concrete</td></tr>
+        <tr><td>0:30</td><td>Paired sharing (30 min): Members pair up and share their icebergs. Each person gets 15 minutes. Partner's only role: listen and ask one clarifying question. No advice.</td><td>Pairs are safer than the full group; builds momentum for the larger share</td></tr>
+        <tr><td>1:00</td><td>Full group round (60 min): Each member shares one thing from below their waterline that they want the group to know. Facilitator holds space &mdash; no cross-talk until everyone has shared.</td><td>This is the core of the retreat. The facilitator's job is to protect this space.</td></tr>
+        <tr><td>2:00</td><td>Break</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="session-heading">Session 3: Evening Dinner &mdash; No Agenda</div>
+    <p>Unstructured time together. No facilitation, no exercises. The conversations that happen organically after a deep session are often where the real bonding occurs. The facilitator is present but not "on."</p>
+
+    <h3 class="day-heading">Day 2: "What Comes Next"</h3>
+
+    <div class="session-heading">Session 4: The Question You've Been Avoiding (2 hours)</div>
+    <table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>0:00</td><td>Facilitator reconnects to the pre-retreat prompt: "You were asked to come with a question you've been avoiding. Today is when we work on it."</td><td>Brings the thread forward; members have had a full day to build courage</td></tr>
+        <tr><td>0:10</td><td>Presentation format (modified): Each member gets 10&ndash;12 minutes. State the question. Share why you've been avoiding it. Share what you think the answer might be &mdash; and what scares you about that answer.</td><td>This format prevents advice-giving by design. The member does their own work in front of the group.</td></tr>
+        <tr><td>0:10&ndash;1:40</td><td>Group presentations (8 members &times; ~12 min, adjust for group size)</td><td>Facilitator manages time, holds boundaries, ensures each member gets equal space</td></tr>
+        <tr><td>1:40</td><td>Group reflection: "What patterns did you hear across our questions?"</td><td>Often the group discovers shared themes &mdash; isolation, identity, transition &mdash; that normalize individual struggles</td></tr>
+        <tr><td>2:00</td><td>Break</td><td></td></tr>
+      </tbody>
+    </table>
+
+    <div class="session-heading">Session 5: Commitments &amp; Close (90 minutes)</div>
+    <table>
+      <thead><tr><th>Time</th><th>Activity</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>0:00</td><td>Individual writing (10 min): "Based on this retreat, what is one commitment you're making to yourself? And one commitment you're making to this Forum?"</td><td>Two commitments &mdash; personal and group &mdash; creates accountability on both levels</td></tr>
+        <tr><td>0:10</td><td>Sharing round (40 min): Each member reads both commitments aloud. Group witnesses &mdash; no discussion, no feedback.</td><td>Public commitment increases follow-through; witnessing creates shared accountability</td></tr>
+        <tr><td>0:50</td><td>Facilitator revisits the opening check-in: "You gave us two words at the start &mdash; where you were and where you wanted to be. Where are you now?"</td><td>Bookends the retreat; members can feel the distance traveled</td></tr>
+        <tr><td>1:10</td><td>Facilitator close: Thank the group. Name what you observed (without interpreting). Remind them that the retreat isn't the work &mdash; the work is what happens in the next 6 months of sessions.</td><td>Grounds the experience in ongoing Forum life, not just the retreat high</td></tr>
+        <tr><td>1:30</td><td>End</td><td></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Safety</h2>
+    <p class="safety-item"><span class="safety-label">Pre-retreat screening:</span> The facilitator should have a private conversation with the Forum moderator before the retreat to understand group dynamics, any unresolved tensions, and whether any member is in a vulnerable state that requires extra care.</p>
+    <p class="safety-item"><span class="safety-label">Opt-out is always available.</span> At every stage, members can choose the depth of their participation. The facilitator states this at the start and reinforces it before the Iceberg Exercise and the Avoided Question session.</p>
+    <p class="safety-item"><span class="safety-label">Confidentiality is restated, not assumed.</span> Even groups that have been together for years need to hear it again at a retreat, especially before deeper exercises.</p>
+    <p class="safety-item"><span class="safety-label">Emotional escalation protocol:</span> If a member's share moves into territory that feels like it needs professional support (disclosure of abuse, active suicidal ideation, addiction crisis), the facilitator pauses the exercise, checks in with the member privately, and helps connect them with appropriate resources. Forum is not therapy &mdash; the facilitator must know the boundary and hold it.</p>
+    <p class="safety-item"><span class="safety-label">Facilitator self-care:</span> A two-day retreat is emotionally demanding for the facilitator. Build in personal debrief time after each day. Do not process the group's content with anyone outside the group.</p>
+    <p class="safety-item"><span class="safety-label">Post-retreat follow-up:</span> The facilitator checks in with the moderator 2&ndash;4 weeks after the retreat to assess whether the depth is carrying forward into regular sessions. If it isn't, that's valuable information for the next intervention.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Example</h2>
+    <p class="example-label">Context:</p>
+    <p class="example-text">I designed the core elements of this retreat based on my experience facilitating the YPO Miami spouse forum and the Forum for Business program I seeded in my organization. The Iceberg Exercise emerged from a session where I noticed that members had told their "greatest hits" stories but hadn't gone beneath them &mdash; the group knew what everyone had accomplished but not what they were afraid of.</p>
+    <p class="example-label">What happened with the Iceberg Exercise:</p>
+    <p class="example-text">When I first used a version of this in my spouse forum, the paired sharing phase was the turning point. One pair spent their entire 30 minutes on a single question one partner asked: "What's the thing below the line that you think would change how we see you?" When they came back to the full group, the energy had shifted. People shared things they'd held for months &mdash; not because they were prompted with the "right" question, but because someone else's willingness gave them permission.</p>
+    <p class="example-label">What happened with the Avoided Question format:</p>
+    <p class="example-text">In the Forum for Business sessions, I adapted the presentation format to focus on questions rather than updates or problems. The shift from "Here's my situation, help me solve it" to "Here's a question I've been avoiding, and here's why" changed the quality of the conversation entirely. Members stopped performing competence and started exploring uncertainty. One leader shared that the question he'd been avoiding was whether he was in the right role &mdash; a conversation he couldn't have in any other room.</p>
+    <p class="example-label">Facilitator learning:</p>
+    <p class="example-text">The most important design choice in this retreat is the progression. Day 1 builds the safety and depth. Day 2 uses it. If you reverse the order &mdash; if you ask people to share their avoided questions before they've done the iceberg work &mdash; you get polished, safe answers. The depth comes from the sequence, not from any single exercise.</p>
+  </section>
+
+</div>
+</body>
+</html>
