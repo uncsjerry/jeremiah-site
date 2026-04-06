@@ -114,6 +114,9 @@ em { font-family: var(--serif); font-style: italic; }
   mix-blend-mode: difference;
 }
 
+/* WHY: Fixed height for logo image in nav; width auto-scales to preserve aspect ratio */
+.logo-img { height: 50px; width: auto; }
+
 .logo {
   font-family: var(--sans);
   font-size: 0.75rem;
