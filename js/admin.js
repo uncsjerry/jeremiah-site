@@ -364,7 +364,8 @@ function renderPublishedPhotos(photos) {
   adminEmpty.style.display = 'none';
 
   photos.forEach((photo) => {
-    const thumbUrl = `https://lh3.googleusercontent.com/d/${photo.driveFileId}=w200`;
+    // WHY: Prefer Firebase Storage URL (imageUrl) from pipeline; fall back to Google Drive for legacy photos
+    const thumbUrl = photo.imageUrl || `https://lh3.googleusercontent.com/d/${photo.driveFileId}=w200`;
     const date = photo.publishedAt
       ? photo.publishedAt.toDate().toLocaleDateString('en-US', {
           year: 'numeric', month: 'short', day: 'numeric'
