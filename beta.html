@@ -103,7 +103,11 @@
         <span class="app-card-status soon">Coming Soon</span>
         <a href="https://singlesadvocate.com" target="_blank" rel="noopener" class="app-card-link" onclick="event.stopPropagation()">Learn more &rarr;</a>
       </div>
-      <div class="app-card reveal-up" data-app="ceo-summer-camp">
+      <!-- WHY: Hidden until 2026-09-01. Summer 2026 cohort is running now
+           (free for YPO members). Beta testing starts for the paid non-YPO
+           version in September. JS in beta.js will unhide this automatically
+           on that date. -->
+      <div class="app-card reveal-up" data-app="ceo-summer-camp" id="ceoCampCard" style="display: none;">
         <div class="app-card-check">&check;</div>
         <img src="assets/images/beta/ceo-summer-camp.png" alt="CEO Summer Camp" class="app-card-logo">
         <h3 class="app-card-name">CEO Summer Camp</h3>
