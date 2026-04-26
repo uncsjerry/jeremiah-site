@@ -229,6 +229,20 @@ function handleUrlParams() {
   }
 }
 
+// --- Time-gated cards ---
+// WHY: CEO Summer Camp is hidden until 2026-09-01. The summer 2026
+// cohort is already running (free for YPO members). Beta testing for
+// the paid non-YPO version starts in September.
+function unhideTimedCards() {
+  const now = new Date();
+  const ceoCampVisible = new Date('2026-09-01T00:00:00');
+  if (now >= ceoCampVisible) {
+    const card = document.getElementById('ceoCampCard');
+    if (card) card.style.display = '';
+  }
+}
+
 // --- Init ---
+unhideTimedCards();
 initAppCards();
 handleUrlParams();
