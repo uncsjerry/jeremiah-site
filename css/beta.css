@@ -162,9 +162,9 @@
   position: relative;
   user-select: none;
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 280px 1fr;
   gap: 40px;
-  align-items: start;
+  align-items: center;
 }
 
 .app-card:hover {
@@ -190,23 +190,31 @@
   color: var(--white);
 }
 
-/* WHY: Visual column holds the logo centered in a tinted square,
-   giving each card a strong brand anchor on the left side. */
+/* WHY: Visual column shows the hero image — screenshot or logo —
+   big enough to sell the app at a glance. */
 .app-card-visual {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1;
   border-radius: 16px;
   background: rgba(26, 26, 26, 0.03);
-  padding: 20px;
+  overflow: hidden;
+  padding: 16px;
 }
 
-.app-card-logo {
+.app-card-hero {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
-  border-radius: 12px;
+  border-radius: 8px;
+}
+
+/* WHY: Small inline logo sits above the app name for cards that use
+   a screenshot as the hero instead of the logo itself. */
+.app-card-logo-small {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .app-card-content {
@@ -503,7 +511,7 @@
   }
 
   .app-card-visual {
-    max-width: 100px;
+    max-width: 200px;
   }
 
   .app-card-name {
