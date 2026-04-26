@@ -106,10 +106,7 @@
   border-color: rgba(26, 26, 26, 0.25);
 }
 
-.app-card.selected {
-  border-color: var(--accent);
-  background: rgba(123, 153, 113, 0.05);
-}
+/* WHY: Generic selected state removed — per-app brand colors below handle it */
 
 .app-card-check {
   position: absolute;
@@ -127,8 +124,6 @@
 }
 
 .app-card.selected .app-card-check {
-  border-color: var(--accent);
-  background: var(--accent);
   color: var(--white);
 }
 
@@ -172,6 +167,38 @@
   background: rgba(196, 162, 101, 0.15);
   color: var(--accent-gold);
 }
+
+.app-card-link {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-top: 12px;
+  display: inline-block;
+  transition: color 0.3s, letter-spacing 0.3s;
+}
+
+.app-card-link:hover {
+  letter-spacing: 0.15em;
+}
+
+/* WHY: Each card gets its own brand accent on hover/selected so the
+   beta hub visually connects to each app's identity. */
+.app-card[data-app="exercise-roulette"] .app-card-link:hover { color: #f43f5e; }
+.app-card[data-app="morrowmark"] .app-card-link:hover { color: #8B6914; }
+.app-card[data-app="singles-advocate"] .app-card-link:hover { color: #e11d48; }
+.app-card[data-app="ceo-summer-camp"] .app-card-link:hover { color: #B8860B; }
+
+.app-card[data-app="exercise-roulette"].selected { border-color: #f43f5e; background: rgba(244, 63, 94, 0.05); }
+.app-card[data-app="morrowmark"].selected { border-color: #8B6914; background: rgba(139, 105, 20, 0.05); }
+.app-card[data-app="singles-advocate"].selected { border-color: #e11d48; background: rgba(225, 29, 72, 0.05); }
+.app-card[data-app="ceo-summer-camp"].selected { border-color: #3D5A36; background: rgba(61, 90, 54, 0.05); }
+
+.app-card[data-app="exercise-roulette"].selected .app-card-check { border-color: #f43f5e; background: #f43f5e; }
+.app-card[data-app="morrowmark"].selected .app-card-check { border-color: #8B6914; background: #8B6914; }
+.app-card[data-app="singles-advocate"].selected .app-card-check { border-color: #e11d48; background: #e11d48; }
+.app-card[data-app="ceo-summer-camp"].selected .app-card-check { border-color: #3D5A36; background: #3D5A36; }
 
 /* --- Signup Section (dark bg) --- */
 .beta-signup {
