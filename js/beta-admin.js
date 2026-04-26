@@ -7,7 +7,7 @@
 
 import { db, auth, ADMIN_EMAILS } from './firebase-config.js';
 import {
-  collection, getDocs, doc, updateDoc, query, orderBy, Timestamp
+  collection, getDocs, doc, updateDoc, Timestamp
 } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 import {
   GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut
@@ -69,17 +69,40 @@ onAuthStateChanged(auth, (user) => {
 // Data Loading
 // ==========================================
 async function loadData() {
-  const [signupSnap, feedbackSnap] = await Promise.all([
-    getDocs(query(collection(db, 'beta_signups'), orderBy('signedUpAt', 'desc'))),
-    getDocs(query(collection(db, 'beta_feedback'), orderBy('submittedAt', 'desc'))),
-  ]);
+  try {
+    // WHY: Fetch without orderBy first — orderBy requires a composite
+    // index which may not exist yet, and fails on empty collections in
+    // some Firestore configurations. Sort client-side instead.
+    const [signupSnap, feedbackSnap] = await Promise.all([
+      getDocs(collection(db, 'beta_signups')),
+      getDocs(collection(db, 'beta_feedback')),
+    ]);
 
-  signups = signupSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-  feedback = feedbackSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+    signups = signupSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+    feedback = feedbackSnap.docs.map(d => ({ id: d.id, ...d.data() }));
 
-  updateStats();
-  renderSignups();
-  renderFeedback();
+    // WHY: Client-side sort — newest first. Handles missing timestamps gracefully.
+    signups.sort((a, b) => toMs(b.signedUpAt) - toMs(a.signedUpAt));
+    feedback.sort((a, b) => toMs(b.submittedAt) - toMs(a.submittedAt));
+
+    updateStats();
+    renderSignups();
+    renderFeedback();
+  } catch (err) {
+    console.error('Failed to load beta data:', err);
+    document.getElementById('signupsList').innerHTML =
+      `<p class="admin-empty">Error loading data: ${esc(err.message)}<br>Check the browser console for details.</p>`;
+    document.getElementById('feedbackList').innerHTML =
+      `<p class="admin-empty">Error loading data: ${esc(err.message)}</p>`;
+  }
+}
+
+// WHY: Convert Firestore Timestamp or any date-like value to milliseconds for sorting.
+function toMs(ts) {
+  if (!ts) return 0;
+  if (ts instanceof Timestamp) return ts.toMillis();
+  if (ts.seconds) return ts.seconds * 1000;
+  return new Date(ts).getTime() || 0;
 }
 
 function updateStats() {
