@@ -88,38 +88,40 @@
 }
 
 .app-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .app-card {
   border: 2px solid rgba(26, 26, 26, 0.1);
-  padding: 32px 28px;
+  padding: 40px;
   cursor: pointer;
-  transition: border-color 0.3s, background 0.3s, transform 0.2s;
+  transition: border-color 0.3s, background 0.3s;
   position: relative;
   user-select: none;
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 40px;
+  align-items: start;
 }
 
 .app-card:hover {
   border-color: rgba(26, 26, 26, 0.25);
 }
 
-/* WHY: Generic selected state removed — per-app brand colors below handle it */
-
 .app-card-check {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 28px;
-  height: 28px;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
   border: 2px solid rgba(26, 26, 26, 0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   transition: all 0.3s;
 }
 
@@ -127,26 +129,61 @@
   color: var(--white);
 }
 
+/* WHY: Visual column holds the logo centered in a tinted square,
+   giving each card a strong brand anchor on the left side. */
+.app-card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: rgba(26, 26, 26, 0.03);
+  padding: 20px;
+}
+
 .app-card-logo {
-  width: 56px;
-  height: 56px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  margin-bottom: 16px;
   border-radius: 12px;
+}
+
+.app-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .app-card-name {
   font-family: var(--serif);
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 8px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.app-card-tagline {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.4;
 }
 
 .app-card-desc {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--ink-light);
-  line-height: 1.5;
-  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+.app-card-footer {
+  padding-top: 4px;
 }
 
 .app-card-status {
@@ -156,6 +193,7 @@
   letter-spacing: 0.15em;
   padding: 4px 10px;
   display: inline-block;
+  flex-shrink: 0;
 }
 
 .app-card-status.open {
@@ -397,8 +435,18 @@
     padding: 60px 24px;
   }
 
-  .app-cards {
+  .app-card {
     grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px 24px;
+  }
+
+  .app-card-visual {
+    max-width: 100px;
+  }
+
+  .app-card-name {
+    font-size: 1.4rem;
   }
 
   .beta-signup-inner {
