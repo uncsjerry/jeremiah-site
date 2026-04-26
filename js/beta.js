@@ -5,10 +5,18 @@
 // Firestore so there's one database and one admin view for all testers
 // across all projects. Individual app beta pages redirect here.
 
-import { db } from './firebase-config.js';
-import {
-  collection, addDoc, serverTimestamp, query, where, getDocs
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+// WHY: Lazy-load Firebase so the page renders immediately even if the
+// Firebase CDN is slow or blocked. Cards and form UI work without it.
+// Firebase is only needed at form submission time.
+let db = null;
+let firestoreOps = null;
+
+async function ensureFirebase() {
+  if (db && firestoreOps) return;
+  const configModule = await import('./firebase-config.js');
+  db = configModule.db;
+  firestoreOps = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+}
 
 // WHY: Hardcoded for simplicity — this list changes rarely and avoids
 // an extra Firestore read on every page load. To add/remove an app,
@@ -63,19 +71,10 @@ const deviceToggle = document.getElementById('deviceToggle');
 const betaForm = document.getElementById('betaForm');
 const submitBtn = document.getElementById('betaSubmitBtn');
 
-// --- Render App Cards ---
-function renderAppCards() {
-  appCardsEl.innerHTML = APPS.map(app => `
-    <div class="app-card reveal-up" data-app="${app.id}">
-      <div class="app-card-check">&check;</div>
-      <span class="app-card-emoji">${app.emoji}</span>
-      <h3 class="app-card-name">${app.name}</h3>
-      <p class="app-card-desc">${app.tagline}</p>
-      <span class="app-card-status ${app.status}">${app.statusLabel}</span>
-    </div>
-  `).join('');
-
-  // Attach click handlers
+// --- Attach Click Handlers to App Cards ---
+// WHY: Cards are in the HTML so they're visible even if JS/Firebase fails.
+// JS just adds the interactivity (toggle selection on click).
+function initAppCards() {
   appCardsEl.querySelectorAll('.app-card').forEach(card => {
     card.addEventListener('click', () => {
       const appId = card.dataset.app;
@@ -137,6 +136,9 @@ betaForm.addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
 
   try {
+    await ensureFirebase();
+    const { collection, addDoc, serverTimestamp, query, where, getDocs } = firestoreOps;
+
     // WHY: Check for duplicate email to avoid double signups.
     // Show a friendly message instead of a confusing Firestore error.
     const existing = await getDocs(
@@ -228,5 +230,5 @@ function handleUrlParams() {
 }
 
 // --- Init ---
-renderAppCards();
+initAppCards();
 handleUrlParams();
