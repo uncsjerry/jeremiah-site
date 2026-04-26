@@ -1,0 +1,242 @@
+/* ============================================
+   Feedback Collection Page
+   ============================================ */
+
+/* --- Header --- */
+.feedback-header {
+  min-height: 40vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.feedback-header::before {
+  content: '?';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  font-family: var(--serif);
+  font-size: 50vw;
+  font-weight: 900;
+  color: var(--cream-dark);
+  line-height: 1;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.feedback-header-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.feedback-title {
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.feedback-title em {
+  color: var(--accent);
+}
+
+.feedback-subtitle {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+}
+
+/* --- Form Section --- */
+.feedback-section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px 120px;
+}
+
+/* Type Toggle */
+.type-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+}
+
+.type-btn {
+  flex: 1;
+  padding: 14px 0;
+  background: transparent;
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s;
+  border-right: 1px solid rgba(26, 26, 26, 0.15);
+}
+
+.type-btn:last-child {
+  border-right: none;
+}
+
+.type-btn:hover {
+  color: var(--ink);
+}
+
+.type-btn.active {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+/* Severity (bugs only) */
+.severity-field {
+  display: none;
+}
+
+.severity-field.visible {
+  display: flex;
+}
+
+.severity-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.severity-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.severity-btn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.severity-btn.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--white);
+}
+
+/* Light mode form fields (feedback is on cream bg, not dark bg) */
+.feedback-form .field input,
+.feedback-form .field select,
+.feedback-form .field textarea {
+  color: var(--ink);
+  border-bottom-color: rgba(26, 26, 26, 0.15);
+}
+
+.feedback-form .field input:focus,
+.feedback-form .field select:focus,
+.feedback-form .field textarea:focus {
+  border-bottom-color: var(--accent);
+}
+
+.feedback-form .field select option {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.feedback-form .submit-btn {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.feedback-form .submit-btn:hover {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.feedback-form .submit-btn.success {
+  background: #22c55e;
+  color: var(--white);
+}
+
+/* --- Success State --- */
+.feedback-success {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.feedback-success-emoji {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.feedback-success h3 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.feedback-success p {
+  font-size: 1rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  max-width: 400px;
+  margin: 0 auto 24px;
+}
+
+.feedback-success a {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+/* --- Validation --- */
+.field-error {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: #e8443a;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .feedback-header {
+    padding: 0 24px 40px;
+  }
+
+  .feedback-section {
+    padding: 40px 24px 80px;
+  }
+
+  .type-toggle {
+    flex-direction: column;
+  }
+
+  .type-btn {
+    border-right: none;
+    border-bottom: 1px solid rgba(26, 26, 26, 0.15);
+  }
+
+  .type-btn:last-child {
+    border-bottom: none;
+  }
+
+  .severity-toggle {
+    flex-wrap: wrap;
+  }
+}

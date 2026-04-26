@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life & Work — Jeremiah Gutierrez</title>
-  <meta name="description" content="Family. Facilitation. The work and the life. Photos from Jeremiah Gutierrez.">
+  <title>Feedback — Jeremiah Gutierrez</title>
+  <meta name="description" content="Report bugs, share ideas, or tell me how it's going. Feedback from beta testers for Exercise Roulette, MorrowMark, Singles Advocate, and CEO Summer Camp.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/family.css">
+  <link rel="stylesheet" href="css/feedback.css">
 </head>
 <body>
 
@@ -24,8 +23,8 @@
     <div class="nav-inline">
       <a href="index.html#about">About</a>
       <a href="index.html#services">Services</a>
-      <a href="links.html">Writing</a>
-      <a href="family.html" class="nav-inline-active">Gallery</a>
+      <a href="links.html">Portfolio</a>
+      <a href="family.html">Gallery</a>
       <a href="beta.html">Beta</a>
       <a href="index.html#contact">Contact</a>
     </div>
@@ -41,8 +40,8 @@
           <a href="index.html#credentials" class="nav-link-big" data-num="04">Credentials</a>
           <a href="index.html#proof" class="nav-link-big" data-num="05">Proof</a>
           <a href="index.html#contact" class="nav-link-big" data-num="06">Contact</a>
-          <a href="links.html" class="nav-link-big" data-num="07">Writing</a>
-          <a href="family.html" class="nav-link-big nav-link-active" data-num="08">Gallery</a>
+          <a href="links.html" class="nav-link-big" data-num="07">Portfolio</a>
+          <a href="family.html" class="nav-link-big" data-num="08">Gallery</a>
           <a href="beta.html" class="nav-link-big" data-num="09">Beta</a>
         </div>
         <div class="nav-overlay-footer">
@@ -60,56 +59,71 @@
   </nav>
 
   <!-- Header -->
-  <header class="family-header">
-    <div class="family-header-inner">
-      <span class="label">Life & Work</span>
-      <h1 class="family-title">
-        <span class="line"><span class="line-inner"><em>Gallery.</em></span></span>
+  <header class="feedback-header">
+    <div class="feedback-header-inner">
+      <span class="label">Feedback</span>
+      <h1 class="feedback-title">
+        <span class="line"><span class="line-inner">How's it<br><em>going?</em></span></span>
       </h1>
-      <p class="family-subtitle">Family. Facilitation. The work and the life.</p>
+      <p class="feedback-subtitle">Bug, feature, or just vibes &mdash; all welcome</p>
     </div>
   </header>
 
-  <!-- Filter Bar -->
-  <div class="gallery-filter-bar" id="filterBar">
-    <div class="filter-bar-inner">
-      <div class="category-tabs" id="categoryTabs">
-        <button class="category-tab active" data-category="">All</button>
-        <button class="category-tab" data-category="family">Family</button>
-        <button class="category-tab" data-category="events">Events</button>
-        <button class="category-tab" data-category="forum">Forum</button>
-        <button class="category-tab" data-category="coaching">Coaching</button>
-        <button class="category-tab" data-category="speaking">Speaking</button>
-        <button class="category-tab" data-category="travel">Travel</button>
+  <!-- Feedback Form -->
+  <section class="feedback-section" id="feedbackSection">
+    <form class="contact-form feedback-form" id="feedbackForm">
+      <div class="field">
+        <label for="fbApp">Which App?</label>
+        <select id="fbApp" name="app" required>
+          <option value="" disabled selected>Pick one</option>
+          <option value="exercise-roulette">Exercise Roulette</option>
+          <option value="morrowmark">MorrowMark</option>
+          <option value="singles-advocate">Singles Advocate</option>
+          <option value="ceo-summer-camp">CEO Summer Camp</option>
+        </select>
       </div>
-      <input type="text" class="gallery-search" id="gallerySearch" placeholder="Search photos...">
-    </div>
-  </div>
 
-  <!-- Gallery Grid -->
-  <main class="gallery-container">
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Rendered by JS -->
-    </div>
-    <div class="feed-empty" id="feedEmpty" style="display: none;">
-      <p class="empty-text">Nothing here yet.</p>
-      <p class="empty-sub">Check back soon for updates.</p>
-    </div>
-    <div class="feed-loading" id="feedLoading">
-      <div class="loader"></div>
-    </div>
-  </main>
+      <div class="field">
+        <label>What Kind of Feedback?</label>
+        <div class="type-toggle" id="typeToggle">
+          <button type="button" class="type-btn" data-type="bug">Bug</button>
+          <button type="button" class="type-btn" data-type="feature">Feature Idea</button>
+          <button type="button" class="type-btn" data-type="impression">General Vibes</button>
+        </div>
+      </div>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" style="display: none;">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <button class="lightbox-prev" id="lightboxPrev">&lsaquo;</button>
-    <button class="lightbox-next" id="lightboxNext">&rsaquo;</button>
-    <div class="lightbox-content">
-      <img class="lightbox-img" id="lightboxImg" src="" alt="">
-      <div class="lightbox-meta" id="lightboxMeta"></div>
-    </div>
-  </div>
+      <div class="field severity-field" id="severityField">
+        <label>How Bad Is It?</label>
+        <div class="severity-toggle" id="severityToggle">
+          <button type="button" class="severity-btn" data-severity="minor">Minor</button>
+          <button type="button" class="severity-btn" data-severity="major">Major</button>
+          <button type="button" class="severity-btn" data-severity="critical">Critical</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fbTitle">Give It a Title</label>
+        <input type="text" id="fbTitle" name="title" required placeholder="e.g. Timer stops when I switch apps">
+      </div>
+
+      <div class="field">
+        <label for="fbDescription">Tell Me More</label>
+        <textarea id="fbDescription" name="description" rows="4" placeholder="What happened? What did you expect? Steps to reproduce if it's a bug."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="fbDevice">What Device Are You On?</label>
+        <input type="text" id="fbDevice" name="device" placeholder="e.g. iPhone 15, iOS 17.4">
+      </div>
+
+      <div class="field">
+        <label for="fbEmail">Your Email</label>
+        <input type="email" id="fbEmail" name="email" required autocomplete="email" placeholder="So I can follow up">
+      </div>
+
+      <button type="submit" class="submit-btn" id="feedbackSubmitBtn">Send Feedback &rarr;</button>
+    </form>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -149,6 +163,6 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script type="module" src="js/family.js"></script>
+  <script type="module" src="js/feedback.js"></script>
 </body>
 </html>
