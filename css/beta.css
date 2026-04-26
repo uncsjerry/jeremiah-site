@@ -53,31 +53,92 @@
   color: var(--muted);
 }
 
-/* --- Incentive Banner --- */
-.beta-incentive {
-  padding: 60px 40px;
+/* --- Thank You Section --- */
+.beta-thankyou {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 100px 0;
+}
+
+.beta-thankyou-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.beta-thankyou .label {
+  color: var(--muted);
+}
+
+.beta-thankyou-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  color: var(--cream);
+}
+
+.beta-thankyou-heading em {
+  color: var(--accent);
+}
+
+.beta-thankyou-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.beta-thankyou-body p {
+  font-size: 1.05rem;
+  color: var(--cream-dark);
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+.beta-thankyou-body strong {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.beta-thankyou-sig {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 48px;
+}
+
+.sig-dash {
+  color: var(--accent);
+}
+
+.incentive-badge {
+  border: 2px solid var(--accent-gold);
+  padding: 32px 40px;
   text-align: center;
-  border-top: 1px solid rgba(26, 26, 26, 0.1);
-  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
 }
 
 .incentive-num {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
   color: var(--accent-gold);
-  margin-bottom: 16px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .incentive-sub {
-  font-family: var(--sans);
-  font-size: 1.05rem;
-  color: var(--ink-light);
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.6;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  display: block;
 }
 
 /* --- App Cards --- */
@@ -455,5 +516,13 @@
 
   .beta-faq {
     padding: 60px 24px 80px;
+  }
+
+  .beta-thankyou-inner {
+    padding: 0 24px;
+  }
+
+  .incentive-badge {
+    padding: 24px 20px;
   }
 }
