@@ -6,10 +6,17 @@
 // beta_feedback collection. Deep-linkable per app via ?app= and
 // ?email= query params.
 
-import { db } from './firebase-config.js';
-import {
-  collection, addDoc, serverTimestamp
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+// WHY: Lazy-load Firebase so the page renders immediately.
+// Firebase is only needed at form submission time.
+let db = null;
+let firestoreOps = null;
+
+async function ensureFirebase() {
+  if (db && firestoreOps) return;
+  const configModule = await import('./firebase-config.js');
+  db = configModule.db;
+  firestoreOps = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+}
 
 // --- State ---
 let selectedType = null;
@@ -103,6 +110,9 @@ form.addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
 
   try {
+    await ensureFirebase();
+    const { collection, addDoc, serverTimestamp } = firestoreOps;
+
     const doc = {
       email,
       app,
