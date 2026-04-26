@@ -30,5 +30,19 @@ service cloud.firestore {
       allow read: if true;
       allow create, update, delete: if isAdmin();
     }
+
+    match /beta_signups/{signupId} {
+      // WHY: Public create so the beta signup form works without auth.
+      // Only admin can read/update/delete to manage tester status.
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /beta_feedback/{feedbackId} {
+      // WHY: Public create so testers can submit feedback without auth.
+      // Only admin can read/update/delete to triage feedback.
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
   }
 }

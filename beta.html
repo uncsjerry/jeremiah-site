@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beta Program — Jeremiah Gutierrez</title>
+  <meta name="description" content="Help me break my apps. Sign up to beta test Exercise Roulette, MorrowMark, Singles Advocate, and CEO Summer Camp. 1 year free premium for every tester.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/beta.css">
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="index.html" class="logo">Jeremiah<br>Gutierrez</a>
+    <div class="nav-inline">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="links.html">Portfolio</a>
+      <a href="family.html">Gallery</a>
+      <a href="beta.html" class="nav-inline-active">Beta</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <div class="nav-overlay" id="navOverlay">
+      <div class="nav-overlay-content">
+        <div class="nav-links-big">
+          <a href="index.html#about" class="nav-link-big" data-num="01">About</a>
+          <a href="index.html#services" class="nav-link-big" data-num="02">Services</a>
+          <a href="index.html#philosophy" class="nav-link-big" data-num="03">Philosophy</a>
+          <a href="index.html#credentials" class="nav-link-big" data-num="04">Credentials</a>
+          <a href="index.html#proof" class="nav-link-big" data-num="05">Proof</a>
+          <a href="index.html#contact" class="nav-link-big" data-num="06">Contact</a>
+          <a href="links.html" class="nav-link-big" data-num="07">Portfolio</a>
+          <a href="family.html" class="nav-link-big" data-num="08">Gallery</a>
+          <a href="beta.html" class="nav-link-big nav-link-active" data-num="09">Beta</a>
+        </div>
+        <div class="nav-overlay-footer">
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Email</span>
+            <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+          </div>
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Location</span>
+            <span>Fort Lauderdale, FL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="beta-header">
+    <div class="beta-header-inner">
+      <span class="label">Beta Program</span>
+      <h1 class="beta-title">
+        <span class="line"><span class="line-inner">Help me break<br><em>my apps.</em></span></span>
+      </h1>
+      <p class="beta-subtitle">Friends &amp; family beta testing</p>
+    </div>
+  </header>
+
+  <!-- Incentive Banner -->
+  <section class="beta-incentive reveal-up">
+    <div class="incentive-num">1 Year Free Premium</div>
+    <p class="incentive-sub">For every beta tester. Across every app you test. No strings. Just help me make these things great.</p>
+  </section>
+
+  <!-- App Cards -->
+  <section class="beta-apps">
+    <span class="label">Pick Your Apps</span>
+    <div class="app-cards" id="appCards">
+      <!-- Rendered by beta.js -->
+    </div>
+  </section>
+
+  <!-- Signup Form -->
+  <section class="beta-signup" id="betaSignup">
+    <div class="beta-signup-inner">
+      <div class="beta-signup-left">
+        <h2 class="beta-signup-heading">Sign up in<br><em>30 seconds.</em></h2>
+        <p class="beta-signup-body">Pick your apps above, fill this out, and you're in. I'll send you a TestFlight or Play Store link as soon as each app is ready for testing.</p>
+      </div>
+      <div class="beta-signup-right">
+        <form class="contact-form" id="betaForm">
+          <div class="field">
+            <label for="betaName">Your Name</label>
+            <input type="text" id="betaName" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="betaEmail">Email</label>
+            <input type="email" id="betaEmail" name="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label>Device</label>
+            <div class="device-toggle" id="deviceToggle">
+              <button type="button" class="device-btn" data-device="ios">iPhone</button>
+              <button type="button" class="device-btn" data-device="android">Android</button>
+              <button type="button" class="device-btn" data-device="both">Both</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Apps You Want to Test</label>
+            <div class="selected-apps-display empty" id="selectedAppsDisplay">Tap the cards above to pick apps</div>
+          </div>
+          <button type="submit" class="submit-btn" id="betaSubmitBtn">Count me in &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="beta-faq">
+    <span class="label">Questions</span>
+
+    <div class="faq-item reveal-up">
+      <h3 class="faq-q">What happens after I sign up?</h3>
+      <p class="faq-a">I'll send you a TestFlight invite (iPhone) or a Google Play beta link (Android) as soon as each app you picked is ready. Some are live now, others are coming soon. You'll be first in line either way.</p>
+    </div>
+
+    <div class="faq-item reveal-up">
+      <h3 class="faq-q">What do I actually have to do?</h3>
+      <p class="faq-a">Use the app. Break things. Tell me what's weird, what's great, and what made you want to throw your phone. There's a <a href="feedback.html">dedicated feedback page</a> that makes it easy to report bugs or share ideas.</p>
+    </div>
+
+    <div class="faq-item reveal-up">
+      <h3 class="faq-q">What's in it for me?</h3>
+      <p class="faq-a">One full year of premium access on every app you test, completely free. No credit card. No catch. I just need honest feedback from people I trust.</p>
+    </div>
+
+    <div class="faq-item reveal-up">
+      <h3 class="faq-q">Can I sign up for more than one app?</h3>
+      <p class="faq-a">Absolutely. Tap as many as you want. The more you test, the more free premium you get. You'll get 1 year of premium on each app you help with.</p>
+    </div>
+
+    <div class="faq-item reveal-up">
+      <h3 class="faq-q">I found a bug. Now what?</h3>
+      <p class="faq-a">Head to the <a href="feedback.html">feedback page</a> and tell me about it. Takes 30 seconds. I read every single one and usually fix things same-day.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="footer-col-label">Jeremiah Gutierrez</span>
+        <span class="footer-col-text">Fort Lauderdale, FL</span>
+        <a href="mailto:jeremiah@jeremiahgutierrez.com" class="footer-col-link">jeremiah@jeremiahgutierrez.com</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Site</span>
+        <a href="index.html#about" class="footer-col-link">About</a>
+        <a href="index.html#services" class="footer-col-link">Services</a>
+        <a href="links.html" class="footer-col-link">Portfolio</a>
+        <a href="family.html" class="footer-col-link">Gallery</a>
+        <a href="beta.html" class="footer-col-link">Beta</a>
+        <a href="index.html#contact" class="footer-col-link">Contact</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Family</span>
+        <a href="https://gutierrezrose.com" target="_blank" rel="noopener" class="footer-col-link">Gutierrez &amp; Rose</a>
+        <a href="https://brettadamrose.com" target="_blank" rel="noopener" class="footer-col-link">Brett A. Rose</a>
+        <a href="https://parkeroliver.com" target="_blank" rel="noopener" class="footer-col-link">Parker Oliver</a>
+        <a href="https://mackenzieabigail.com" target="_blank" rel="noopener" class="footer-col-link">Mackenzie Abigail</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Social</span>
+        <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener" class="footer-col-link">LinkedIn</a>
+        <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener" class="footer-col-link">Instagram</a>
+        <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener" class="footer-col-link">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Jeremiah Gutierrez</span>
+      <a href="#" class="footer-top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script type="module" src="js/beta.js"></script>
+</body>
+</html>
