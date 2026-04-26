@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <circle cx="60" cy="60" r="56" stroke="#2A2F2C" stroke-width="3"/>
+  <text x="60" y="48" text-anchor="middle" font-family="Georgia, serif" font-size="42" font-weight="700" fill="#2A2F2C">SA</text>
+  <line x1="30" y1="58" x2="90" y2="58" stroke="#7B9971" stroke-width="2"/>
+  <text x="60" y="80" text-anchor="middle" font-family="monospace" font-size="8" letter-spacing="2" text-transform="uppercase" fill="#7A8278">SINGLES ADVOCATE</text>
+</svg>
