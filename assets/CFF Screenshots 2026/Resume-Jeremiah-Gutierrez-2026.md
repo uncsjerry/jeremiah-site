@@ -74,8 +74,8 @@ President and operator with 20+ years of experience building teams, scaling comp
 
 - **YPO Certified Forum Facilitator (CFF)** — Candidate, 2026
 - **YPO Member & Spouse Forum Participant** — 14 years combined
-- **Founder, Exercise Roulette** — AI-powered fitness platform (exerciseroulette.com)
-- **Founder, Agent 97 Holdings** — Holding company for technology and services ventures
+- **Exercise Roulette** — AI-powered fitness platform (exerciseroulette.com)
+- **Agent 97 Holdings** — Holding company for technology and services ventures
 
 ---
 
