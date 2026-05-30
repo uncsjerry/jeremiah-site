@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life & Work — Jeremiah Gutierrez</title>
-  <meta name="description" content="Family. Facilitation. The work and the life. Photos from Jeremiah Gutierrez.">
+  <title>Apothecary + Alchemy — Jeremiah Gutierrez</title>
+  <meta name="description" content="Recipes, dinner party menus, and culinary stories from a former chef — preserved for the next generation. Behind The Apron by Jeremiah Gutierrez.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/family.css">
+  <link rel="stylesheet" href="css/apothecary.css">
 </head>
 <body>
 
@@ -24,9 +23,9 @@
     <div class="nav-inline">
       <a href="index.html#about">About</a>
       <a href="index.html#services">Services</a>
-      <a href="links.html">Writing</a>
-      <a href="family.html" class="nav-inline-active">Gallery</a>
-      <a href="apothecary.html">Behind The Apron</a>
+      <a href="links.html">Portfolio</a>
+      <a href="family.html">Gallery</a>
+      <a href="apothecary.html" class="nav-inline-active">Behind The Apron</a>
       <a href="beta.html">Beta</a>
       <a href="index.html#contact">Contact</a>
     </div>
@@ -42,9 +41,9 @@
           <a href="index.html#credentials" class="nav-link-big" data-num="04">Credentials</a>
           <a href="index.html#proof" class="nav-link-big" data-num="05">Proof</a>
           <a href="index.html#contact" class="nav-link-big" data-num="06">Contact</a>
-          <a href="links.html" class="nav-link-big" data-num="07">Writing</a>
-          <a href="family.html" class="nav-link-big nav-link-active" data-num="08">Gallery</a>
-          <a href="apothecary.html" class="nav-link-big" data-num="09">Behind The Apron</a>
+          <a href="links.html" class="nav-link-big" data-num="07">Portfolio</a>
+          <a href="family.html" class="nav-link-big" data-num="08">Gallery</a>
+          <a href="apothecary.html" class="nav-link-big nav-link-active" data-num="09">Behind The Apron</a>
           <a href="beta.html" class="nav-link-big" data-num="10">Beta</a>
         </div>
         <div class="nav-overlay-footer">
@@ -61,57 +60,71 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="family-header">
-    <div class="family-header-inner">
-      <span class="label">Life & Work</span>
-      <h1 class="family-title">
-        <span class="line"><span class="line-inner"><em>Gallery.</em></span></span>
+  <!-- Hero -->
+  <header class="apothecary-hero">
+    <div class="apothecary-hero-inner">
+      <span class="label">Behind The Apron</span>
+      <h1 class="apothecary-title">
+        <span class="line"><span class="line-inner">Apothecary</span></span>
+        <span class="line"><span class="line-inner"><em>+ Alchemy</em></span></span>
       </h1>
-      <p class="family-subtitle">Family. Facilitation. The work and the life.</p>
+      <p class="apothecary-subtitle">Recipes, dinner party menus, and the stories behind the meals that brought people together. A former chef's kitchen &mdash; preserved for the next generation.</p>
     </div>
   </header>
 
-  <!-- Filter Bar -->
-  <div class="gallery-filter-bar" id="filterBar">
-    <div class="filter-bar-inner">
-      <div class="category-tabs" id="categoryTabs">
-        <button class="category-tab active" data-category="">All</button>
-        <button class="category-tab" data-category="family">Family</button>
-        <button class="category-tab" data-category="events">Events</button>
-        <button class="category-tab" data-category="forum">Forum</button>
-        <button class="category-tab" data-category="coaching">Coaching</button>
-        <button class="category-tab" data-category="speaking">Speaking</button>
-        <button class="category-tab" data-category="travel">Travel</button>
+  <!-- Intro / Story -->
+  <section class="apothecary-story">
+    <div class="apothecary-story-inner">
+      <div class="apothecary-story-text reveal-up">
+        <p class="big-text">Before the boardroom, there was the kitchen. Before leadership development, there was mise en place. The discipline, creativity, and hospitality that shaped my career started with a cutting board and a cast-iron pan.</p>
       </div>
-      <input type="text" class="gallery-search" id="gallerySearch" placeholder="Search photos...">
+      <div class="apothecary-story-text reveal-up">
+        <p>This is my culinary vault &mdash; a collection of recipes, dinner party menus, and the stories that go with them. Some are scribbled on index cards. Some are screenshots from group texts. Some live only in my memory (for now). All of them are being gathered here so Parker, Mackenzie, and every generation after them can cook what I cooked, host like I hosted, and keep bringing people to the table.</p>
+      </div>
+      <div class="apothecary-story-text reveal-up">
+        <p><em>Powered by <a href="https://morrowmark.com" target="_blank" rel="noopener">MorrowMark</a> &mdash; Behind The Apron</em></p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Gallery Grid -->
-  <main class="gallery-container">
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Rendered by JS -->
-    </div>
-    <div class="feed-empty" id="feedEmpty" style="display: none;">
-      <p class="empty-text">Nothing here yet.</p>
-      <p class="empty-sub">Check back soon for updates.</p>
-    </div>
-    <div class="feed-loading" id="feedLoading">
-      <div class="loader"></div>
-    </div>
-  </main>
+  <!-- Filter Bar -->
+  <section class="apothecary-content">
+    <div class="apothecary-content-inner">
+      <div class="apothecary-filters reveal-up">
+        <button class="apothecary-filter active" data-filter="all">All</button>
+        <button class="apothecary-filter" data-filter="dinner-party">Dinner Parties</button>
+        <button class="apothecary-filter" data-filter="appetizer">Appetizers</button>
+        <button class="apothecary-filter" data-filter="entree">Entr&eacute;es</button>
+        <button class="apothecary-filter" data-filter="side">Sides</button>
+        <button class="apothecary-filter" data-filter="dessert">Desserts</button>
+        <button class="apothecary-filter" data-filter="cocktail">Cocktails</button>
+        <button class="apothecary-filter" data-filter="sauce">Sauces &amp; Staples</button>
+      </div>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox" style="display: none;">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <button class="lightbox-prev" id="lightboxPrev">&lsaquo;</button>
-    <button class="lightbox-next" id="lightboxNext">&rsaquo;</button>
-    <div class="lightbox-content">
-      <img class="lightbox-img" id="lightboxImg" src="" alt="">
-      <div class="lightbox-meta" id="lightboxMeta"></div>
+      <!-- Search -->
+      <div class="apothecary-search reveal-up">
+        <input type="text" id="recipeSearch" placeholder="Search recipes, ingredients, or stories..." autocomplete="off">
+      </div>
+
+      <!-- Recipe Grid -->
+      <div class="apothecary-grid" id="recipeGrid">
+        <!-- WHY: Recipes load from Firestore. This empty state shows while collection is being built. -->
+        <div class="apothecary-empty" id="emptyState">
+          <div class="apothecary-empty-icon">&laquo; &raquo;</div>
+          <h3>The vault is being stocked.</h3>
+          <p>Recipes are being gathered from index cards, photos, texts, and twenty years of dinner parties. Check back soon &mdash; or better yet, ask Dad for the story behind any dish.</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Coming Soon / MorrowMark Teaser -->
+  <section class="apothecary-cta">
+    <div class="apothecary-cta-inner reveal-up">
+      <h2>Every family has<br>a table worth<br><em>remembering.</em></h2>
+      <p class="apothecary-cta-sub">Behind The Apron is a <a href="https://morrowmark.com" target="_blank" rel="noopener">MorrowMark</a> feature &mdash; a digital recipe vault that preserves your family's culinary legacy. Coming soon for all MorrowMark users.</p>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -153,6 +166,6 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script type="module" src="js/family.js"></script>
+  <script type="module" src="js/apothecary.js"></script>
 </body>
 </html>

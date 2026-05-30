@@ -44,5 +44,12 @@ service cloud.firestore {
       allow create: if true;
       allow read, update, delete: if isAdmin();
     }
+
+    match /recipes/{recipeId} {
+      // WHY: Public read so the Apothecary + Alchemy page can display published recipes without auth
+      allow read: if true;
+      // WHY: Admin-only write so only authorized accounts can add/edit/remove recipes
+      allow create, update, delete: if isAdmin();
+    }
   }
 }
