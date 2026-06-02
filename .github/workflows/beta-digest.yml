@@ -1,0 +1,28 @@
+name: Beta Signup Daily Digest
+
+on:
+  schedule:
+    # WHY: 8am ET (noon UTC) — Jeremiah's morning in Fort Lauderdale
+    - cron: '0 12 * * *'
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install firebase-admin resend
+        working-directory: scripts
+
+      - name: Send digest
+        run: node scripts/beta-digest.mjs
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DIGEST_TO_EMAIL: ${{ vars.DIGEST_TO_EMAIL || 'jeremiah@uncs.com' }}
