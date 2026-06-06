@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BPHI Framework &times; Six Pillars Broward 2045 &mdash; Cross-Reference Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* WHY: Print-first document matching report.html design language */
+    @page {
+      size: letter;
+      margin: 0.75in 0.85in 0.85in 0.85in;
+    }
+
+    :root {
+      --ink: #1a1a1a;
+      --ink-light: #4a4a4a;
+      --muted: #888;
+      --rule: #d0d0d0;
+      --rule-light: #e8e8e8;
+      --accent: #2c5f4a;
+      --accent-light: #e8f0ec;
+      --gold: #C4A265;
+      --gold-light: #f5efe3;
+      --navy: #1B2838;
+      --bg: #fff;
+      --serif: 'Cormorant Garamond', 'Georgia', serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--sans);
+      font-size: 9.5pt;
+      line-height: 1.55;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* --- Cover Page --- */
+    .cover {
+      height: 9in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0;
+      page-break-after: always;
+    }
+
+    .cover-top { padding-top: 2in; }
+
+    .cover-rule {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .cover-title {
+      font-family: var(--serif);
+      font-size: 28pt;
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-subtitle {
+      font-family: var(--sans);
+      font-size: 11pt;
+      font-weight: 300;
+      color: var(--ink-light);
+      line-height: 1.5;
+      max-width: 440px;
+      margin-bottom: 32px;
+    }
+
+    .cover-meta {
+      font-family: var(--mono);
+      font-size: 7.5pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      line-height: 2.2;
+    }
+
+    .cover-bottom {
+      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .cover-disclaimer {
+      font-size: 7.5pt;
+      color: var(--muted);
+      max-width: 380px;
+      line-height: 1.5;
+    }
+
+    .cover-draft {
+      font-family: var(--mono);
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+    }
+
+    /* --- Section Styling --- */
+    .section { margin-bottom: 24px; }
+
+    .section-break {
+      page-break-before: always;
+      padding-top: 0;
+    }
+
+    .section-continue {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 18pt;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-family: var(--serif);
+      font-size: 12pt;
+      font-weight: 600;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: var(--ink);
+      page-break-after: avoid;
+    }
+
+    h4 {
+      font-family: var(--sans);
+      font-size: 9.5pt;
+      font-weight: 600;
+      margin-top: 12px;
+      margin-bottom: 3px;
+      color: var(--ink);
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 8px;
+      color: var(--ink-light);
+      line-height: 1.55;
+    }
+
+    .lead {
+      font-size: 10pt;
+      color: var(--ink-light);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+
+    /* --- Stats Row --- */
+    .stats {
+      display: flex;
+      gap: 0;
+      margin: 14px 0;
+      border-top: 2px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      page-break-inside: avoid;
+    }
+
+    .stat {
+      flex: 1;
+      padding: 10px 12px 10px 0;
+      border-right: 1px solid var(--rule-light);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-val {
+      font-family: var(--serif);
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .stat-label {
+      font-size: 7pt;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    /* --- Tables --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      font-size: 8.5pt;
+      page-break-inside: avoid;
+    }
+
+    thead th {
+      font-family: var(--sans);
+      font-size: 7pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-align: left;
+      padding: 5px 8px;
+      border-bottom: 2px solid var(--ink);
+      white-space: nowrap;
+    }
+
+    tbody td {
+      padding: 5px 8px;
+      border-bottom: 1px solid var(--rule-light);
+      color: var(--ink-light);
+      vertical-align: top;
+      line-height: 1.4;
+    }
+
+    tbody td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* --- Callout Box --- */
+    .callout {
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      margin: 12px 0;
+      background: var(--accent-light);
+      page-break-inside: avoid;
+    }
+
+    .callout-label {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 4px;
+      display: block;
+      font-weight: 600;
+    }
+
+    .callout p {
+      font-family: var(--serif);
+      font-size: 9.5pt;
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.45;
+      margin-bottom: 0;
+    }
+
+    .callout-gold {
+      border-left-color: var(--gold);
+      background: var(--gold-light);
+    }
+
+    .callout-gold .callout-label { color: #8B7340; }
+
+    /* --- Pillar Card --- */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0;
+      page-break-inside: avoid;
+    }
+
+    .pillar-card {
+      border-top: 2px solid var(--accent);
+      padding: 10px 0 6px;
+    }
+
+    .pillar-num {
+      font-family: var(--mono);
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .pillar-name {
+      font-family: var(--serif);
+      font-size: 10pt;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .pillar-desc {
+      font-size: 7.5pt;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .pillar-count {
+      font-family: var(--mono);
+      font-size: 7pt;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    /* --- Two Column --- */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 10px 0;
+      page-break-inside: avoid;
+    }
+
+    /* --- Footer --- */
+    .page-footer {
+      margin-top: 36px;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule);
+      font-size: 7pt;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* --- Back link (screen only) --- */
+    .back-link {
+      font-family: var(--mono);
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 6px 14px;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    @media print {
+      .back-link { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">&larr; Back to Framework</a>
+
+  <!-- ==========================================
+       COVER PAGE
+       ========================================== -->
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-rule"></div>
+      <div class="cover-title">BPHI Framework &times;<br>Six Pillars Broward 2045</div>
+      <div class="cover-subtitle">A cross-reference analysis showing how the Broward County Affordable Housing Initiative directly implements Broward County&rsquo;s 20-year community strategic plan.</div>
+      <div class="cover-meta">
+        April 2026<br>
+        Broward County, Florida<br>
+        For Discussion Purposes Only<br>
+        commongroundhousingtrust.org
+      </div>
+    </div>
+    <div class="cover-bottom">
+      <div class="cover-disclaimer">This analysis cross-references the BPHI Affordable Housing Initiative Framework (March 2026) against the Six Pillars&trade; Broward 2045 Economic Development Strategic Vision Plan (April 2026). Tactic references use the numbering from each pillar&rsquo;s section in the Six Pillars document.</div>
+      <span class="cover-draft">Analysis</span>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 1: OVERVIEW
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">01 &mdash; Overview</span>
+    <h2>Strategic Alignment</h2>
+    <p class="lead">On April 8, 2026, Broward County launched Six Pillars Broward 2045 &mdash; a community-driven initiative creating a shared vision and action plan for economic and community success through the year 2045. The plan uses the Florida Chamber Foundation&rsquo;s Six Pillars&trade; framework and was developed by community leaders, residents, and stakeholders across every sector.</p>
+    <p>The BPHI Affordable Housing Initiative framework, published in March 2026, directly implements tactics across all six pillars. The alignment is not incidental &mdash; BPHI&rsquo;s model addresses the structural gaps that the Six Pillars plan identifies as critical to Broward&rsquo;s competitiveness.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val">6</div>
+        <div class="stat-label">Pillars with BPHI alignment</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">20+</div>
+        <div class="stat-label">Specific tactics addressed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">2045</div>
+        <div class="stat-label">Strategic horizon</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">3</div>
+        <div class="stat-label">BPHI projects in pipeline</div>
+      </div>
+    </div>
+
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <span class="pillar-num">Pillar 1</span>
+        <div class="pillar-name">Talent Supply &amp; Education</div>
+        <div class="pillar-desc">Workforce retention, school partnerships, training facilities</div>
+        <div class="pillar-count">2 direct tactics</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-num">Pillar 2</span>
+        <div class="pillar-name">Innovation &amp; Economic Development</div>
+        <div class="pillar-desc">P3 models, CLT innovation, CDFI lending, impact investment</div>
+        <div class="pillar-count">4 direct tactics</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-num">Pillar 3</span>
+        <div class="pillar-name">Infrastructure &amp; Growth Leadership</div>
+        <div class="pillar-desc">TOD, P3 infrastructure, climate resilience, fast-track permitting</div>
+        <div class="pillar-count">5 direct tactics</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-num">Pillar 4</span>
+        <div class="pillar-name">Business Climate &amp; Competitiveness</div>
+        <div class="pillar-desc">Cost of doing business, CRA banking, workforce housing crisis</div>
+        <div class="pillar-count">3 direct tactics</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-num">Pillar 5</span>
+        <div class="pillar-name">Civic &amp; Governance Systems</div>
+        <div class="pillar-desc">Multi-municipal partnerships, interlocal compacts, shared services</div>
+        <div class="pillar-count">2 direct tactics</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-num">Pillar 6</span>
+        <div class="pillar-name">Quality of Life &amp; Quality Places</div>
+        <div class="pillar-desc">CLT, Housing Trust Fund, PREMO corridors, AHAC, supportive housing</div>
+        <div class="pillar-count">6 direct tactics</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <span class="callout-label">Key Insight</span>
+      <p>The Six Pillars plan identifies what Broward County needs to do through 2045. BPHI&rsquo;s framework is the implementation vehicle &mdash; showing how to pay for it, who builds it, and how to attract the private capital required to achieve it at scale.</p>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 2: PILLAR 3 — INFRASTRUCTURE
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">02 &mdash; Pillar 3: Infrastructure &amp; Growth Leadership</span>
+    <h2>The Strongest Overlap</h2>
+    <p class="lead">Pillar 3 covers energy, transportation, logistics, water, environmental protection, housing, and disaster preparedness. BPHI&rsquo;s framework maps directly to the housing and TOD goals within this pillar.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Six Pillars Tactic</th>
+          <th>BPHI Framework Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T16 &mdash; Co-locate transit stops with affordable housing, schools, and workforce centers</td>
+          <td>Heritage Crossing sits on the PREMO corridor at 400 NW 7th Ave. School District partnership envisions school + workforce training + 150&ndash;300 housing units on closed school campuses across 34 flagged sites.</td>
+        </tr>
+        <tr>
+          <td>T21 &mdash; Modernize zoning and development codes to promote transit-oriented development (TOD)</td>
+          <td>Heritage Crossing leverages NWRAC-MUE zoning (unlimited DU/acre) and Live Local Act density overrides. Aspire 1650 uses affordable housing bonus height provisions.</td>
+        </tr>
+        <tr>
+          <td>T32 &mdash; Use P3 models for large-scale infrastructure including freight and transit hubs</td>
+          <td>BPHI&rsquo;s entire model is a public-private partnership: private capital acquires/holds land, public incentives offset development cost, CLT preserves affordability permanently.</td>
+        </tr>
+        <tr>
+          <td>T36 &mdash; Align land-use and zoning policies to prioritize TOD and high-density mixed-use along key corridors</td>
+          <td>Both Aspire 1650 (Pompano Beach) and Heritage Crossing (Fort Lauderdale) are sited on transit corridors with high-density mixed-use zoning.</td>
+        </tr>
+        <tr>
+          <td>T45 &mdash; Create a fast-track permitting path for projects that expand multimodal connectivity, resilience, or affordable housing</td>
+          <td>BPHI capital stack leverages expedited permitting, impact fee waivers, and density bonuses available under Florida&rsquo;s Live Local Act for qualifying affordable developments.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="callout-label">Infrastructure Pillar &mdash; Leadership</span>
+      <p>The Infrastructure &amp; Growth Leadership Pillar is co-chaired by Coree Cuff Lonergan (Broward County Transit), Mayor Josh Levy (City of Hollywood), and Elizabeth Somerstein (Greenspoon Marder). The pillar&rsquo;s emphasis on P3 models, TOD, and climate-resilient design aligns precisely with BPHI&rsquo;s executed and pipeline projects.</p>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 3: PILLAR 6 — QUALITY OF LIFE
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">03 &mdash; Pillar 6: Quality of Life &amp; Quality Places</span>
+    <h2>Direct Housing Match</h2>
+    <p class="lead">Pillar 6 covers vibrant and sustainable communities, housing, health, and wellness. Goal 3 of this pillar &mdash; &ldquo;Nurture safe, sustainable, and thriving neighborhoods with a variety of housing options in every municipality&rdquo; &mdash; reads like a description of BPHI&rsquo;s mission.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Six Pillars Tactic</th>
+          <th>BPHI Framework Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T26 &mdash; Align the Broward 10-Year Affordable Housing Master Plan and PREMO plan as joint frameworks guiding housing, land use, and mobility investments</td>
+          <td>BPHI framework is built around CRA/OZ tracts along PREMO corridors across 6+ municipalities (Fort Lauderdale, Lauderdale Lakes, Hallandale Beach, Hollywood, Lauderhill, Dania Beach).</td>
+        </tr>
+        <tr>
+          <td>T27 &mdash; Promote TOD through funding prioritization, density bonuses, public land use, employer-assisted housing, and mixed-use zoning in PREMO corridors</td>
+          <td>Heritage Crossing uses density bonuses (1:25 ratio at 30% AMI), surplus public land at $0 acquisition cost (CRA conveyance), and mixed-use zoning. Parking reduced to zero for units at/below 60% AMI near transit.</td>
+        </tr>
+        <tr>
+          <td>T29 &mdash; Support community land trusts, and establish long-term affordability mechanisms near transit corridors</td>
+          <td><strong>CLT is the cornerstone of BPHI&rsquo;s entire model.</strong> Land held permanently by the trust or family office entity; units sold or rented separately. Affordability locked in perpetuity while land appreciates as a generational asset.</td>
+        </tr>
+        <tr>
+          <td>T30 &mdash; Support expansion of permanent supportive housing integrating mental health, addiction recovery, and workforce services</td>
+          <td>BPHI operates the Huizenga Campus (57K SF, 498 emergency beds, 32K+ individuals served) adjacent to Heritage Crossing. Aspire 1650 specifically targets homeless housing through FHFC RFA 2025-103.</td>
+        </tr>
+        <tr>
+          <td>T34 &mdash; Advance zoning reforms permitting diverse housing types by right; streamline approvals for affordable and mixed-use tied to PREMO investments</td>
+          <td>Live Local Act + CRA disposition authority at Heritage Crossing delivers exactly this: diverse unit types (studio through 3BR + townhomes), zoned by right under NWRAC-MUE.</td>
+        </tr>
+        <tr>
+          <td>T35 &mdash; Support capitalization of the Affordable Housing Trust Fund to better leverage gap financing, tax credits, SHIP/SAIL, CRA funding, and private-sector investment</td>
+          <td>BPHI framework directly leverages the $85M+ in redirected CRA TIF funding flowing to the Affordable Housing Trust Fund. Capital stack includes LIHTC ($28M), SAIL ($5.6M), SHIP, HOME, and QOF private capital.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-gold">
+      <span class="callout-label">The CLT Connection</span>
+      <p>The Six Pillars plan specifically calls out Community Land Trusts as a mechanism for permanent affordability (Tactic T29). BPHI&rsquo;s framework makes CLT the structural foundation of every development &mdash; not an add-on, but the architecture. South Florida CLT currently manages 13 units in Broward. BPHI&rsquo;s Heritage Crossing alone would deliver 300+ units under CLT structure, a 25x increase in one project.</p>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 4: PILLAR 2 — INNOVATION
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">04 &mdash; Pillar 2: Innovation &amp; Economic Development</span>
+    <h2>The Capital Innovation</h2>
+    <p class="lead">Pillar 2 covers innovation, commercialization, entrepreneurism, global trade, and economic development. BPHI&rsquo;s capital structure represents exactly the kind of financial innovation the plan calls for.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Six Pillars Tactic</th>
+          <th>BPHI Framework Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T4 &mdash; Expand the criteria that define housing affordability to retain emerging professionals</td>
+          <td>BPHI targets 30&ndash;80% AMI: the workforce that keeps Broward running &mdash; teachers, nurses, hospitality workers, first responders, service employees.</td>
+        </tr>
+        <tr>
+          <td>T12 &mdash; Identify innovative ways to increase the supply of affordable housing through P3s, zoning amendments, employer-based incentives</td>
+          <td>BPHI&rsquo;s 5-layer capital stack (private equity + federal incentives + state programs + county/city resources + CLT structure) is the blueprint for P3 affordable housing at scale.</td>
+        </tr>
+        <tr>
+          <td>T58 &mdash; Strengthen and expand CDFIs and mission-driven lenders supporting innovation enterprises</td>
+          <td>BPHI&rsquo;s capital stack includes CDFI-compatible subordinate loans and CRA-motivated bank financing at below-market rates. The &ldquo;Circle of Life&rdquo; banking model creates perpetual reinvestment.</td>
+        </tr>
+        <tr>
+          <td>T107 &mdash; Create a Broward Angel Network connecting high-net-worth individuals with vetted local startups and impact-investment opportunities</td>
+          <td>BPHI framework specifically targets UHNW family offices for impact-driven generational investment, structured through QOF, LIHTC, and Family Limited Partnership vehicles.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>The Five-Layer Capital Stack as Innovation</h3>
+    <div class="two-col">
+      <div>
+        <p>The Six Pillars plan repeatedly calls for innovative financing mechanisms, public-private partnerships, and new approaches to capital formation. BPHI&rsquo;s framework answers each of these calls with a specific, proven structure:</p>
+        <p><strong>Layer 1:</strong> Private capital from UHNW family offices (land acquisition + generational asset)<br>
+        <strong>Layer 2:</strong> Federal incentives (LIHTC, QOF, NMTC, HUD HOME)<br>
+        <strong>Layer 3:</strong> State programs (SAIL, SHIP via FHFC)<br>
+        <strong>Layer 4:</strong> County/city resources (TIF Trust Fund, fee waivers, public land)<br>
+        <strong>Layer 5:</strong> CLT structure (permanent affordability + land appreciation)</p>
+      </div>
+      <div>
+        <p>The result: effective cost of capital approaches zero for the developer, while the private investor retains a permanently appreciating land asset with tax-advantaged returns (14&ndash;18% blended IRR, 8.9% cash-on-cash).</p>
+        <p>This is not theoretical. Seven on Seventh (77 units, completed 2023) proved the model. Aspire 1650 (90 units, FHFC-approved) scales it. Heritage Crossing (~300 units, in negotiation) institutionalizes it.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 5: CROSS-PILLAR ALIGNMENT
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">05 &mdash; Cross-Pillar Alignment</span>
+    <h2>Pillars 1, 4, and 5</h2>
+    <p class="lead">Housing affordability is not contained within a single pillar. It is a structural issue that cuts across talent retention, business competitiveness, and civic governance.</p>
+
+    <h3>Pillar 1: Talent Supply &amp; Education</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Six Pillars Tactic</th>
+          <th>BPHI Framework Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T51 &mdash; Collaborate with other Six Pillars committees to address affordability, childcare, and transportation factors affecting talent retention</td>
+          <td>BPHI directly addresses the #1 barrier to talent retention in Broward: housing cost. 93% of residents cannot afford the median home. 62% of renters are cost-burdened.</td>
+        </tr>
+        <tr>
+          <td>T25 &mdash; Consider promoting entire training facilities funded and shaped by industry and run by community organizations focused on workforce education</td>
+          <td>BPHI&rsquo;s School District partnership: closed schools become mixed-use campuses with daycare, K&ndash;8 academy, workforce training, community health clinic, and 150&ndash;300 units of affordable housing. 34 schools flagged for closure. 50,000+ empty seats.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Pillar 4: Business Climate &amp; Competitiveness</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Six Pillars Tactic</th>
+          <th>BPHI Framework Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T6 &mdash; Identify and reduce transportation inefficiencies to lower business logistics costs</td>
+          <td>TOD-focused developments at transit hubs reduce car dependency and commute costs for the workforce Broward businesses depend on.</td>
+        </tr>
+        <tr>
+          <td>T43 &mdash; Partner with financial institutions and CDFIs to expand access to microloans, bridge loans, and equity financing</td>
+          <td>BPHI&rsquo;s CRA-motivated banking layer: under the Community Reinvestment Act, every major bank is graded on LMI community capital deployment. BPHI structures deals to deliver CRA credit, unlocking below-market financing.</td>
+        </tr>
+        <tr>
+          <td>General competitiveness &mdash; &ldquo;An all-out war for talent&rdquo;</td>
+          <td>The Greater Fort Lauderdale Alliance (a Six Pillars recommended advocate) has publicly stated that Broward risks losing the talent war if workforce housing is not addressed. BPHI&rsquo;s framework directly quotes this finding.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Pillar 5: Civic &amp; Governance Systems</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Six Pillars Tactic</th>
+          <th>BPHI Framework Implementation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T42 &mdash; Advocate for shared-service agreements and interlocal compacts that formalize collaboration among municipalities</td>
+          <td>BPHI operates across 6+ municipalities with active CRA partnerships, interlocal agreements (ILAs), and relationships with county government. The Heritage Crossing ILA (signed May 2025) extends the NW-Progresso CRA through 2035.</td>
+        </tr>
+        <tr>
+          <td>T48 &mdash; Advocate for a unified Digital Services Portal for permits, applications, and service requests across municipalities</td>
+          <td>BPHI&rsquo;s framework calls for standardized permitting processes and leverages the Live Local Act&rsquo;s statewide administrative approval pathway &mdash; bypassing municipal variance processes for qualifying affordable developments.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 6: LEADERSHIP & POSITIONING
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">06 &mdash; Leadership &amp; Positioning</span>
+    <h2>Recommended Advocates</h2>
+    <p class="lead">The Six Pillars plan identifies &ldquo;Recommended Advocates&rdquo; for each pillar &mdash; organizations whose involvement is recognized as crucial to implementation. Several of BPHI&rsquo;s existing partners and target relationships appear across multiple pillars.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Pillars</th>
+          <th>BPHI Relationship</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Greater Fort Lauderdale Alliance</td>
+          <td>1, 2, 3, 4</td>
+          <td>Cited in BPHI framework (&ldquo;all-out war for talent&rdquo;); economic development partner</td>
+        </tr>
+        <tr>
+          <td>Broward County Government</td>
+          <td>All 6</td>
+          <td>CRA land conveyance partner; $85M+ TIF funding source; gap financing provider</td>
+        </tr>
+        <tr>
+          <td>Community Redevelopment Agencies (CRAs)</td>
+          <td>3, 4</td>
+          <td>Direct development partner for Heritage Crossing; Seven on Seventh built on CRA land</td>
+        </tr>
+        <tr>
+          <td>Financial institutions and lenders</td>
+          <td>2, 4</td>
+          <td>CRA-motivated banking layer; target banks include JPMorgan, Goldman, Citi, Wells, BofA</td>
+        </tr>
+        <tr>
+          <td>Broward County Public Schools</td>
+          <td>1, 3</td>
+          <td>School District partnership target: 34 flagged schools, 50K empty seats, ground lease model</td>
+        </tr>
+        <tr>
+          <td>CareerSource Broward</td>
+          <td>1, 2, 4</td>
+          <td>Workforce training partner for mixed-use developments with employment services component</td>
+        </tr>
+        <tr>
+          <td>Broward County Transit</td>
+          <td>3</td>
+          <td>TOD siting partner; Heritage Crossing and Aspire 1650 both near transit routes</td>
+        </tr>
+        <tr>
+          <td>Smart Growth Partnership</td>
+          <td>3, 4</td>
+          <td>Aligned mission on TOD, mixed-use development, and sustainable growth patterns</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Six Pillars Leadership Co-Chairs</h3>
+    <div class="two-col">
+      <div>
+        <h4>Partnership Co-Chairs</h4>
+        <p><strong>Kathleen Cannon</strong> &mdash; President &amp; CEO, United Way Broward<br>
+        <strong>Cindy Mason</strong> &mdash; Market Leader, Florida Blue (Broward County)<br>
+        <strong>Commissioner Michael Udine</strong> &mdash; Broward County Commission</p>
+      </div>
+      <div>
+        <h4>Relevant Pillar Chairs</h4>
+        <p><strong>Quality of Life:</strong> Shekeria Brown (JP Morgan Chase), Phillip Dunlap (Broward Cultural Division), Jennifer O&rsquo;Flannery Anderson (Community Foundation of Broward)<br>
+        <strong>Infrastructure:</strong> Coree Cuff Lonergan (BCT), Mayor Josh Levy (Hollywood)<br>
+        <strong>Business Climate:</strong> Shawn Oden (BMO Bank), Whitney Dutton (Native Realty)</p>
+      </div>
+    </div>
+
+    <div class="callout callout-gold" style="margin-top: 18px;">
+      <span class="callout-label">Strategic Position</span>
+      <p>BPHI is uniquely positioned as the county&rsquo;s proof-of-concept partner for the Six Pillars housing and infrastructure goals. No other organization in Broward has a completed affordable housing project, an FHFC-approved pipeline project, a negotiated site with pre-design complete, an engaged architect, and a capital structure designed to attract private investment at institutional scale. The Six Pillars plan provides the policy mandate. BPHI provides the execution capability.</p>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       SECTION 7: SUMMARY MATRIX
+       ========================================== -->
+  <div class="section section-break">
+    <span class="section-num">07 &mdash; Summary</span>
+    <h2>Complete Alignment Matrix</h2>
+    <p class="lead">Every major element of the BPHI framework maps to specific Six Pillars tactics. The county&rsquo;s 20-year vision and BPHI&rsquo;s development model are not just compatible &mdash; they are the same strategy.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>BPHI Framework Element</th>
+          <th>Six Pillars Alignment</th>
+          <th>Pillar(s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Community Land Trust model</td>
+          <td>T29 (support CLTs), T27 (long-term affordability near transit)</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>5-layer capital stack</td>
+          <td>T12 (innovative P3s), T32 (P3 models at scale)</td>
+          <td>2, 3</td>
+        </tr>
+        <tr>
+          <td>QOF / UHNW family office investment</td>
+          <td>T107 (angel network), T58 (mission-driven capital)</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>Transit-oriented development</td>
+          <td>T16, T21, T36 (TOD corridors, zoning modernization)</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>Affordable Housing Trust Fund</td>
+          <td>T35 (capitalize trust fund), T26 (align with PREMO)</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>CRA-motivated banking</td>
+          <td>T43 (CDFIs + bridge loans), T58 (mission-driven lenders)</td>
+          <td>2, 4</td>
+        </tr>
+        <tr>
+          <td>Live Local Act density overrides</td>
+          <td>T21 (modernize zoning), T34 (zoning reforms by right)</td>
+          <td>3, 6</td>
+        </tr>
+        <tr>
+          <td>School District partnership (50K seats)</td>
+          <td>T25 (training facilities), T16 (co-locate services)</td>
+          <td>1, 3</td>
+        </tr>
+        <tr>
+          <td>Hospital District parking lot model</td>
+          <td>T32 (P3 models), T27 (public land use)</td>
+          <td>3, 6</td>
+        </tr>
+        <tr>
+          <td>Workforce housing (30&ndash;80% AMI)</td>
+          <td>T4 (retain professionals), T51 (talent retention)</td>
+          <td>1, 2</td>
+        </tr>
+        <tr>
+          <td>Multi-municipal CRA partnerships</td>
+          <td>T42 (interlocal compacts), T26 (joint frameworks)</td>
+          <td>5, 6</td>
+        </tr>
+        <tr>
+          <td>Huizenga Campus supportive housing</td>
+          <td>T30 (permanent supportive housing + services)</td>
+          <td>6</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <span class="callout-label">The Bottom Line</span>
+      <p>Broward County has a $154M gap financing program, a $42M trust fund, $146M in bond authority, and now a 20-year strategic plan that explicitly calls for CLTs, P3 housing models, TOD, and innovative capital structures. What it needs is a development partner who has already proven the model. BPHI is that partner. The framework is ready. The pipeline is active. The alignment is complete.</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    Sources: Six Pillars&trade; Broward 2045 Economic Development Strategic Vision Plan, April 2026. Published by the Six Pillars Partnership using the Florida Chamber Foundation framework. BPHI Affordable Housing Initiative Framework, March 2026. Cross-reference analysis prepared April 2026.<br>
+    Six Pillars&trade; is a trademark of the Florida Chamber Foundation. This analysis is prepared for discussion purposes only and does not represent an endorsement by the Six Pillars Partnership or the Florida Chamber Foundation.
+  </div>
+
+</body>
+</html>
