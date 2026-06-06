@@ -2,3 +2,9 @@
 .env
 .env.*
 *.local
+
+# WHY: 99MB of BPHI PDFs/docs — too large for git, stored on T7 SSD
+assets/bphi/
+
+# Temp Word lock files
+~$*
