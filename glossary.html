@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary — Broward County Affordable Housing Initiative</title>
+  <meta name="description" content="Plain-English glossary of affordable housing acronyms, tax tools, and government programs. Because alphabet soup shouldn't be a barrier to building homes.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/housing.css">
+  <style>
+    /* WHY: Glossary-specific styles for search, filtering, and definition cards */
+    .glossary-search {
+      width: 100%;
+      padding: 16px 20px;
+      font-family: var(--sans);
+      font-size: 1rem;
+      border: 1px solid var(--cream-dark);
+      background: var(--white);
+      color: var(--ink);
+      outline: none;
+      margin-bottom: 48px;
+      transition: border-color 0.3s;
+    }
+    .glossary-search:focus { border-color: var(--accent); }
+    .glossary-search::placeholder { color: var(--muted); }
+
+    .glossary-list { display: flex; flex-direction: column; gap: 0; }
+
+    .glossary-item {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--cream-dark);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .glossary-abbr {
+      font-family: var(--mono);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .glossary-full {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .glossary-def {
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .glossary-source {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .glossary-source a {
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+      transition: opacity 0.3s;
+    }
+
+    .glossary-source a:hover { opacity: 0.7; }
+
+    .glossary-item.hidden { display: none; }
+
+    .glossary-category {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      padding: 48px 0 16px;
+      border-bottom: 2px solid var(--accent);
+      margin-bottom: 0;
+    }
+
+    .glossary-category:first-of-type { padding-top: 0; }
+
+    .glossary-back {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: opacity 0.3s;
+    }
+    .glossary-back:hover { opacity: 0.7; }
+
+    .glossary-count {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .glossary-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body class="housing-page">
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- Hero -->
+  <header class="housing-hero" style="min-height: 60vh;">
+    <div class="housing-hero-inner">
+      <p class="housing-hero-tag">Reference</p>
+      <h1 class="housing-hero-headline">
+        <span class="line"><span class="line-inner">Alphabet</span></span>
+        <span class="line"><span class="line-inner"><em>Soup</em><span style="color: var(--gold);">.</span></span></span>
+      </h1>
+      <div class="housing-hero-bottom">
+        <p class="housing-hero-intro">Affordable housing runs on acronyms. Here they are in plain English &mdash; what they stand for, what they actually do, and where to read more. Search below or scroll through. No jargon left behind.</p>
+        <a href="index.html" class="glossary-back">Back to Framework &rarr;</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Glossary Content -->
+  <section class="housing-section" id="glossary">
+    <div class="housing-inner">
+
+      <input type="text" class="glossary-search" id="glossarySearch" placeholder="Search acronyms, terms, or definitions..." autocomplete="off">
+      <div class="glossary-count" id="glossaryCount"></div>
+
+      <!-- ======================== -->
+      <h3 class="glossary-category" data-category="government">Government &amp; Regulatory</h3>
+      <!-- ======================== -->
+
+      <div class="glossary-list" id="glossaryList">
+
+        <div class="glossary-item" data-terms="ami area median income">
+          <span class="glossary-abbr" id="ami">AMI</span>
+          <div>
+            <div class="glossary-full">Area Median Income</div>
+            <p class="glossary-def">The midpoint household income for a geographic area, calculated annually by HUD. If AMI is $72,100, half of households earn more and half earn less. Affordable housing programs use AMI percentages (30%, 50%, 60%, 80%) to set rent limits and determine who qualifies. When we say "60% AMI," we mean households earning no more than $43,260 for a family of four in Broward County.</p>
+            <span class="glossary-source"><a href="https://www.huduser.gov/portal/datasets/il.html" target="_blank" rel="noopener">HUD Income Limits &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="cdbg community development block grant hud">
+          <span class="glossary-abbr" id="cdbg">CDBG</span>
+          <div>
+            <div class="glossary-full">Community Development Block Grant</div>
+            <p class="glossary-def">A federal program administered by HUD that provides annual grants to cities and counties for community development &mdash; infrastructure, housing, economic development, and public services. The 400 NW 7th Avenue post office site was originally acquired using $1.8M in CDBG funds, which is why any change of use requires HUD approval. The program requires that at least 51% of beneficiaries be low-to-moderate income.</p>
+            <span class="glossary-source"><a href="https://www.hud.gov/program_offices/comm_planning/cdbg" target="_blank" rel="noopener">HUD CDBG Program &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="clt community land trust">
+          <span class="glossary-abbr" id="clt">CLT</span>
+          <div>
+            <div class="glossary-full">Community Land Trust</div>
+            <p class="glossary-def">A nonprofit that owns land permanently and leases it to residents who own the buildings on top. When a home is sold, the CLT caps the appreciation &mdash; keeping the next buyer's price affordable while still letting the seller build some equity. The land never goes back to the speculative market. For investors, the CLT structure means the land appreciates as a balance sheet asset independent of the affordable housing restriction on the units.</p>
+            <span class="glossary-source"><a href="https://groundedsolutions.org/strengthening-neighborhoods/community-land-trusts" target="_blank" rel="noopener">Grounded Solutions Network &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="cra community redevelopment agency area">
+          <span class="glossary-abbr" id="cra">CRA</span>
+          <div>
+            <div class="glossary-full">Community Redevelopment Agency / Area</div>
+            <p class="glossary-def">A special district created by a city or county under Florida Statute Chapter 163 to eliminate blight and promote redevelopment. CRAs capture the growth in property tax revenue (TIF) within their boundaries and reinvest it locally. The NW-Progresso-Flagler Heights CRA in Fort Lauderdale covers ~1,298 acres and was extended through November 7, 2035 via an Interlocal Agreement signed May 20, 2025. The CRA can convey property at reduced or no cost &mdash; unlike the City, which must sell at market value.</p>
+            <span class="glossary-source"><a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0163/0163.html" target="_blank" rel="noopener">FL Statute Ch. 163 &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="cra community reinvestment act bank banking federal">
+          <span class="glossary-abbr" id="cra-bank">CRA (Banking)</span>
+          <div>
+            <div class="glossary-full">Community Reinvestment Act (Federal)</div>
+            <p class="glossary-def">A federal law (not to be confused with Community Redevelopment Agency) that requires banks to lend, invest, and provide services in the low-to-moderate income communities where they do business. Federal regulators grade every major bank on CRA performance &mdash; a poor grade can block mergers, acquisitions, and expansion. This means banks are legally motivated to finance affordable housing deals. They need your deal as much as you need their capital.</p>
+            <span class="glossary-source"><a href="https://www.federalreserve.gov/consumerscommunities/cra_about.htm" target="_blank" rel="noopener">Federal Reserve &mdash; CRA &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="fhfc florida housing finance corporation">
+          <span class="glossary-abbr" id="fhfc">FHFC</span>
+          <div>
+            <div class="glossary-full">Florida Housing Finance Corporation</div>
+            <p class="glossary-def">The state agency that administers Florida's affordable housing programs, including LIHTC allocations, SAIL loans, and SHIP. FHFC issues competitive Requests for Applications (RFAs) for housing credits. Aspire 1650 was submitted under RFA 2025-103 (Housing Credit and SAIL Financing to Develop Housing for Homeless Persons).</p>
+            <span class="glossary-source"><a href="https://www.floridahousing.org/" target="_blank" rel="noopener">Florida Housing &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="hud housing urban development department federal">
+          <span class="glossary-abbr" id="hud">HUD</span>
+          <div>
+            <div class="glossary-full">U.S. Department of Housing and Urban Development</div>
+            <p class="glossary-def">The federal agency responsible for housing policy, fair housing enforcement, and programs like CDBG, HOME, and FHA mortgage insurance. HUD's 221(d)(4) program provides 40-year, non-recourse, FHA-insured permanent financing for multifamily affordable housing &mdash; the gold standard of affordable housing debt.</p>
+            <span class="glossary-source"><a href="https://www.hud.gov/" target="_blank" rel="noopener">HUD.gov &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="lmi low moderate income">
+          <span class="glossary-abbr" id="lmi">LMI</span>
+          <div>
+            <div class="glossary-full">Low-to-Moderate Income</div>
+            <p class="glossary-def">A HUD classification for households earning at or below 80% of the Area Median Income. LMI status is the qualifying threshold for most federal housing programs, CRA lending requirements, and CDBG-funded projects. In Broward County, 70-100% of residents in Census Tract 041600 (where the post office site is located) are classified as LMI.</p>
+          </div>
+        </div>
+
+        <!-- ======================== -->
+        <h3 class="glossary-category" data-category="tax">Tax Incentives &amp; Investment Vehicles</h3>
+        <!-- ======================== -->
+
+        <div class="glossary-item" data-terms="1031 exchange like kind">
+          <span class="glossary-abbr" id="1031">1031</span>
+          <div>
+            <div class="glossary-full">1031 Exchange (Like-Kind Exchange)</div>
+            <p class="glossary-def">An IRS provision (Section 1031 of the Internal Revenue Code) that lets you sell a property and reinvest the proceeds into a similar property while deferring capital gains taxes indefinitely. In this framework, investors can 1031-exchange existing real estate holdings into the fund structure, moving capital into affordable housing without triggering a tax event.</p>
+            <span class="glossary-source"><a href="https://www.irs.gov/publications/p544" target="_blank" rel="noopener">IRS Publication 544 &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="dscr debt service coverage ratio">
+          <span class="glossary-abbr" id="dscr">DSCR</span>
+          <div>
+            <div class="glossary-full">Debt Service Coverage Ratio</div>
+            <p class="glossary-def">Net Operating Income divided by annual debt payments. A DSCR of 1.0 means you earn exactly enough to cover your mortgage. HUD requires a minimum of 1.15x for FHA-insured loans. Our deal models show 2.32x&ndash;2.55x &mdash; meaning the projects generate more than double the income needed to service debt. That's a deep cushion for investors and lenders alike.</p>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="flp family limited partnership estate planning">
+          <span class="glossary-abbr" id="flp">FLP</span>
+          <div>
+            <div class="glossary-full">Family Limited Partnership</div>
+            <p class="glossary-def">An estate planning vehicle where a family holds assets (like real estate) in a partnership structure. The general partner (usually the parents) controls the assets while limited partners (usually children or trusts) hold ownership interests. Because limited partnership interests are illiquid and lack control, they qualify for valuation discounts when transferred &mdash; reducing estate and gift taxes. The housing asset sits on the family balance sheet and passes generationally.</p>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="lihtc low income housing tax credit 4% 9%">
+          <span class="glossary-abbr" id="lihtc">LIHTC</span>
+          <div>
+            <div class="glossary-full">Low-Income Housing Tax Credit</div>
+            <p class="glossary-def">The single most important federal tool for building affordable housing. Created by the Tax Reform Act of 1986, LIHTC provides dollar-for-dollar federal tax credits to investors over 10 years. There are two types: 9% credits (competitive, awarded by state housing agencies like FHFC) and 4% credits (non-competitive, paired with tax-exempt bonds). Investors buy the credits from developers at ~$0.92 per dollar of credit, providing equity that funds construction. LIHTC has financed approximately $10.5 billion in annual housing development.</p>
+            <span class="glossary-source"><a href="https://www.huduser.gov/portal/datasets/lihtc.html" target="_blank" rel="noopener">HUD LIHTC Database &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="nmtc new markets tax credit">
+          <span class="glossary-abbr" id="nmtc">NMTC</span>
+          <div>
+            <div class="glossary-full">New Markets Tax Credit</div>
+            <p class="glossary-def">A federal program that provides a 39% tax credit over seven years to investors who put equity into Community Development Entities (CDEs) that finance projects in low-income communities. NMTC has generated $8 of private investment for every $1 of federal funding. In our framework, NMTC applies to the commercial and mixed-use components of developments &mdash; it layers on top of LIHTC for the residential portions.</p>
+            <span class="glossary-source"><a href="https://www.cdfifund.gov/programs-training/programs/new-markets-tax-credit" target="_blank" rel="noopener">CDFI Fund &mdash; NMTC &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="oz opportunity zone qof qualified opportunity fund">
+          <span class="glossary-abbr" id="oz">OZ / QOF</span>
+          <div>
+            <div class="glossary-full">Opportunity Zone / Qualified Opportunity Fund</div>
+            <p class="glossary-def">Opportunity Zones are low-income census tracts designated under the Tax Cuts and Jobs Act of 2017 (IRC Section 1400Z) where investors receive special capital gains tax treatment. A Qualified Opportunity Fund (QOF) is the investment vehicle &mdash; invest capital gains into a QOF, defer the tax, and if you hold for 10+ years, pay zero capital gains tax on the appreciation. Broward County has 18 designated OZ tracts. The current OZ 1.0 program has investment deadlines approaching, and OZ 2.0 legislation has been proposed to redesignate tracts based on updated census data.</p>
+            <span class="glossary-source"><a href="https://www.irs.gov/credits-deductions/businesses/opportunity-zones" target="_blank" rel="noopener">IRS &mdash; Opportunity Zones &rarr;</a></span>
+          </div>
+        </div>
+
+        <!-- ======================== -->
+        <h3 class="glossary-category" data-category="financing">Financing &amp; Lending</h3>
+        <!-- ======================== -->
+
+        <div class="glossary-item" data-terms="221 d 4 fha insured multifamily permanent">
+          <span class="glossary-abbr" id="fha221d4">FHA 221(d)(4)</span>
+          <div>
+            <div class="glossary-full">FHA-Insured Multifamily Construction &amp; Permanent Loan</div>
+            <p class="glossary-def">The gold standard of affordable housing financing. This HUD program provides a single loan that covers both construction and permanent financing for multifamily projects. It's non-recourse (the borrower isn't personally liable), fully amortizing over 40 years, and carries a fixed interest rate insured by the federal government. Once you lock in a 221(d)(4), your debt cost is predictable for four decades.</p>
+            <span class="glossary-source"><a href="https://www.hud.gov/program_offices/housing/mfh/progdesc/rentcoophsg221702" target="_blank" rel="noopener">HUD 221(d)(4) &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="cdfi community development financial institution">
+          <span class="glossary-abbr" id="cdfi">CDFI</span>
+          <div>
+            <div class="glossary-full">Community Development Financial Institution</div>
+            <p class="glossary-def">A specialized financial institution (bank, credit union, loan fund, or venture fund) certified by the U.S. Treasury to serve low-income communities. CDFIs fill gaps where conventional banks won't lend. The Florida Community Loan Fund is a CDFI that has provided subordinate financing for BPHI projects &mdash; it stacks with senior bank debt to fill capital gaps.</p>
+            <span class="glossary-source"><a href="https://www.cdfifund.gov/" target="_blank" rel="noopener">CDFI Fund &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="noi net operating income">
+          <span class="glossary-abbr" id="noi">NOI</span>
+          <div>
+            <div class="glossary-full">Net Operating Income</div>
+            <p class="glossary-def">Total revenue minus operating expenses, before debt service. NOI is the fundamental measure of a property's earning power &mdash; it tells you how much cash the building generates before you pay the mortgage. Our deal models show NOI of $837K (Project Cypress, 80 units) and $3.17M (USPS-Alridge Station, 320 units).</p>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="tdc total development cost">
+          <span class="glossary-abbr" id="tdc">TDC</span>
+          <div>
+            <div class="glossary-full">Total Development Cost</div>
+            <p class="glossary-def">Everything it costs to build a project from dirt to keys &mdash; land, construction, architecture, legal, permits, financing costs, reserves, and developer fee. The capital stack (LIHTC + QOF + debt + state + city) must equal or exceed TDC. Our models show TDC of $24.5M (80 units) and $97M (320 units).</p>
+          </div>
+        </div>
+
+        <!-- ======================== -->
+        <h3 class="glossary-category" data-category="state">Florida State &amp; Local Programs</h3>
+        <!-- ======================== -->
+
+        <div class="glossary-item" data-terms="sail state apartment incentive loan florida">
+          <span class="glossary-abbr" id="sail">SAIL</span>
+          <div>
+            <div class="glossary-full">State Apartment Incentive Loan</div>
+            <p class="glossary-def">A Florida program that provides low-interest subordinate loans for affordable multifamily rental housing. SAIL loans are typically at 0% interest with 50-year terms, repayable only from surplus cash flow &mdash; meaning they don't burden the project's operating budget. Administered by FHFC and often paired with LIHTC.</p>
+            <span class="glossary-source"><a href="https://www.floridahousing.org/programs/developers-702/multifamily-programs/sail" target="_blank" rel="noopener">FHFC &mdash; SAIL &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="ship state housing initiatives partnership florida">
+          <span class="glossary-abbr" id="ship">SHIP</span>
+          <div>
+            <div class="glossary-full">State Housing Initiatives Partnership</div>
+            <p class="glossary-def">A Florida program funded by documentary stamp tax revenue that provides money to all 67 counties and eligible cities for affordable housing. SHIP funds can be used for down payment assistance, rehabilitation, new construction, and emergency repairs. Each county sets its own local housing assistance plan.</p>
+            <span class="glossary-source"><a href="https://www.floridahousing.org/programs/special-programs/ship" target="_blank" rel="noopener">FHFC &mdash; SHIP &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="tif tax increment financing trust fund">
+          <span class="glossary-abbr" id="tif">TIF</span>
+          <div>
+            <div class="glossary-full">Tax Increment Financing</div>
+            <p class="glossary-def">The funding mechanism for CRAs. When a CRA is created, the property tax base is frozen at that year's level. As property values rise, the "increment" &mdash; the difference between the frozen base and current taxes &mdash; flows into the CRA's redevelopment trust fund instead of the general fund. The NW-Progresso CRA's TIF obligations from taxing authorities other than the City ended November 7, 2025, but the CRA itself was extended through 2035 on a non-TIF basis. Broward County's projected share of TIF funding from expiring CRAs countywide exceeds $72M by FY2032.</p>
+            <span class="glossary-source"><a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&Search_String=&URL=0100-0199/0163/Sections/0163.387.html" target="_blank" rel="noopener">FL Statute 163.387 &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="rfa request for applications fhfc competitive">
+          <span class="glossary-abbr" id="rfa">RFA</span>
+          <div>
+            <div class="glossary-full">Request for Applications</div>
+            <p class="glossary-def">The competitive process through which FHFC awards housing credits and financing. Developers submit detailed applications responding to specific RFAs (e.g., RFA 2025-103 for housing for homeless persons). Applications are scored, ranked, and awarded by the FHFC board. All RFA documents, applications, and awards are public records under Florida's Sunshine Law.</p>
+            <span class="glossary-source"><a href="https://www.floridahousing.org/programs/developers-702/competitive" target="_blank" rel="noopener">FHFC Competitive Programs &rarr;</a></span>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="166.0451 surplus land florida statute municipal">
+          <span class="glossary-abbr" id="fl166">FL 166.0451</span>
+          <div>
+            <div class="glossary-full">Florida Statute 166.0451 &mdash; Surplus Land for Affordable Housing</div>
+            <p class="glossary-def">A Florida law requiring every municipality to review its real property inventory and determine if any parcels are appropriate for affordable housing. Cities must identify surplus land that could be used for or sold to support affordable housing development. This statute is the legal basis for requesting land inventories from Fort Lauderdale, Lauderdale Lakes, Hollywood, and other Broward municipalities.</p>
+            <span class="glossary-source"><a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0100-0199/0166/Sections/0166.0451.html" target="_blank" rel="noopener">FL Statute 166.0451 &rarr;</a></span>
+          </div>
+        </div>
+
+        <!-- ======================== -->
+        <h3 class="glossary-category" data-category="development">Development &amp; Real Estate</h3>
+        <!-- ======================== -->
+
+        <div class="glossary-item" data-terms="co certificate of occupancy">
+          <span class="glossary-abbr" id="co">CO / TCO</span>
+          <div>
+            <div class="glossary-full">Certificate of Occupancy / Temporary Certificate of Occupancy</div>
+            <p class="glossary-def">The official sign-off from the building department that a structure meets code and is safe to inhabit. A TCO allows partial occupancy while punch list items are completed. Getting to CO triggers key financing milestones &mdash; permanent loan conversion, final LIHTC equity installments, and the start of the stabilization clock.</p>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="gmp guaranteed maximum price construction">
+          <span class="glossary-abbr" id="gmp">GMP</span>
+          <div>
+            <div class="glossary-full">Guaranteed Maximum Price</div>
+            <p class="glossary-def">A contract structure where the general contractor agrees to complete construction for no more than a set price. Cost overruns are the contractor's problem, not the developer's. GMP contracts are standard in LIHTC deals because they give tax credit investors certainty about development costs.</p>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="irr internal rate of return">
+          <span class="glossary-abbr" id="irr">IRR</span>
+          <div>
+            <div class="glossary-full">Internal Rate of Return</div>
+            <p class="glossary-def">The annualized return on an investment accounting for the timing of all cash flows &mdash; contributions, distributions, and final proceeds. An IRR of 12-15% means your money is compounding at that rate when you factor in when you put it in and when you get it back. Our deal models project 12-18% blended after-tax IRR depending on the project.</p>
+          </div>
+        </div>
+
+        <div class="glossary-item" data-terms="nwrac mue mixed use east zoning">
+          <span class="glossary-abbr" id="nwrac">NWRAC-MUE</span>
+          <div>
+            <div class="glossary-full">Northwest Regional Activity Center &mdash; Mixed Use East</div>
+            <p class="glossary-def">The zoning designation for the 400 NW 7th Avenue post office site. This is one of the most permissive zoning categories in Fort Lauderdale &mdash; it allows unlimited dwelling units per acre, mixed commercial and residential uses, and buildings up to the FAA height restriction (200 feet at this location). The zoning essentially says: build as much housing as the site can physically support.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="housing-footer">
+    <p>Broward County Affordable Housing Initiative</p>
+    <p>Draft Framework &mdash; March 2026 &mdash; Confidential</p>
+  </footer>
+
+
+  <script src="js/main.js"></script>
+  <script>
+    // WHY: Live search filters glossary items as user types — no page reload needed
+    (function() {
+      var search = document.getElementById('glossarySearch');
+      var items = document.querySelectorAll('.glossary-item');
+      var count = document.getElementById('glossaryCount');
+
+      function updateCount() {
+        var visible = document.querySelectorAll('.glossary-item:not(.hidden)').length;
+        count.textContent = visible + ' of ' + items.length + ' terms';
+      }
+
+      if (search && items.length > 0) {
+        updateCount();
+        search.addEventListener('input', function() {
+          var q = this.value.toLowerCase().trim();
+          items.forEach(function(item) {
+            var terms = (item.getAttribute('data-terms') || '').toLowerCase();
+            var text = item.textContent.toLowerCase();
+            if (!q || terms.indexOf(q) !== -1 || text.indexOf(q) !== -1) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+          updateCount();
+        });
+      }
+
+      // WHY: Support linking directly to a term via hash (e.g., glossary.html#lihtc)
+      if (window.location.hash) {
+        var target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(function() {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.closest('.glossary-item').style.background = 'var(--cream-dark)';
+          }, 300);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
