@@ -1,6 +1,6 @@
 /* ============================================
    Jeremiah Gutierrez — Editorial / Brutalist
-   Spring 2026 refresh — warm sage, soft gold
+   Summer 2026 refresh — ocean teal, warm gold
    Light airy base, massive serif typography,
    asymmetric layouts, calm authority
    ============================================ */
@@ -9,10 +9,10 @@
    Variables
    ------------------------------------------- */
 :root {
-  /* WHY: Spring palette — warm sage primary, soft gold secondary. Fresh, authoritative, approachable */
-  --accent: #7B9971;
-  --accent-light: #92AD88;
-  --accent-gold: #C4A265;         /* WHY: Soft gold for warmth and prestige highlights */
+  /* WHY: Summer palette — ocean teal primary, warm gold secondary. Coastal, authoritative, sun-drenched */
+  --accent: #2A7B8A;
+  --accent-light: #3A95A6;
+  --accent-gold: #D4A854;         /* WHY: Rich summer gold for warmth and prestige highlights */
   --ink: #2A2F2C;
   --ink-light: #4A5550;
   --cream: #FAFAF5;
