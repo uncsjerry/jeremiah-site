@@ -8,3 +8,31 @@ assets/bphi/
 
 # Temp Word lock files
 ~$*
+
+# Secrets & Credentials (extended)
+.env.local
+.env.*.local
+.env.prod
+.env.save
+.env-old
+!.env.example
+!.env.template
+
+# Vercel
+.vercel/
+
+# Credentials & Keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+.credentials/
+credentials.json
+service-account*.json
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+*.swo
