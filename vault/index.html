@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Vault</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #2A7B8A;
+    --ink: #2A2F2C;
+    --cream: #FAFAF5;
+    --cream-dark: #ECEAE3;
+    --white: #FFFEFA;
+    --muted: #7A8278;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--ink); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+  /* Lock screen */
+  .lock { text-align: center; padding: 40px; }
+  .lock h1 { font-family: var(--serif); font-size: 28px; margin-bottom: 8px; }
+  .lock p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .lock input {
+    display: block; width: 260px; margin: 0 auto 12px; padding: 12px 16px;
+    border: 2px solid var(--cream-dark); border-radius: 8px; font-size: 16px;
+    text-align: center; letter-spacing: 2px; background: var(--white);
+    font-family: var(--sans);
+  }
+  .lock input:focus { outline: none; border-color: var(--accent); }
+  .lock button {
+    padding: 10px 32px; background: var(--accent); color: #fff; border: none;
+    border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: var(--sans);
+  }
+  .lock button:hover { opacity: 0.9; }
+  .lock .error { color: #c0392b; font-size: 13px; margin-top: 8px; display: none; }
+
+  /* Unlocked content */
+  .content { display: none; max-width: 600px; margin: 0 auto; padding: 40px 24px; }
+  .content h1 { font-family: var(--serif); font-size: 24px; margin-bottom: 24px; }
+  .doc-list { list-style: none; }
+  .doc-list li { margin-bottom: 12px; }
+  .doc-list a {
+    display: block; padding: 16px 20px; background: var(--white);
+    border: 1px solid var(--cream-dark); border-radius: 8px;
+    text-decoration: none; color: var(--ink); font-weight: 500;
+    transition: border-color 0.15s;
+  }
+  .doc-list a:hover { border-color: var(--accent); }
+  .doc-list .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<div class="lock" id="lock">
+  <h1>Private Vault</h1>
+  <p>Enter passphrase to continue</p>
+  <input type="password" id="passphrase" placeholder="passphrase" autofocus
+    onkeydown="if(event.key==='Enter')unlock()">
+  <button onclick="unlock()">Enter</button>
+  <div class="error" id="error">Incorrect passphrase</div>
+</div>
+
+<div class="content" id="content">
+  <h1>Strategy Documents</h1>
+  <ul class="doc-list">
+    <li>
+      <a href="v3.html">Executive Summary — Latest (v3)</a>
+      <div class="meta">Full competitive strategy with SaaS pillars analysis</div>
+    </li>
+    <li>
+      <a href="v2.html">Executive Summary — v2</a>
+      <div class="meta">Expanded version with Brett's framework</div>
+    </li>
+    <li>
+      <a href="v1.html">Executive Summary — v1</a>
+      <div class="meta">Original foundation document</div>
+    </li>
+  </ul>
+</div>
+
+<script>
+// WHY: Compare against a known passphrase. Client-side only — sufficient to
+// keep content hidden from search engines and anyone who doesn't know the phrase.
+// The passphrase is obscured via char codes to avoid plaintext in source.
+// String: "kairotech" encoded as char offsets from 'a' (0-indexed)
+var _k = [10,0,8,17,14,19,4,2,7].map(function(c){return String.fromCharCode(97+c);}).join("");
+
+function unlock() {
+  var input = document.getElementById("passphrase").value.trim().toLowerCase();
+  if (input === _k) {
+    sessionStorage.setItem("vault_unlocked", "1");
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  } else {
+    document.getElementById("error").style.display = "block";
+    document.getElementById("passphrase").value = "";
+    document.getElementById("passphrase").focus();
+  }
+}
+
+// Auto-unlock if already authenticated this session
+if (sessionStorage.getItem("vault_unlocked") === "1") {
+  document.getElementById("lock").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+</script>
+</body>
+</html>
