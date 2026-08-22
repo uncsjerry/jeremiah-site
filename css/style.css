@@ -514,6 +514,14 @@ em { font-family: var(--serif); font-style: italic; }
   color: var(--accent);
 }
 
+.about-headshot {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 320px;
+  filter: grayscale(20%);
+  border: 0;
+}
+
 .split-right {
   padding: 120px 60px;
   display: flex;
