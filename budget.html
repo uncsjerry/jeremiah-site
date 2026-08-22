@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balanced Life Budget — Jeremiah Gutierrez</title>
+  <meta name="description" content="An interactive household budget tool built on the 50/30/20 framework. Upload your bills, fill in your numbers, and get personalized savings advice.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    /* ============================================
+       Balanced Life Budget — Editorial Layout
+       Matches the jeremiahgutierrez.com brutalist
+       editorial design language
+       ============================================ */
+
+    /* -------------------------------------------
+       Hero
+       ------------------------------------------- */
+    .budget-hero {
+      min-height: 100vh;
+      background: var(--ink, #2A2F2C);
+      display: flex;
+      align-items: flex-end;
+      padding: 0 40px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .budget-hero::before {
+      content: '$';
+      position: absolute;
+      top: -10%;
+      right: -8%;
+      font-family: var(--serif, 'Playfair Display', serif);
+      font-size: 80vw;
+      font-weight: 900;
+      color: rgba(255,255,255,.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .budget-hero-inner {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: end;
+    }
+    @media (max-width: 900px) {
+      .budget-hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .budget-hero { padding: 120px 24px 40px; }
+    }
+    .budget-hero-tag {
+      font-family: var(--mono, 'JetBrains Mono', monospace);
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: var(--accent, #2A7B8A);
+      margin-bottom: 32px;
+    }
+    .budget-hero-headline {
+      font-family: var(--serif, 'Playfair Display', serif);
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.03em;
+      color: var(--cream, #FAFAF5);
+      margin-bottom: 40px;
+    }
+    .budget-hero-headline em { color: var(--accent, #2A7B8A); }
+    .budget-hero-headline .period { color: var(--accent-gold, #D4A854); }
+    .budget-hero-intro {
+      max-width: 480px;
+      font-size: 1rem;
+      color: var(--cream-dark, #ECEAE3);
+      line-height: 1.7;
+      opacity: .85;
+    }
+    .budget-hero-photo {
+      position: relative;
+    }
+    .budget-hero-photo img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      filter: grayscale(20%);
+    }
+    .budget-hero-photo-caption {
+      font-family: var(--mono, monospace);
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.4);
+      margin-top: 8px;
+    }
+    .hero-scroll {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 50px;
+      background: var(--cream-dark, #ECEAE3);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-scroll-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent, #2A7B8A);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0% { top: -100%; }
+      50% { top: 100%; }
+      100% { top: 100%; }
+    }
+    .hero-scroll span {
+      font-family: var(--mono, monospace);
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: rgba(255,255,255,.35);
+    }
+
+    /* -------------------------------------------
+       Section Framework
+       ------------------------------------------- */
+    .budget-section {
+      padding: 100px 40px;
+    }
+    .budget-section-dark {
+      background: var(--ink, #2A2F2C);
+      color: var(--cream, #FAFAF5);
+    }
+    .budget-section-dark .hint { color: rgba(255,255,255,.5); }
+    .budget-section-dark h2 { color: var(--cream, #FAFAF5); }
+    .budget-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    @media (max-width: 760px) {
+      .budget-section { padding: 60px 24px; }
+    }
+    .section-label {
+      font-family: var(--mono, monospace);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--muted, #7A8278);
+      display: block;
+      margin-bottom: 40px;
+    }
+    .budget-section-dark .section-label { color: var(--accent, #2A7B8A); }
+    .section-title {
+      font-family: var(--serif, 'Playfair Display', serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+    .section-title em { color: var(--accent, #2A7B8A); }
+    .section-sub {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      color: var(--ink-light, #4A5550);
+      max-width: 56ch;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .budget-section-dark .section-sub { color: rgba(255,255,255,.6); }
+
+    /* -------------------------------------------
+       Photo Breaks
+       ------------------------------------------- */
+    .photo-break {
+      width: 100%;
+      height: 40vh;
+      min-height: 280px;
+      max-height: 480px;
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-break img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-break-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(42,47,44,.3), rgba(42,47,44,.05));
+    }
+    .photo-break-text {
+      position: absolute;
+      bottom: 24px;
+      left: 40px;
+      font-family: var(--serif, serif);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      text-shadow: 0 2px 16px rgba(0,0,0,.4);
+      max-width: 500px;
+      line-height: 1.3;
+    }
+
+    /* -------------------------------------------
+       Profile — Split Layout
+       ------------------------------------------- */
+    .profile-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    @media (max-width: 800px) { .profile-split { grid-template-columns: 1fr; gap: 32px; } }
+    .profile-text {
+      position: sticky;
+      top: 120px;
+    }
+    .profile-text p {
+      font-size: 1rem;
+      color: var(--ink-light, #4A5550);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .profile-text p strong { color: var(--ink, #2A2F2C); }
+    .profile-card {
+      background: #fff;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      padding: 28px 24px;
+    }
+    .profile-card h3 {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .profile-field label {
+      display: block;
+      font-family: var(--mono, monospace);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted, #7A8278);
+      margin-bottom: 4px;
+    }
+    .profile-field input {
+      width: 100%;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      background: #fff;
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      color: var(--ink, #2A2F2C);
+      padding: 10px 12px;
+      border-radius: 0;
+    }
+    .profile-field input:focus-visible {
+      outline: 2px solid var(--accent, #2A7B8A);
+      outline-offset: 2px;
+    }
+    .profile-field input::placeholder { color: #b0b8b3; }
+
+    /* -------------------------------------------
+       Bill Upload
+       ------------------------------------------- */
+    .upload-zone {
+      background: rgba(255,255,255,.06);
+      border: 2px dashed rgba(255,255,255,.2);
+      border-radius: 0;
+      padding: 48px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      margin-bottom: 20px;
+    }
+    .upload-zone:hover, .upload-zone.drag-over {
+      border-color: var(--accent, #2A7B8A);
+      background: rgba(42,123,138,.08);
+    }
+    .upload-zone svg {
+      width: 40px;
+      height: 40px;
+      stroke: rgba(255,255,255,.4);
+      fill: none;
+      stroke-width: 1.5;
+      margin-bottom: 12px;
+    }
+    .upload-zone.drag-over svg { stroke: var(--accent, #2A7B8A); }
+    .upload-zone p {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 15px;
+      color: rgba(255,255,255,.6);
+      margin: 0;
+    }
+    .upload-zone p strong { color: var(--accent, #2A7B8A); }
+    .upload-zone .upload-hint {
+      font-size: 12px;
+      color: rgba(255,255,255,.3);
+      margin-top: 6px;
+    }
+    .bills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .bill-thumb {
+      position: relative;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .bill-thumb:hover { border-color: var(--accent, #2A7B8A); }
+    .bill-thumb img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      display: block;
+    }
+    .bill-thumb .bill-pdf-icon {
+      width: 100%;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(155,51,36,.1);
+      color: #e8675a;
+      font-family: var(--mono, monospace);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .bill-thumb .bill-name {
+      padding: 6px 8px;
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 11px;
+      color: rgba(255,255,255,.5);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bill-thumb .bill-remove {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 22px;
+      height: 22px;
+      background: rgba(0,0,0,.6);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .bill-thumb:hover .bill-remove { opacity: 1; }
+    .bill-thumb .bill-remove:hover { background: #9b3324; }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.92);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      box-shadow: 0 4px 40px rgba(0,0,0,.6);
+    }
+    .lightbox iframe {
+      width: 80vw;
+      height: 85vh;
+      border: none;
+      background: #fff;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.1);
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      padding: 12px 16px;
+      cursor: pointer;
+    }
+    .lightbox-nav:hover { background: rgba(255,255,255,.25); }
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+
+    /* -------------------------------------------
+       Budget Tables
+       ------------------------------------------- */
+    .budget-wrap h2 {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 16px;
+      font-weight: 700;
+      margin: 36px 0 4px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--ink, #2A2F2C);
+    }
+    .hint {
+      font-size: 13px;
+      color: var(--muted, #7A8278);
+      margin-bottom: 12px;
+      max-width: 70ch;
+      font-family: var(--sans, 'DM Sans', sans-serif);
+    }
+    .budget-wrap table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      font-size: 13px;
+      font-family: var(--sans, 'DM Sans', sans-serif);
+    }
+    .budget-wrap th, .budget-wrap td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--cream-dark, #ECEAE3);
+      text-align: left;
+      vertical-align: middle;
+    }
+    .budget-wrap thead th {
+      font-family: var(--mono, monospace);
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted, #7A8278);
+      background: #f5f6f2;
+      font-weight: 500;
+    }
+    td.num, th.num { text-align: right; font-family: var(--mono, monospace); }
+    .budget-wrap input[type=text] {
+      width: 100%;
+      border: 1px solid transparent;
+      background: transparent;
+      font: inherit;
+      color: inherit;
+      padding: 4px 6px;
+      border-radius: 0;
+    }
+    .budget-wrap input[type=number] {
+      width: 110px;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      background: #fff;
+      font-family: var(--mono, monospace);
+      font-size: 13px;
+      color: inherit;
+      padding: 5px 8px;
+      border-radius: 0;
+      text-align: right;
+    }
+    .budget-wrap select {
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      background: #fff;
+      font: inherit;
+      font-size: 12px;
+      padding: 4px 6px;
+      border-radius: 0;
+      color: inherit;
+    }
+    .budget-wrap input:focus-visible, .budget-wrap select:focus-visible {
+      outline: 2px solid var(--accent, #2A7B8A);
+      outline-offset: 2px;
+    }
+    .budget-wrap input[type=text]:hover, .budget-wrap input[type=text]:focus {
+      border-color: var(--cream-dark, #ECEAE3);
+      background: #fff;
+    }
+    .del {
+      background: none;
+      border: none;
+      color: #b0b8b3;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 2px 8px;
+    }
+    .del:hover { color: #9b3324; }
+    .addrow {
+      margin-top: 10px;
+      background: #fff;
+      border: 1px dashed #c5cdc8;
+      color: var(--accent, #2A7B8A);
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    .addrow:hover { border-color: var(--accent, #2A7B8A); }
+    .pill {
+      display: inline-block;
+      font-family: var(--mono, monospace);
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 0;
+    }
+    .pill.need { background: #e5efe9; color: #1f6f54; }
+    .pill.want { background: #f3ead9; color: #b7791f; }
+    .pill.future { background: #e7ecf3; color: #2c5f8a; }
+
+    /* Debt detail row (APR + Balance) */
+    .debt-detail {
+      background: #f9f7f4;
+      border-bottom: 1px solid var(--cream-dark, #ECEAE3);
+    }
+    .debt-detail td {
+      padding: 6px 10px 10px;
+      font-size: 12px;
+    }
+    .debt-detail-inner {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding-left: 8px;
+    }
+    .debt-detail-inner label {
+      font-family: var(--mono, monospace);
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--muted, #7A8278);
+      white-space: nowrap;
+    }
+    .debt-detail-inner input {
+      width: 100px;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      background: #fff;
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 0;
+      text-align: right;
+    }
+    .debt-detail-inner input:focus-visible {
+      outline: 2px solid var(--accent, #2A7B8A);
+      outline-offset: 2px;
+    }
+    .debt-detail-inner .debt-cost {
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      font-weight: 600;
+      color: #e8675a;
+      white-space: nowrap;
+    }
+
+    /* Interest summary card in dashboard */
+    .interest-summary {
+      background: rgba(232,103,90,.08);
+      border: 1px solid rgba(232,103,90,.2);
+      padding: 20px;
+      margin-top: 24px;
+    }
+    .interest-summary h3 {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8675a;
+      margin-bottom: 12px;
+    }
+    .interest-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+    }
+    .interest-row:last-child { border-bottom: none; }
+    .interest-row .ir-name { color: rgba(255,255,255,.7); }
+    .interest-row .ir-detail {
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      color: rgba(255,255,255,.5);
+    }
+    .interest-row .ir-cost {
+      font-family: var(--mono, monospace);
+      font-size: 13px;
+      font-weight: 600;
+      color: #e8675a;
+    }
+    .interest-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0 4px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      margin-top: 8px;
+      font-family: var(--mono, monospace);
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .interest-total .ir-label { color: rgba(255,255,255,.8); }
+    .interest-total .ir-cost { color: #e8675a; font-size: 16px; }
+
+    /* Export toolbar */
+    .export-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .export-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      color: var(--ink, #2A2F2C);
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      letter-spacing: .04em;
+      padding: 8px 16px;
+      border-radius: 0;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .export-btn:hover {
+      border-color: var(--accent, #2A7B8A);
+      background: #f0f7f8;
+    }
+    .export-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* -------------------------------------------
+       Stats & Dashboard
+       ------------------------------------------- */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.15);
+      margin: 24px 0 8px;
+    }
+    .stat {
+      background: var(--ink, #2A2F2C);
+      padding: 20px;
+    }
+    .stat .label {
+      font-family: var(--mono, monospace);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+    }
+    .stat .value {
+      font-family: var(--mono, monospace);
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    .pos { color: #4ecb8a; }
+    .neg { color: #e8675a; }
+    .warn { color: var(--accent-gold, #D4A854); }
+
+    /* Balance meter */
+    .meter {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .meter h3 {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--cream, #FAFAF5);
+    }
+    .mrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    .mrow .mlabel {
+      width: 130px;
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      color: rgba(255,255,255,.6);
+    }
+    .mbar {
+      flex: 1;
+      height: 20px;
+      background: rgba(255,255,255,.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .mfill { height: 100%; transition: width .3s; }
+    .mtarget {
+      position: absolute;
+      top: -3px;
+      bottom: -3px;
+      width: 2px;
+      background: rgba(255,255,255,.5);
+    }
+    .mpct {
+      width: 120px;
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      text-align: right;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* Charts */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin-top: 24px;
+      background: rgba(255,255,255,.1);
+    }
+    @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+    .chart-card {
+      background: var(--ink, #2A2F2C);
+      padding: 24px 20px 14px;
+    }
+    .chart-card h3 {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+      color: var(--cream, #FAFAF5);
+    }
+    .chart-card p {
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 10px;
+    }
+    .chart-box { position: relative; height: 280px; }
+
+    /* -------------------------------------------
+       Analysis Panel
+       ------------------------------------------- */
+    .analysis-panel {
+      background: #fff;
+      border: 1px solid var(--cream-dark, #ECEAE3);
+      margin-top: 0;
+    }
+    .analysis-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--cream-dark, #ECEAE3);
+    }
+    .analysis-header h3 {
+      font-family: var(--serif, serif);
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .analyze-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--ink, #2A2F2C);
+      border: none;
+      color: var(--cream, #FAFAF5);
+      font-family: var(--mono, monospace);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .analyze-btn:hover { background: var(--accent, #2A7B8A); }
+    .analyze-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    .analysis-empty {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--muted, #7A8278);
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+    }
+    .analysis-results { padding: 0; }
+    .advice-section {
+      padding: 20px 24px;
+      border-bottom: 1px solid #f0f2ee;
+    }
+    .advice-section:last-child { border-bottom: none; }
+    .advice-section h4 {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .advice-icon {
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .advice-icon.alert { background: #fceae8; color: #9b3324; }
+    .advice-icon.warn { background: #f9f0dc; color: #b7791f; }
+    .advice-icon.good { background: #e5efe9; color: #1f6f54; }
+    .advice-icon.tip { background: #e7ecf3; color: #2c5f8a; }
+    .advice-section p, .advice-section li {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 13px;
+      color: var(--ink-light, #4A5550);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .advice-section ul {
+      margin: 8px 0 0;
+      padding-left: 20px;
+      list-style: disc;
+    }
+    .advice-section li { margin-bottom: 5px; }
+    .advice-number {
+      font-family: var(--mono, monospace);
+      font-weight: 600;
+      color: var(--ink, #2A2F2C);
+    }
+    .advice-save {
+      font-family: var(--mono, monospace);
+      font-weight: 600;
+      color: #1f6f54;
+    }
+
+    /* -------------------------------------------
+       Closing Note
+       ------------------------------------------- */
+    .closing-note {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted, #7A8278);
+      line-height: 1.7;
+    }
+
+    /* -------------------------------------------
+       Print
+       ------------------------------------------- */
+    @media print {
+      nav, .nav-overlay, .footer, .cursor, .export-bar, .addrow, .del,
+      .menu-btn, button, .upload-zone, .bills-grid, .lightbox,
+      .analyze-btn, .bill-remove, .budget-hero, .photo-break,
+      .hero-scroll, .profile-text { display: none !important; }
+      body { padding: 0; background: #fff; color: #000; }
+      .budget-section, .budget-section-dark { padding: 20px 16px; background: #fff; color: #000; }
+      .stat { background: #fff; border: 1px solid #ddd; }
+      .stat .label { color: #666; }
+      .stat .value { color: #000; }
+      .chart-card { background: #fff; border: 1px solid #ddd; }
+      .chart-card h3, .chart-card p { color: #000; }
+      .meter { background: #fff; border: 1px solid #ddd; }
+      .meter h3, .mrow .mlabel, .mpct { color: #000; }
+      .mbar { background: #eee; }
+      .stats { background: #ddd; border-color: #ddd; }
+      .profile-field input { border: none; border-bottom: 1px solid #ddd; padding-left: 0; }
+      .profile-card { break-inside: avoid; }
+      .grid2 { background: #ddd; break-inside: avoid; }
+      .meter, .stats, .interest-summary { break-inside: avoid; }
+      .interest-summary { background: #fceae8; border-color: #e8675a; }
+      .interest-row .ir-name, .interest-row .ir-detail, .interest-total .ir-label { color: #333; }
+      .interest-row .ir-cost, .interest-total .ir-cost { color: #9b3324; }
+      table { font-size: 11px; }
+      @page { margin: 0.5in; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="index.html" class="logo">Jeremiah<br>Gutierrez</a>
+    <div class="nav-inline">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="links.html">Portfolio</a>
+      <a href="family.html">Gallery</a>
+      <a href="apothecary.html">Behind The Apron</a>
+      <a href="beta.html">Beta</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <div class="nav-overlay" id="navOverlay">
+      <div class="nav-overlay-content">
+        <div class="nav-links-big">
+          <a href="index.html#about" class="nav-link-big" data-num="01">About</a>
+          <a href="index.html#services" class="nav-link-big" data-num="02">Services</a>
+          <a href="index.html#philosophy" class="nav-link-big" data-num="03">Philosophy</a>
+          <a href="index.html#credentials" class="nav-link-big" data-num="04">Credentials</a>
+          <a href="index.html#proof" class="nav-link-big" data-num="05">Proof</a>
+          <a href="index.html#contact" class="nav-link-big" data-num="06">Contact</a>
+          <a href="links.html" class="nav-link-big" data-num="07">Portfolio</a>
+          <a href="family.html" class="nav-link-big" data-num="08">Gallery</a>
+          <a href="apothecary.html" class="nav-link-big" data-num="09">Behind The Apron</a>
+          <a href="beta.html" class="nav-link-big" data-num="10">Beta</a>
+        </div>
+        <div class="nav-overlay-footer">
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Email</span>
+            <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+          </div>
+          <div class="nav-footer-col">
+            <span class="nav-footer-label">Location</span>
+            <span>Fort Lauderdale, FL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO — Full viewport, dark, editorial
+       ============================================ -->
+  <header class="budget-hero">
+    <div class="budget-hero-inner">
+      <div>
+        <p class="budget-hero-tag">Tools / Balanced Life Budget</p>
+        <h1 class="budget-hero-headline">
+          <span class="line"><span class="line-inner">A budget</span></span>
+          <span class="line"><span class="line-inner">for a <em>balanced</em></span></span>
+          <span class="line"><span class="line-inner">life<span class="period">.</span></span></span>
+        </h1>
+        <p class="budget-hero-intro">Not a spreadsheet. Not a lecture. A tool that helps you see where your money goes — and where it <em>should</em> go — across what you need, what you want, and what you're building for the future.</p>
+        <div class="hero-scroll">
+          <div class="hero-scroll-line"></div>
+          <span>Start building</span>
+        </div>
+      </div>
+      <div class="budget-hero-photo">
+        <!-- WHY: Headshot adds personal trust to the tool — replace src with your actual headshot path -->
+        <img src="assets/images/headshot.jpg" alt="Jeremiah Gutierrez" onerror="this.style.display='none'">
+        <p class="budget-hero-photo-caption">Built by Jeremiah Gutierrez</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================
+       SECTION 1 — Profile & Philosophy (Split)
+       ============================================ -->
+  <section class="budget-section" id="start">
+    <div class="budget-wrap">
+      <span class="section-label">01 / Your Profile</span>
+      <div class="profile-split">
+        <div class="profile-text">
+          <h2 class="section-title">Who is this <em>for?</em></h2>
+          <p>This tool is for anyone who's tired of wondering where the money went. Whether you earn $3,000 a month or $30,000, the framework is the same: <strong>Needs</strong> keep the lights on, <strong>Wants</strong> make life worth living, and <strong>Future</strong> is what you're building.</p>
+          <p>Most people budget for bills and forget to budget for <em>life</em>. That's not balance — that's just accounting. Fill in the profile to personalize your export, then move to the budget below.</p>
+          <p style="font-size:13px; color:var(--muted);">Nothing you enter is saved or sent anywhere. Everything stays in your browser.</p>
+        </div>
+        <div class="profile-card">
+          <h3>Your budget profile</h3>
+          <div class="profile-grid">
+            <div class="profile-field">
+              <label for="profName">Name / Household</label>
+              <input type="text" id="profName" placeholder="e.g. The Smith Family">
+            </div>
+            <div class="profile-field">
+              <label for="profIncome">Monthly take-home income</label>
+              <input type="text" id="profIncome" placeholder="e.g. $5,000">
+            </div>
+            <div class="profile-field">
+              <label for="profGoal">Primary financial goal</label>
+              <input type="text" id="profGoal" placeholder="e.g. Pay off credit cards, build emergency fund">
+            </div>
+            <div class="profile-field">
+              <label for="profNotes">Notes / context</label>
+              <input type="text" id="profNotes" placeholder="e.g. Single income, 2 kids, renting">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Break 1 -->
+  <div class="photo-break">
+    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1400&q=80" alt="Budget planning">
+    <div class="photo-break-overlay"></div>
+    <p class="photo-break-text">A budget that's 100% obligations isn't balanced — it's just bills.</p>
+  </div>
+
+  <!-- ============================================
+       SECTION 2 — Upload Bills (Dark)
+       ============================================ -->
+  <section class="budget-section budget-section-dark">
+    <div class="budget-wrap">
+      <span class="section-label">02 / Your Bills</span>
+      <h2 class="section-title" style="color:var(--cream)">Upload your <em>bills</em></h2>
+      <p class="section-sub">Drop images or PDFs of your bills here for reference while you fill in the budget below. View them side-by-side as you enter amounts. Files stay in your browser — nothing is uploaded to any server.</p>
+
+      <div class="upload-zone" id="uploadZone">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <p><strong>Drop bills here</strong> or click to browse</p>
+        <p class="upload-hint">Images (JPG, PNG) and PDFs accepted</p>
+        <input type="file" id="fileInput" multiple accept="image/*,.pdf" style="display:none">
+      </div>
+      <div class="bills-grid" id="billsGrid"></div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lbClose" aria-label="Close">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Next">&#8250;</button>
+        <div id="lbContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 3 — Budget Tables
+       ============================================ -->
+  <section class="budget-section">
+    <div class="budget-wrap">
+      <span class="section-label">03 / Your Budget</span>
+      <h2 class="section-title">Income & <em>expenses</em></h2>
+      <p class="section-sub">Edit everything — rename rows, change amounts, add or delete lines. The dashboard below updates as you type.</p>
+
+      <div class="export-bar">
+        <button class="export-btn" id="btnPrint" aria-label="Print or save as PDF">
+          <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Save PDF
+        </button>
+        <button class="export-btn" id="btnExcel" aria-label="Export to Excel">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Export Excel
+        </button>
+      </div>
+
+      <h2>Income</h2>
+      <p class="hint">List every source of monthly income — salary, side work, investment returns, etc.</p>
+      <table id="incTable">
+        <thead><tr><th>Source</th><th class="num">Monthly</th><th style="width:36px"></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <button class="addrow" id="addInc">+ Add income source</button>
+
+      <h2>Expenses</h2>
+      <p class="hint">Common household categories are loaded as a starting point — rename, delete, or add rows to match your actual bills. The Lifestyle and Future rows start at $0 on purpose: that's where the "balanced" part gets funded.</p>
+      <table id="expTable">
+        <thead><tr><th>Item</th><th>Category</th><th>Bucket</th><th class="num">Monthly</th><th style="width:36px"></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <button class="addrow" id="addExp">+ Add expense</button>
+    </div>
+  </section>
+
+  <!-- Photo Break 2 -->
+  <div class="photo-break">
+    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=1400&q=80" alt="Savings and financial growth">
+    <div class="photo-break-overlay"></div>
+    <p class="photo-break-text">The goal isn't austerity. It's intention.</p>
+  </div>
+
+  <!-- ============================================
+       SECTION 4 — Dashboard (Dark)
+       ============================================ -->
+  <section class="budget-section budget-section-dark">
+    <div class="budget-wrap">
+      <span class="section-label">04 / Dashboard</span>
+      <h2 class="section-title" style="color:var(--cream)">Where the <em>money</em> goes</h2>
+
+      <div class="stats">
+        <div class="stat"><div class="label">Income</div><div class="value pos" id="tInc">&mdash;</div></div>
+        <div class="stat"><div class="label">Expenses</div><div class="value" id="tExp">&mdash;</div></div>
+        <div class="stat"><div class="label">Surplus / Deficit</div><div class="value" id="tNet">&mdash;</div></div>
+        <div class="stat"><div class="label">Covered by Income</div><div class="value" id="tCov">&mdash;</div></div>
+      </div>
+      <p class="hint" id="netHint"></p>
+
+      <div class="meter">
+        <h3>Balance meter — your spending vs. the 50 / 30 / 20 guideline</h3>
+        <div class="mrow"><div class="mlabel">Needs</div><div class="mbar"><div class="mfill" id="fNeed" style="background:#4ecb8a"></div><div class="mtarget" style="left:50%"></div></div><div class="mpct" id="pNeed"></div></div>
+        <div class="mrow"><div class="mlabel">Wants</div><div class="mbar"><div class="mfill" id="fWant" style="background:var(--accent-gold,#D4A854)"></div><div class="mtarget" style="left:30%"></div></div><div class="mpct" id="pWant"></div></div>
+        <div class="mrow"><div class="mlabel">Future</div><div class="mbar"><div class="mfill" id="fFut" style="background:var(--accent,#2A7B8A)"></div><div class="mtarget" style="left:20%"></div></div><div class="mpct" id="pFut"></div></div>
+        <p class="hint" id="meterHint" style="margin:8px 0 0"></p>
+      </div>
+
+      <!-- Interest cost summary — populated by JS when debt rows have APR/balance -->
+      <div class="interest-summary" id="interestPanel" style="display:none">
+        <h3>Interest you're paying the bank</h3>
+        <div id="interestRows"></div>
+      </div>
+
+      <div class="grid2">
+        <div class="chart-card">
+          <h3>Spending by category</h3>
+          <p>Where each dollar is allocated.</p>
+          <div class="chart-box"><canvas id="catChart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Needs / Wants / Future</h3>
+          <p>Your mix vs. the 50/30/20 guideline.</p>
+          <div class="chart-box"><canvas id="bucketChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION 5 — Analysis
+       ============================================ -->
+  <section class="budget-section">
+    <div class="budget-wrap">
+      <span class="section-label">05 / Analysis</span>
+      <h2 class="section-title">Savings <em>advice</em></h2>
+      <p class="section-sub">Enter your numbers above, then click the button below. The analysis engine examines your spending patterns, compares them to benchmarks, and generates specific, actionable advice on how to save.</p>
+
+      <div class="analysis-panel">
+        <div class="analysis-header">
+          <h3>Budget analysis</h3>
+          <button class="analyze-btn" id="btnAnalyze">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Analyze my budget
+          </button>
+        </div>
+        <div id="analysisOutput">
+          <div class="analysis-empty">Enter your income and expenses, then click <strong>Analyze my budget</strong> for personalized savings advice.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Break 3 -->
+  <div class="photo-break">
+    <img src="https://images.unsplash.com/photo-1591522811280-a8759970b03f?w=1400&q=80" alt="Family together">
+    <div class="photo-break-overlay"></div>
+    <p class="photo-break-text">Balance means budgeting for life — not just for bills.</p>
+  </div>
+
+  <!-- Closing Note -->
+  <section class="budget-section" style="padding:60px 40px;">
+    <div class="budget-wrap">
+      <p class="closing-note">The 50/30/20 split (needs/wants/future) is a starting guideline, not a rule — your right mix depends on your income, debt load, and life stage. Nothing you enter here is saved or transmitted. If you refresh, it resets to blank. Use Print/Save PDF or Export Excel to keep a copy. This is a budgeting framework, not financial advice.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="footer-col-label">Jeremiah Gutierrez</span>
+        <span class="footer-col-text">Fort Lauderdale, FL</span>
+        <a href="mailto:jeremiah@jeremiahgutierrez.com" class="footer-col-link">jeremiah@jeremiahgutierrez.com</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Site</span>
+        <a href="index.html#about" class="footer-col-link">About</a>
+        <a href="index.html#services" class="footer-col-link">Services</a>
+        <a href="links.html" class="footer-col-link">Portfolio</a>
+        <a href="family.html" class="footer-col-link">Gallery</a>
+        <a href="apothecary.html" class="footer-col-link">Behind The Apron</a>
+        <a href="beta.html" class="footer-col-link">Beta</a>
+        <a href="index.html#contact" class="footer-col-link">Contact</a>
+        <a href="beta-admin.html" class="footer-col-link">Admin</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Family</span>
+        <a href="https://gutierrezrose.com" target="_blank" rel="noopener" class="footer-col-link">Gutierrez &amp; Rose</a>
+        <a href="https://brettadamrose.com" target="_blank" rel="noopener" class="footer-col-link">Brett A. Rose</a>
+        <a href="https://parkeroliver.com" target="_blank" rel="noopener" class="footer-col-link">Parker Oliver</a>
+        <a href="https://mackenzieabigail.com" target="_blank" rel="noopener" class="footer-col-link">Mackenzie Abigail</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-label">Social</span>
+        <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener" class="footer-col-link">LinkedIn</a>
+        <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener" class="footer-col-link">Instagram</a>
+        <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener" class="footer-col-link">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 Jeremiah Gutierrez</span>
+      <a href="#" class="footer-top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+  /* ── Budget Tool ── */
+  const money = v => '$' + Math.round(v).toLocaleString();
+  const CATS = ['Housing','Utilities','Transport','Insurance & Health','Food','Debt','Home services','Lifestyle & Family','Savings & Future','Other'];
+  const BUCKETS = ['Need','Want','Future'];
+  const CAT_COLORS = ['#4ecb8a','#3db87a','#2ea56a','#2A7B8A','#4a9aaa','#e8675a','#D4A854','#ecc06e','#8a6fac','#7a9a8a'];
+
+  let income = [
+    {name:'Primary salary / wages', amt:0},
+    {name:'Secondary income', amt:0},
+    {name:'Other income', amt:0}
+  ];
+
+  let expenses = [
+    {name:'Mortgage / rent', cat:'Housing', bucket:'Need', amt:0},
+    {name:'HOA / condo fees', cat:'Housing', bucket:'Need', amt:0},
+    {name:'Electric', cat:'Utilities', bucket:'Need', amt:0},
+    {name:'Water / sewer', cat:'Utilities', bucket:'Need', amt:0},
+    {name:'Internet', cat:'Utilities', bucket:'Need', amt:0},
+    {name:'Cell phone', cat:'Utilities', bucket:'Need', amt:0},
+    {name:'Home security', cat:'Home services', bucket:'Need', amt:0},
+    {name:'Lawn / landscaping', cat:'Home services', bucket:'Need', amt:0},
+    {name:'Pest control', cat:'Home services', bucket:'Need', amt:0},
+    {name:'Car payment', cat:'Transport', bucket:'Need', amt:0},
+    {name:'Gas / fuel', cat:'Transport', bucket:'Need', amt:0},
+    {name:'Car insurance', cat:'Insurance & Health', bucket:'Need', amt:0},
+    {name:'Health insurance', cat:'Insurance & Health', bucket:'Need', amt:0},
+    {name:'Prescriptions / medical', cat:'Insurance & Health', bucket:'Need', amt:0},
+    {name:'Groceries', cat:'Food', bucket:'Need', amt:0},
+    {name:'Credit card 1', cat:'Debt', bucket:'Future', amt:0, apr:0, bal:0},
+    {name:'Credit card 2', cat:'Debt', bucket:'Future', amt:0, apr:0, bal:0},
+    {name:'Student loans / other debt', cat:'Debt', bucket:'Future', amt:0, apr:0, bal:0},
+    {name:'Dining out / date nights', cat:'Lifestyle & Family', bucket:'Want', amt:0},
+    {name:'Kids — activities & sports', cat:'Lifestyle & Family', bucket:'Want', amt:0},
+    {name:'Entertainment & subscriptions', cat:'Lifestyle & Family', bucket:'Want', amt:0},
+    {name:'Travel fund', cat:'Lifestyle & Family', bucket:'Want', amt:0},
+    {name:'Personal spending', cat:'Lifestyle & Family', bucket:'Want', amt:0},
+    {name:'Emergency fund', cat:'Savings & Future', bucket:'Future', amt:0},
+    {name:'Retirement / 401K', cat:'Savings & Future', bucket:'Future', amt:0},
+    {name:'College savings', cat:'Savings & Future', bucket:'Future', amt:0}
+  ];
+
+  let catChart = null, bucketChart = null;
+
+  function rowInc(r, i) {
+    return '<tr>' +
+      '<td><input type="text" value="' + r.name.replace(/"/g,'&quot;') + '" data-inc="'+i+'" data-f="name" aria-label="Income source name"></td>' +
+      '<td class="num"><input type="number" min="0" step="10" value="' + r.amt + '" data-inc="'+i+'" data-f="amt" aria-label="Monthly amount"></td>' +
+      '<td><button class="del" data-delinc="'+i+'" aria-label="Delete row">&times;</button></td></tr>';
+  }
+  function rowExp(r, i) {
+    const cats = CATS.map(c => '<option' + (c === r.cat ? ' selected' : '') + '>' + c + '</option>').join('');
+    const bks = BUCKETS.map(b => '<option' + (b === r.bucket ? ' selected' : '') + '>' + b + '</option>').join('');
+    let html = '<tr>' +
+      '<td><input type="text" value="' + r.name.replace(/"/g,'&quot;') + '" data-exp="'+i+'" data-f="name" aria-label="Expense name"></td>' +
+      '<td><select data-exp="'+i+'" data-f="cat" aria-label="Category">' + cats + '</select></td>' +
+      '<td><select data-exp="'+i+'" data-f="bucket" aria-label="Bucket">' + bks + '</select> <span class="pill ' + r.bucket.toLowerCase() + '">' + r.bucket + '</span></td>' +
+      '<td class="num"><input type="number" min="0" step="10" value="' + r.amt + '" data-exp="'+i+'" data-f="amt" aria-label="Monthly amount"></td>' +
+      '<td><button class="del" data-delexp="'+i+'" aria-label="Delete row">&times;</button></td></tr>';
+    // WHY: Debt rows get an extra sub-row for APR and balance — needed for interest cost analysis
+    if (r.cat === 'Debt') {
+      const apr = r.apr || 0;
+      const bal = r.bal || 0;
+      const monthlyInterest = bal > 0 && apr > 0 ? (bal * (apr / 100) / 12) : 0;
+      const costNote = monthlyInterest > 0 ? money(monthlyInterest) + '/mo in interest' : '';
+      html += '<tr class="debt-detail"><td colspan="5"><div class="debt-detail-inner">' +
+        '<label>Balance owed</label>' +
+        '<input type="number" min="0" step="100" value="' + bal + '" data-exp="'+i+'" data-f="bal" aria-label="Balance owed">' +
+        '<label>APR %</label>' +
+        '<input type="number" min="0" max="99" step="0.1" value="' + apr + '" data-exp="'+i+'" data-f="apr" aria-label="Interest rate APR" style="width:70px">' +
+        (costNote ? '<span class="debt-cost">' + costNote + '</span>' : '') +
+        '</div></td></tr>';
+    }
+    return html;
+  }
+
+  function renderTables() {
+    document.querySelector('#incTable tbody').innerHTML = income.map(rowInc).join('');
+    document.querySelector('#expTable tbody').innerHTML = expenses.map(rowExp).join('');
+  }
+
+  function recalc() {
+    const inc = income.reduce((s, r) => s + (+r.amt || 0), 0);
+    const exp = expenses.reduce((s, r) => s + (+r.amt || 0), 0);
+    const net = inc - exp;
+    document.getElementById('tInc').textContent = money(inc);
+    document.getElementById('tExp').textContent = money(exp);
+    const tn = document.getElementById('tNet');
+    tn.textContent = (net >= 0 ? '+' : '\u2212') + money(Math.abs(net)).slice(1);
+    tn.className = 'value ' + (net >= 0 ? 'pos' : 'neg');
+    document.getElementById('tCov').textContent = exp > 0 ? Math.round(inc / exp * 100) + '%' : '\u2014';
+    document.getElementById('tCov').className = 'value ' + (inc >= exp ? 'pos' : 'warn');
+    document.getElementById('netHint').textContent = net >= 0
+      ? 'Income covers the budget with ' + money(net) + '/month to spare \u2014 that surplus is fuel for the Future bucket.'
+      : 'The budget runs ' + money(Math.abs(net)) + '/month ahead of income. That gap has to come from somewhere \u2014 savings, credit, or cutting expenses. Closing it is the first priority.';
+
+    const bt = {Need: 0, Want: 0, Future: 0};
+    expenses.forEach(r => { bt[r.bucket] += (+r.amt || 0); });
+    const denom = exp || 1;
+    const pn = bt.Need / denom * 100, pw = bt.Want / denom * 100, pf = bt.Future / denom * 100;
+    document.getElementById('fNeed').style.width = Math.min(pn, 100) + '%';
+    document.getElementById('fWant').style.width = Math.min(pw, 100) + '%';
+    document.getElementById('fFut').style.width = Math.min(pf, 100) + '%';
+    document.getElementById('pNeed').textContent = pn.toFixed(0) + '% (goal 50%)';
+    document.getElementById('pWant').textContent = pw.toFixed(0) + '% (goal 30%)';
+    document.getElementById('pFut').textContent = pf.toFixed(0) + '% (goal 20%)';
+    let mh = '';
+    if (pn > 75) mh = 'Needs are ' + pn.toFixed(0) + '% of spending \u2014 heavily obligation-weighted. Balance comes from funding the Want and Future rows, or shrinking a Need (debt payments and negotiable bills are the usual levers).';
+    else if (pw < 10 && exp > 0) mh = 'Wants are nearly empty. Even $200\u2013300/month deliberately spent on family life makes a budget sustainable in the human sense, not just the math sense.';
+    else if (exp > 0) mh = 'This mix is in a healthy range. The white tick marks show the 50/30/20 guideline targets.';
+    else mh = 'Enter some expenses to see how your spending breaks down.';
+    document.getElementById('meterHint').textContent = mh;
+
+    // Interest summary panel
+    const debtWithInterest = expenses.filter(r => r.cat === 'Debt' && (+r.bal || 0) > 0 && (+r.apr || 0) > 0);
+    const interestPanel = document.getElementById('interestPanel');
+    if (debtWithInterest.length > 0) {
+      let totalMonthlyInterest = 0;
+      let totalAnnualInterest = 0;
+      let rowsHtml = '';
+      debtWithInterest.forEach(r => {
+        const mi = r.bal * (r.apr / 100) / 12;
+        const ai = r.bal * (r.apr / 100);
+        totalMonthlyInterest += mi;
+        totalAnnualInterest += ai;
+        const pmt = +r.amt || 0;
+        // WHY: Calculate months to payoff using amortization formula — shows real cost of minimum payments
+        let payoffMonths = '\u221e';
+        if (pmt > mi) {
+          const mr = r.apr / 100 / 12;
+          payoffMonths = Math.ceil(-Math.log(1 - (r.bal * mr / pmt)) / Math.log(1 + mr));
+          const totalPaid = pmt * payoffMonths;
+          const totalInterestPaid = totalPaid - r.bal;
+          payoffMonths = payoffMonths + ' months (' + money(totalInterestPaid) + ' total interest)';
+        } else if (pmt > 0) {
+          payoffMonths = 'Never at this payment \u2014 not covering interest';
+        }
+        rowsHtml += '<div class="interest-row"><span class="ir-name">' + r.name.replace(/</g,'&lt;') + '</span>' +
+          '<span class="ir-detail">' + money(r.bal) + ' @ ' + r.apr + '% APR</span>' +
+          '<span class="ir-cost">' + money(mi) + '/mo</span></div>';
+        rowsHtml += '<div class="interest-row" style="padding-top:0;border-bottom:1px solid rgba(255,255,255,.08)"><span class="ir-name" style="font-size:11px;opacity:.6">Payoff timeline</span>' +
+          '<span class="ir-detail" style="font-size:11px">' + payoffMonths + '</span><span class="ir-cost"></span></div>';
+      });
+      rowsHtml += '<div class="interest-total"><span class="ir-label">Total interest cost</span>' +
+        '<span class="ir-cost">' + money(totalMonthlyInterest) + '/mo \u00b7 ' + money(totalAnnualInterest) + '/yr</span></div>';
+      document.getElementById('interestRows').innerHTML = rowsHtml;
+      interestPanel.style.display = '';
+    } else {
+      interestPanel.style.display = 'none';
+    }
+
+    const byCat = {};
+    expenses.forEach(r => { if ((+r.amt || 0) > 0) byCat[r.cat] = (byCat[r.cat] || 0) + (+r.amt); });
+    const labels = Object.keys(byCat), data = labels.map(l => byCat[l]);
+    const colors = labels.map(l => CAT_COLORS[CATS.indexOf(l)] || '#7a9a8a');
+    if (catChart) catChart.destroy();
+    catChart = new Chart(document.getElementById('catChart'), {
+      type: 'doughnut',
+      data: {labels, datasets: [{data, backgroundColor: colors, borderColor: '#2A2F2C', borderWidth: 2}]},
+      options: {responsive: true, maintainAspectRatio: false, animation: false,
+        plugins: {legend: {position: 'right', labels: {boxWidth: 12, color: '#ccc', font: {size: 11}}},
+          tooltip: {callbacks: {label: i => i.label + ': ' + money(i.raw) + ' (' + (i.raw / denom * 100).toFixed(0) + '%)'}}}}
+    });
+
+    if (bucketChart) bucketChart.destroy();
+    bucketChart = new Chart(document.getElementById('bucketChart'), {
+      type: 'bar',
+      data: {labels: ['Needs', 'Wants', 'Future'], datasets: [
+        {label: 'Your budget', data: [pn, pw, pf], backgroundColor: ['#4ecb8a', '#D4A854', '#2A7B8A']},
+        {label: '50/30/20 guideline', data: [50, 30, 20], backgroundColor: 'rgba(255,255,255,.12)'}
+      ]},
+      options: {responsive: true, maintainAspectRatio: false, animation: false,
+        plugins: {legend: {position: 'bottom', labels: {boxWidth: 12, color: '#ccc', font: {size: 11}}},
+          tooltip: {callbacks: {label: i => i.dataset.label + ': ' + i.raw.toFixed(0) + '%'}}},
+        scales: {y: {ticks: {callback: v => v + '%', color: '#888'}, grid: {color: 'rgba(255,255,255,.06)'}, max: 100}, x: {ticks: {color: '#aaa'}, grid: {display: false}}}}
+    });
+  }
+
+  function bind() { renderTables(); recalc(); }
+
+  document.addEventListener('input', e => {
+    const t = e.target;
+    if (t.dataset.inc !== undefined) { income[+t.dataset.inc][t.dataset.f] = t.dataset.f === 'amt' ? +t.value : t.value; recalc(); }
+    if (t.dataset.exp !== undefined) {
+      const f = t.dataset.f;
+      expenses[+t.dataset.exp][f] = (f === 'amt' || f === 'apr' || f === 'bal') ? +t.value : t.value;
+      if (f === 'bucket' || f === 'cat') { renderTables(); }
+      if (f === 'apr' || f === 'bal') { renderTables(); } // WHY: re-render to update interest cost display
+      recalc();
+    }
+  });
+  document.addEventListener('click', e => {
+    const t = e.target;
+    if (t.dataset.delinc !== undefined) { income.splice(+t.dataset.delinc, 1); bind(); }
+    if (t.dataset.delexp !== undefined) { expenses.splice(+t.dataset.delexp, 1); bind(); }
+  });
+  document.getElementById('addInc').addEventListener('click', () => { income.push({name: 'New income', amt: 0}); bind(); });
+  document.getElementById('addExp').addEventListener('click', () => { expenses.push({name: 'New expense', cat: 'Other', bucket: 'Need', amt: 0, apr: 0, bal: 0}); bind(); });
+
+  /* ── Print to PDF ── */
+  document.getElementById('btnPrint').addEventListener('click', () => { window.print(); });
+
+  /* ── Export to Excel (CSV) ── */
+  document.getElementById('btnExcel').addEventListener('click', () => {
+    const esc = v => '"' + String(v).replace(/"/g, '""') + '"';
+    const rows = [];
+
+    rows.push(['BALANCED LIFE BUDGET']);
+    rows.push([]);
+
+    const profName = document.getElementById('profName').value;
+    const profIncome = document.getElementById('profIncome').value;
+    const profGoal = document.getElementById('profGoal').value;
+    const profNotes = document.getElementById('profNotes').value;
+    if (profName || profIncome || profGoal || profNotes) {
+      rows.push(['PROFILE']);
+      if (profName) rows.push(['Household', esc(profName)]);
+      if (profIncome) rows.push(['Take-home income', esc(profIncome)]);
+      if (profGoal) rows.push(['Primary goal', esc(profGoal)]);
+      if (profNotes) rows.push(['Notes', esc(profNotes)]);
+      rows.push([]);
+    }
+
+    rows.push(['INCOME']);
+    rows.push(['Source', 'Monthly']);
+    income.forEach(r => rows.push([esc(r.name), r.amt]));
+    const totalInc = income.reduce((s, r) => s + (+r.amt || 0), 0);
+    rows.push(['Total Income', totalInc]);
+    rows.push([]);
+
+    rows.push(['EXPENSES']);
+    rows.push(['Item', 'Category', 'Bucket', 'Monthly', 'Balance', 'APR%', 'Monthly Interest']);
+    expenses.forEach(r => {
+      const mi = (r.cat === 'Debt' && r.bal > 0 && r.apr > 0) ? (r.bal * r.apr / 100 / 12).toFixed(2) : '';
+      rows.push([esc(r.name), esc(r.cat), r.bucket, r.amt, r.bal || '', r.apr || '', mi]);
+    });
+    const totalExp = expenses.reduce((s, r) => s + (+r.amt || 0), 0);
+    rows.push(['Total Expenses', '', '', totalExp]);
+
+    // Debt/interest detail
+    const debtExport = expenses.filter(r => r.cat === 'Debt' && (+r.bal || 0) > 0 && (+r.apr || 0) > 0);
+    if (debtExport.length > 0) {
+      rows.push([]);
+      rows.push(['INTEREST ANALYSIS']);
+      rows.push(['Account', 'Balance', 'APR%', 'Monthly Interest', 'Annual Interest', 'Principal % of Payment']);
+      debtExport.forEach(r => {
+        const mi = r.bal * r.apr / 100 / 12;
+        const ai = r.bal * r.apr / 100;
+        const pmt = +r.amt || 0;
+        const pp = pmt > 0 ? Math.max(0, (1 - mi / pmt) * 100).toFixed(1) + '%' : '0%';
+        rows.push([esc(r.name), r.bal, r.apr, mi.toFixed(2), ai.toFixed(2), pp]);
+      });
+      const tmi = debtExport.reduce((s, r) => s + r.bal * r.apr / 100 / 12, 0);
+      const tai = debtExport.reduce((s, r) => s + r.bal * r.apr / 100, 0);
+      rows.push(['TOTAL', '', '', tmi.toFixed(2), tai.toFixed(2), '']);
+    }
+    rows.push([]);
+
+    rows.push(['SUMMARY']);
+    rows.push(['Total Income', totalInc]);
+    rows.push(['Total Expenses', totalExp]);
+    rows.push(['Surplus / Deficit', totalInc - totalExp]);
+    rows.push(['Coverage', totalExp > 0 ? Math.round(totalInc / totalExp * 100) + '%' : 'N/A']);
+    rows.push([]);
+
+    const bt = {Need: 0, Want: 0, Future: 0};
+    expenses.forEach(r => { bt[r.bucket] += (+r.amt || 0); });
+    rows.push(['BUCKET BREAKDOWN']);
+    rows.push(['Bucket', 'Amount', 'Pct of Spending', 'Guideline']);
+    rows.push(['Needs', bt.Need, totalExp > 0 ? (bt.Need / totalExp * 100).toFixed(1) + '%' : '0%', '50%']);
+    rows.push(['Wants', bt.Want, totalExp > 0 ? (bt.Want / totalExp * 100).toFixed(1) + '%' : '0%', '30%']);
+    rows.push(['Future', bt.Future, totalExp > 0 ? (bt.Future / totalExp * 100).toFixed(1) + '%' : '0%', '20%']);
+
+    const csv = rows.map(r => r.join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], {type: 'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'balanced-life-budget.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  /* ── Bill Upload ── */
+  const uploadedBills = [];
+  let lbIndex = 0;
+
+  const uploadZone = document.getElementById('uploadZone');
+  const fileInput = document.getElementById('fileInput');
+  const billsGrid = document.getElementById('billsGrid');
+
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+  uploadZone.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadZone.classList.remove('drag-over');
+    handleFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', e => { handleFiles(e.target.files); fileInput.value = ''; });
+
+  function handleFiles(files) {
+    Array.from(files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        uploadedBills.push({ name: file.name, type: file.type, dataUrl: reader.result });
+        renderBills();
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderBills() {
+    billsGrid.innerHTML = uploadedBills.map((b, i) => {
+      const isImage = b.type.startsWith('image/');
+      const preview = isImage
+        ? '<img src="' + b.dataUrl + '" alt="' + b.name.replace(/"/g, '&quot;') + '">'
+        : '<div class="bill-pdf-icon">PDF</div>';
+      return '<div class="bill-thumb" data-view="' + i + '">' +
+        '<button class="bill-remove" data-killbill="' + i + '" aria-label="Remove">&times;</button>' +
+        preview +
+        '<div class="bill-name">' + b.name.replace(/</g, '&lt;') + '</div></div>';
+    }).join('');
+  }
+
+  billsGrid.addEventListener('click', e => {
+    const rm = e.target.closest('[data-killbill]');
+    if (rm) { e.stopPropagation(); uploadedBills.splice(+rm.dataset.killbill, 1); renderBills(); return; }
+    const thumb = e.target.closest('[data-view]');
+    if (thumb) openLightbox(+thumb.dataset.view);
+  });
+
+  function openLightbox(idx) {
+    if (!uploadedBills.length) return;
+    lbIndex = idx;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function renderLightbox() {
+    const b = uploadedBills[lbIndex];
+    const el = document.getElementById('lbContent');
+    if (b.type.startsWith('image/')) {
+      el.innerHTML = '<img src="' + b.dataUrl + '" alt="' + b.name.replace(/"/g, '&quot;') + '">';
+    } else {
+      el.innerHTML = '<iframe src="' + b.dataUrl + '" title="' + b.name.replace(/"/g, '&quot;') + '"></iframe>';
+    }
+    document.getElementById('lbPrev').style.display = uploadedBills.length > 1 ? '' : 'none';
+    document.getElementById('lbNext').style.display = uploadedBills.length > 1 ? '' : 'none';
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeLightbox(); });
+  document.getElementById('lbPrev').addEventListener('click', () => { lbIndex = (lbIndex - 1 + uploadedBills.length) % uploadedBills.length; renderLightbox(); });
+  document.getElementById('lbNext').addEventListener('click', () => { lbIndex = (lbIndex + 1) % uploadedBills.length; renderLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { lbIndex = (lbIndex - 1 + uploadedBills.length) % uploadedBills.length; renderLightbox(); }
+    if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % uploadedBills.length; renderLightbox(); }
+  });
+
+  /* ── Budget Analysis Engine ── */
+  document.getElementById('btnAnalyze').addEventListener('click', runAnalysis);
+
+  function runAnalysis() {
+    const inc = income.reduce((s, r) => s + (+r.amt || 0), 0);
+    const exp = expenses.reduce((s, r) => s + (+r.amt || 0), 0);
+    const net = inc - exp;
+
+    if (inc === 0 && exp === 0) {
+      document.getElementById('analysisOutput').innerHTML =
+        '<div class="analysis-empty">Enter some income and expense numbers first, then come back and analyze.</div>';
+      return;
+    }
+
+    const byCat = {};
+    const byBucket = { Need: 0, Want: 0, Future: 0 };
+    const debtItems = [];
+    expenses.forEach(r => {
+      const amt = +r.amt || 0;
+      byCat[r.cat] = (byCat[r.cat] || 0) + amt;
+      byBucket[r.bucket] += amt;
+      if (r.cat === 'Debt' && amt > 0) debtItems.push(r);
+    });
+
+    const sections = [];
+
+    // 1. Overall health
+    if (exp > 0) {
+      const coverage = Math.round(inc / exp * 100);
+      if (inc < exp) {
+        sections.push({ icon: 'alert', title: 'You\'re spending more than you earn',
+          body: '<p>Expenses: <span class="advice-number">' + money(exp) + '/mo</span>. Income: <span class="advice-number">' + money(inc) + '/mo</span>. That\'s a <span class="advice-number">' + money(Math.abs(net)) + '/mo</span> gap (' + coverage + '% coverage). This gap is funded by savings or debt \u2014 neither is sustainable long-term.</p>' });
+      } else if (net < 200) {
+        sections.push({ icon: 'warn', title: 'Razor-thin margin',
+          body: '<p>Only <span class="advice-number">' + money(net) + '/mo</span> surplus. One surprise expense erases it. Target at least 10\u201315% of income as breathing room.</p>' });
+      } else {
+        sections.push({ icon: 'good', title: 'Income covers expenses',
+          body: '<p><span class="advice-number">' + money(net) + '/mo</span> surplus (' + coverage + '% coverage). The question is whether that surplus is being <em>directed</em> \u2014 into debt payoff, savings, or quality of life \u2014 or evaporating into untracked spending.</p>' });
+      }
+    }
+
+    // 2. Housing
+    if (byCat['Housing'] > 0 && inc > 0) {
+      const pct = byCat['Housing'] / inc * 100;
+      if (pct > 35) {
+        sections.push({ icon: 'warn', title: 'Housing is ' + pct.toFixed(0) + '% of income',
+          body: '<p>Guideline is under 28\u201330%. At <span class="advice-number">' + money(byCat['Housing']) + '/mo</span>, housing is squeezing everything else.</p><ul><li>Renting: explore roommates, smaller units, or different areas for $200\u2013500/mo savings</li><li>Owning: refinancing, challenging property tax assessments, or shopping insurance can trim $50\u2013150/mo</li></ul>' });
+      } else if (pct <= 25) {
+        sections.push({ icon: 'good', title: 'Housing well-controlled at ' + pct.toFixed(0) + '% of income',
+          body: '<p><span class="advice-number">' + money(byCat['Housing']) + '/mo</span> \u2014 this gives you room in other categories most households don\'t have.</p>' });
+      }
+    }
+
+    // 3. Debt & Interest Analysis
+    if (debtItems.length > 0) {
+      const totalPayments = debtItems.reduce((s, r) => s + (+r.amt || 0), 0);
+      const debtWithRates = debtItems.filter(r => (+r.apr || 0) > 0 && (+r.bal || 0) > 0);
+
+      if (debtWithRates.length > 0) {
+        // Full interest analysis when we have APR + balance data
+        let totalMonthlyInterest = 0;
+        let totalBalance = 0;
+        let totalAnnualInterest = 0;
+        const debtBreakdown = debtWithRates.map(r => {
+          const mi = r.bal * (r.apr / 100) / 12;
+          const ai = r.bal * (r.apr / 100);
+          totalMonthlyInterest += mi;
+          totalBalance += r.bal;
+          totalAnnualInterest += ai;
+          const pmt = +r.amt || 0;
+          const principalPct = pmt > 0 ? Math.max(0, Math.round((1 - mi / pmt) * 100)) : 0;
+          return { name: r.name, bal: r.bal, apr: r.apr, pmt, mi, ai, principalPct };
+        }).sort((a, b) => b.apr - a.apr); // WHY: sort by APR descending — highest rate first for avalanche recommendation
+
+        let body = '<p>You owe <span class="advice-number">' + money(totalBalance) + '</span> across ' + debtWithRates.length + ' account(s), paying <span class="advice-number">' + money(totalPayments) + '/mo</span>. Of that, <span class="advice-number" style="color:#e8675a">' + money(totalMonthlyInterest) + '/mo</span> goes straight to interest \u2014 that\'s <span class="advice-number" style="color:#e8675a">' + money(totalAnnualInterest) + '/year</span> you\'re paying the bank for the privilege of owing money.</p>';
+
+        // Per-debt breakdown
+        body += '<table style="width:100%;font-size:12px;margin:12px 0;border-collapse:collapse">';
+        body += '<tr style="border-bottom:1px solid #eee"><th style="text-align:left;padding:4px 8px;font-weight:600">Account</th><th style="text-align:right;padding:4px 8px">Balance</th><th style="text-align:right;padding:4px 8px">APR</th><th style="text-align:right;padding:4px 8px">Interest/mo</th><th style="text-align:right;padding:4px 8px">To principal</th></tr>';
+        debtBreakdown.forEach(d => {
+          body += '<tr style="border-bottom:1px solid #f5f5f5"><td style="padding:4px 8px">' + d.name.replace(/</g,'&lt;') + '</td>';
+          body += '<td style="text-align:right;padding:4px 8px;font-family:var(--mono,monospace)">' + money(d.bal) + '</td>';
+          body += '<td style="text-align:right;padding:4px 8px;font-family:var(--mono,monospace);color:' + (d.apr >= 20 ? '#e8675a' : d.apr >= 10 ? '#b7791f' : '#1f6f54') + '">' + d.apr + '%</td>';
+          body += '<td style="text-align:right;padding:4px 8px;font-family:var(--mono,monospace);color:#e8675a">' + money(d.mi) + '</td>';
+          body += '<td style="text-align:right;padding:4px 8px;font-family:var(--mono,monospace);color:' + (d.principalPct < 30 ? '#e8675a' : '#1f6f54') + '">' + d.principalPct + '%</td></tr>';
+        });
+        body += '</table>';
+
+        // Specific recommendations based on rates
+        const highRate = debtBreakdown.filter(d => d.apr >= 20);
+        const midRate = debtBreakdown.filter(d => d.apr >= 10 && d.apr < 20);
+
+        if (highRate.length > 0) {
+          const transferSavings = highRate.reduce((s, d) => s + d.mi, 0);
+          body += '<p style="margin-top:12px"><strong>High-interest debt detected (' + highRate.map(d => d.apr + '%').join(', ') + ').</strong> At these rates, most of your payment is interest, not paydown.</p>';
+          body += '<ul>';
+          body += '<li><strong>Balance transfer opportunity:</strong> Moving <span class="advice-number">' + money(highRate.reduce((s,d) => s + d.bal, 0)) + '</span> to a 0% APR card would save <span class="advice-save">' + money(transferSavings) + '/mo</span> in interest for 12\u201318 months. Transfer fee (3\u20135%) pays for itself in the first month.</li>';
+          body += '<li><strong>Rate negotiation:</strong> Call each issuer and ask for a rate reduction. Success rate is ~50% for on-time payers. Even 5 points off a 28% card saves <span class="advice-save">' + money(highRate[0].bal * 0.05 / 12) + '/mo</span> per $' + Math.round(highRate[0].bal/1000) + 'K of balance.</li>';
+          body += '<li><strong>Avalanche order:</strong> Pay minimums on everything except your highest-rate debt (' + highRate[0].name.replace(/</g,'&lt;') + ' at ' + highRate[0].apr + '%). Throw every extra dollar there first.</li>';
+          body += '</ul>';
+        }
+
+        if (midRate.length > 0 && highRate.length === 0) {
+          body += '<ul>';
+          body += '<li><strong>Refinancing:</strong> Personal loans from credit unions or online lenders (SoFi, LightStream) often run 7\u201312% \u2014 consolidating could cut your rate in half.</li>';
+          body += '<li><strong>Autopay discount:</strong> Most lenders drop 0.25\u20130.5% for autopay enrollment. Small but free.</li>';
+          body += '</ul>';
+        }
+
+        // Payoff timeline comparison
+        if (totalPayments > totalMonthlyInterest) {
+          const extraHundred = totalPayments + 100;
+          // WHY: Simple payoff estimate using weighted average rate
+          const avgRate = totalAnnualInterest / totalBalance;
+          const mr = avgRate / 12;
+          const currentMonths = Math.ceil(-Math.log(1 - (totalBalance * mr / totalPayments)) / Math.log(1 + mr));
+          const boostMonths = Math.ceil(-Math.log(1 - (totalBalance * mr / extraHundred)) / Math.log(1 + mr));
+          const currentTotal = totalPayments * currentMonths;
+          const boostTotal = extraHundred * boostMonths;
+          body += '<p style="margin-top:12px"><strong>Payoff comparison:</strong> At current payments, you\'ll be debt-free in ~<span class="advice-number">' + currentMonths + ' months</span> and pay <span class="advice-number" style="color:#e8675a">' + money(currentTotal - totalBalance) + '</span> in total interest. Adding just $100/mo cuts it to ~<span class="advice-number">' + boostMonths + ' months</span> and saves <span class="advice-save">' + money(currentTotal - boostTotal) + '</span> in interest.</p>';
+        }
+
+        sections.push({ icon: 'alert', title: 'Interest cost analysis \u2014 ' + money(totalAnnualInterest) + '/year to the bank', body });
+
+      } else {
+        // No APR/balance data — give general advice
+        let body = '<p>Paying <span class="advice-number">' + money(totalPayments) + '/mo</span> across ' + debtItems.length + ' debt line(s). ';
+        body += 'Enter the <strong>balance owed</strong> and <strong>APR %</strong> for each debt (fields appear below the row) to unlock detailed interest analysis \u2014 including how much you\'re paying the bank, payoff timelines, and specific savings strategies.</p>';
+        body += '<ul>';
+        body += '<li><strong>Avalanche method:</strong> Pay minimums on everything, throw extra at the highest-rate debt first.</li>';
+        body += '<li><strong>Balance transfer:</strong> A 0% APR card buys 12\u201318 months of interest-free paydown.</li>';
+        body += '<li><strong>Negotiate:</strong> Call each issuer and ask for a rate reduction. Many drop 3\u20138 points for on-time payers.</li>';
+        body += '</ul>';
+        sections.push({ icon: 'tip', title: 'Debt paydown \u2014 enter APR & balance for detailed analysis', body });
+      }
+    }
+
+    // 4. Utilities & services
+    const utilTotal = (byCat['Utilities'] || 0) + (byCat['Home services'] || 0);
+    if (utilTotal > 0) {
+      const items = expenses.filter(r => (r.cat === 'Utilities' || r.cat === 'Home services') && (+r.amt || 0) > 0);
+      if (items.length >= 3) {
+        sections.push({ icon: 'tip', title: 'Utilities & services: ' + money(utilTotal) + '/mo',
+          body: '<p>' + items.length + ' recurring bills. These are the easiest to cut without changing your lifestyle.</p><ul>' +
+            '<li><strong>Cell phone:</strong> MVNOs (Mint Mobile, Visible, Google Fi) use the same towers for $15\u201330/mo instead of $50\u2013100</li>' +
+            '<li><strong>Internet:</strong> Call and ask for the retention rate. Most providers drop $10\u201330/mo rather than lose you. Do this annually.</li>' +
+            '<li><strong>Insurance:</strong> Bundle home + auto, raise deductibles to $1,000, shop 3 quotes every 2 years. Typical savings: $40\u2013120/mo.</li>' +
+            '<li><strong>Security:</strong> DIY systems (SimpliSafe, Ring) cost $10\u201315/mo vs $40\u201360 for traditional monitoring</li>' +
+            '<li><strong>Pest/lawn:</strong> Get 2\u20133 competing quotes. High-margin services will often match a lower bid.</li></ul>' });
+      }
+    }
+
+    // 5. Insurance
+    if (byCat['Insurance & Health'] > 0 && inc > 0) {
+      sections.push({ icon: 'tip', title: 'Insurance & health: ' + money(byCat['Insurance & Health']) + '/mo',
+        body: '<p>Insurance is one of the most overpaid categories because people set it and forget it.</p><ul>' +
+          '<li><strong>Health:</strong> Re-shop every open enrollment. Plans change pricing annually. A 10-minute comparison can save $50\u2013200/mo.</li>' +
+          '<li><strong>Auto:</strong> Ask about safe driver discounts, bundling, paying annually (saves 5\u201310%), and raising deductible to $1,000.</li>' +
+          '<li><strong>Prescriptions:</strong> Check GoodRx or CostPlus Drugs \u2014 many generics are $3\u201315 vs $30\u201380 at retail pharmacies.</li></ul>' });
+    }
+
+    // 6. Food
+    if (byCat['Food'] > 0 && inc > 0) {
+      const diningOut = expenses.filter(r => r.cat === 'Lifestyle & Family' && /dining|restaurant|eat/i.test(r.name)).reduce((s, r) => s + (+r.amt || 0), 0);
+      const totalFood = byCat['Food'] + diningOut;
+      const pct = totalFood / inc * 100;
+      if (pct > 20) {
+        sections.push({ icon: 'warn', title: 'Food spending is ' + pct.toFixed(0) + '% of income',
+          body: '<p><span class="advice-number">' + money(totalFood) + '/mo</span> (groceries + dining). Guideline is 10\u201315%.</p><ul>' +
+            '<li><strong>Meal planning:</strong> Families that plan spend 20\u201330% less on groceries.</li>' +
+            '<li><strong>Store brands:</strong> Same manufacturers, 25\u201340% cheaper per item.</li>' +
+            '<li><strong>Bulk buying:</strong> Costco/Sam\'s for non-perishables and freezer items you actually use.</li>' +
+            '<li><strong>Dining:</strong> Set a monthly dining budget. Lunch out costs 40% less than dinner.</li></ul>' });
+      }
+    }
+
+    // 7. Transport
+    if (byCat['Transport'] > 0 && inc > 0) {
+      const pct = byCat['Transport'] / inc * 100;
+      if (pct > 15) {
+        sections.push({ icon: 'warn', title: 'Transportation is ' + pct.toFixed(0) + '% of income',
+          body: '<p><span class="advice-number">' + money(byCat['Transport']) + '/mo</span>. Guideline is 10\u201315%.</p><ul>' +
+            '<li><strong>Car payment:</strong> If &gt;10% of take-home, consider refinancing ($50\u2013100/mo savings possible).</li>' +
+            '<li><strong>Gas:</strong> GasBuddy or warehouse pumps save $0.10\u20130.30/gallon. Combine errands.</li>' +
+            '<li><strong>Maintenance:</strong> Independent mechanics are 30\u201350% cheaper than dealerships for routine work.</li></ul>' });
+      }
+    }
+
+    // 8. Balance check
+    if (exp > 0) {
+      const needPct = byBucket.Need / exp * 100;
+      const wantPct = byBucket.Want / exp * 100;
+      const futPct = byBucket.Future / exp * 100;
+
+      if (needPct > 75 && wantPct < 5) {
+        sections.push({ icon: 'warn', title: 'Budget is almost entirely obligations',
+          body: '<p>Needs: <span class="advice-number">' + needPct.toFixed(0) + '%</span>. Wants: <span class="advice-number">' + wantPct.toFixed(0) + '%</span>. A budget this obligation-heavy is technically functional but emotionally unsustainable. People burn out on austerity and overspend in frustration.</p><p>Even $100\u2013300/mo for family activities, a date night, or personal spending makes the difference between surviving and living.</p>' });
+      }
+      if (futPct < 5) {
+        sections.push({ icon: 'alert', title: 'Almost nothing in the Future bucket',
+          body: '<p>Only <span class="advice-number">' + futPct.toFixed(0) + '%</span> going to savings, debt payoff, or future goals. Without this, every surprise becomes a crisis.</p><ul>' +
+            '<li><strong>Emergency fund first:</strong> Target $1,000 fast, then build to 3 months of expenses. Even $25/week = $1,300/year.</li>' +
+            '<li><strong>Automate it:</strong> Set up an auto-transfer on payday to a separate savings account. Money you don\'t see, you don\'t spend.</li>' +
+            '<li><strong>Employer match:</strong> If your employer matches 401K, contribute enough for the full match. It\'s a 50\u2013100% instant return.</li></ul>' });
+      }
+    }
+
+    // 9. Quick wins
+    const qw = [];
+    if ((byCat['Utilities'] || 0) > 300) qw.push('Negotiate internet/phone or switch providers \u2014 <span class="advice-save">$30\u201380/mo</span>');
+    if ((byCat['Insurance & Health'] || 0) > 200) qw.push('Shop insurance quotes + check prescription alternatives \u2014 <span class="advice-save">$40\u2013150/mo</span>');
+    if ((byCat['Home services'] || 0) > 150) qw.push('Get competing bids on lawn, pest, security \u2014 <span class="advice-save">$30\u201360/mo</span>');
+    if (debtItems.length >= 2) qw.push('Consolidate or transfer high-interest balances \u2014 <span class="advice-save">$50\u2013200/mo</span> in interest');
+    if ((byCat['Food'] || 0) > 600) qw.push('Meal plan + store brands \u2014 <span class="advice-save">$80\u2013200/mo</span>');
+    const subs = expenses.filter(r => /subscri|stream|member|spotify|netflix|gym|app/i.test(r.name) && (+r.amt || 0) > 0);
+    if (subs.length > 0) qw.push('Audit subscriptions \u2014 cancel what you haven\'t used in 30 days \u2014 <span class="advice-save">$20\u201380/mo</span>');
+    if (qw.length > 0) {
+      sections.push({ icon: 'tip', title: 'Quick wins \u2014 things you can do this week',
+        body: '<ul>' + qw.map(w => '<li>' + w + '</li>').join('') + '</ul>' });
+    }
+
+    // 10. Unfunded lines
+    const emptyFuture = expenses.filter(r => r.cat === 'Savings & Future' && (+r.amt || 0) === 0).map(r => r.name);
+    const emptyWant = expenses.filter(r => r.bucket === 'Want' && (+r.amt || 0) === 0).map(r => r.name);
+    if (emptyFuture.length > 0 || emptyWant.length > 0) {
+      let body = '<p>These budget lines are at $0. That might be intentional \u2014 or it might be where balance is missing:</p><ul>';
+      emptyFuture.forEach(n => { body += '<li><strong>' + n + '</strong> \u2014 even a small amount compounds over time</li>'; });
+      emptyWant.forEach(n => { body += '<li><strong>' + n + '</strong> \u2014 budgeting for life, not just bills, is what makes a plan stick</li>'; });
+      body += '</ul>';
+      sections.push({ icon: 'tip', title: 'Unfunded lines worth revisiting', body });
+    }
+
+    if (sections.length === 0) {
+      document.getElementById('analysisOutput').innerHTML = '<div class="analysis-empty">Enter some expenses to get personalized advice.</div>';
+      return;
+    }
+
+    document.getElementById('analysisOutput').innerHTML = '<div class="analysis-results">' +
+      sections.map(s =>
+        '<div class="advice-section"><h4><span class="advice-icon ' + s.icon + '">' +
+        (s.icon === 'alert' ? '!' : s.icon === 'warn' ? '~' : s.icon === 'good' ? '\u2713' : '\u2726') +
+        '</span>' + s.title + '</h4>' + s.body + '</div>'
+      ).join('') + '</div>';
+
+    document.querySelector('.analysis-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  bind();
+  </script>
+</body>
+</html>
