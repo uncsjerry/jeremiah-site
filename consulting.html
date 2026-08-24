@@ -3,695 +3,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
   <title>Outsourced Performance Management — Jeremiah Gutierrez</title>
-  <meta name="description" content="Outsourced HR consulting for family offices and high-net-worth individuals. Embedded assessments, honest feedback, peak performance training for EAs, PAs, Chiefs of Staff, and support teams.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Outsourced HR consulting for family offices and operating companies. Embedded assessments, honest feedback, peak performance training for EAs, PAs, Chiefs of Staff, and support teams.">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    /* Page-specific styles for Consulting */
-    .consult-hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 120px 40px 80px;
-      background: var(--ink);
-      color: var(--cream);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .consult-hero::before {
-      content: 'HR';
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      font-family: var(--serif);
-      font-size: clamp(20rem, 40vw, 50rem);
-      font-weight: 900;
-      color: rgba(255, 255, 255, 0.03);
-      line-height: 0.8;
-      pointer-events: none;
-    }
-
-    .consult-hero-inner {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    .consult-hero-tag {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent-gold);
-      margin-bottom: 40px;
-    }
-
-    .consult-hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.8rem, 7vw, 6rem);
-      font-weight: 900;
-      line-height: 1.05;
-      max-width: 900px;
-      margin-bottom: 40px;
-    }
-
-    .consult-hero h1 em {
-      color: var(--accent-light);
-    }
-
-    .consult-hero-sub {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      max-width: 640px;
-      color: var(--cream-dark);
-      margin-bottom: 40px;
-    }
-
-    .consult-hero-cta {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent-gold);
-      border: 1px solid var(--accent-gold);
-      padding: 16px 40px;
-      transition: all 0.3s;
-    }
-
-    .consult-hero-cta:hover {
-      background: var(--accent-gold);
-      color: var(--ink);
-    }
-
-    /* Problem section */
-    .consult-problem {
-      padding: 120px 40px;
-      background: var(--cream);
-    }
-
-    .consult-problem-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .consult-problem-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      margin-top: 60px;
-    }
-
-    .consult-problem-left {
-      position: sticky;
-      top: 120px;
-      align-self: start;
-    }
-
-    .consult-problem h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .consult-problem h2 em {
-      color: var(--accent);
-    }
-
-    .problem-card {
-      background: var(--white);
-      border: 1px solid var(--cream-dark);
-      padding: 40px;
-      margin-bottom: 24px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .problem-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
-    }
-
-    .problem-card-num {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      display: block;
-      margin-bottom: 16px;
-    }
-
-    .problem-card h3 {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .problem-card p {
-      color: var(--ink-light);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    /* Who it's for */
-    .consult-who {
-      padding: 120px 40px;
-      background: var(--ink);
-      color: var(--cream);
-    }
-
-    .consult-who-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .consult-who h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 60px;
-    }
-
-    .consult-who h2 em {
-      color: var(--accent-gold);
-    }
-
-    .who-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-    }
-
-    .who-card {
-      border-top: 2px solid var(--accent-gold);
-      padding-top: 32px;
-    }
-
-    .who-card h3 {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      margin-bottom: 16px;
-    }
-
-    .who-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .who-card ul {
-      margin-top: 16px;
-    }
-
-    .who-card li {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--cream-dark);
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    /* Process */
-    .consult-process {
-      padding: 120px 40px;
-      background: var(--cream);
-    }
-
-    .consult-process-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .consult-process h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .consult-process h2 em {
-      color: var(--accent);
-    }
-
-    .consult-process > .consult-process-inner > .process-sub {
-      font-size: 1.1rem;
-      color: var(--ink-light);
-      max-width: 600px;
-      margin-bottom: 80px;
-      line-height: 1.7;
-    }
-
-    .process-phases {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
-    }
-
-    .process-phases::before {
-      content: '';
-      position: absolute;
-      top: 40px;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(to right, var(--accent), var(--accent-gold));
-    }
-
-    .process-phase {
-      padding: 80px 32px 40px;
-      position: relative;
-    }
-
-    .process-phase::before {
-      content: '';
-      position: absolute;
-      top: 32px;
-      left: 32px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 3px solid var(--cream);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-
-    .process-phase-num {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 16px;
-    }
-
-    .process-phase h3 {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .process-phase p {
-      color: var(--ink-light);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* Cadence */
-    .consult-cadence {
-      padding: 120px 40px;
-      background: var(--white);
-    }
-
-    .consult-cadence-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .consult-cadence h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 60px;
-    }
-
-    .consult-cadence h2 em {
-      color: var(--accent);
-    }
-
-    .cadence-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-
-    .cadence-item {
-      padding: 48px 32px;
-      border-right: 1px solid var(--cream-dark);
-      position: relative;
-    }
-
-    .cadence-item:last-child {
-      border-right: none;
-    }
-
-    .cadence-freq {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent-gold);
-      display: block;
-      margin-bottom: 12px;
-    }
-
-    .cadence-item h3 {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .cadence-item p {
-      color: var(--ink-light);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* Services list */
-    .consult-services {
-      padding: 120px 40px;
-      background: var(--ink);
-      color: var(--cream);
-    }
-
-    .consult-services-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .consult-services h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 60px;
-    }
-
-    .consult-services h2 em {
-      color: var(--accent-gold);
-    }
-
-    .services-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-    }
-
-    .service-item {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 32px;
-    }
-
-    .service-item h3 {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-    }
-
-    .service-item p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* CTA */
-    .consult-cta {
-      padding: 160px 40px;
-      background: var(--cream);
-      text-align: center;
-    }
-
-    .consult-cta h2 {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 24px;
-    }
-
-    .consult-cta h2 em {
-      color: var(--accent);
-    }
-
-    .consult-cta p {
-      font-size: 1.1rem;
-      color: var(--ink-light);
-      max-width: 580px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-
-    .consult-cta-btn {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      background: var(--accent);
-      color: var(--white);
-      padding: 18px 48px;
-      transition: all 0.3s;
-    }
-
-    .consult-cta-btn:hover {
-      background: var(--ink);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .consult-problem-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .consult-problem-left {
-        position: static;
-      }
-      .who-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .process-phases {
-        grid-template-columns: 1fr;
-      }
-      .process-phases::before {
-        top: 0;
-        bottom: 0;
-        left: 40px;
-        right: auto;
-        width: 2px;
-        height: auto;
-      }
-      .process-phase {
-        padding: 20px 20px 40px 72px;
-      }
-      .process-phase::before {
-        left: 33px;
-        top: 24px;
-      }
-      .cadence-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-      }
-      .cadence-item {
-        border-bottom: 1px solid var(--cream-dark);
-      }
-      .cadence-item:nth-child(2) {
-        border-right: none;
-      }
-      .services-list {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .cadence-grid {
-        grid-template-columns: 1fr;
-      }
-      .cadence-item {
-        border-right: none;
-      }
-      .consult-hero {
-        padding: 100px 24px 60px;
-      }
-      .consult-problem,
-      .consult-who,
-      .consult-process,
-      .consult-cadence,
-      .consult-services,
-      .consult-cta {
-        padding: 80px 24px;
-      }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="header-logo">
+        <img src="assets/images/logo-nav.png" alt="Jeremiah Gutierrez" height="36">
+      </a>
+      <nav class="header-nav">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="consulting.html" style="color:var(--hr-navy);font-weight:700">Consulting</a>
+        <a href="links.html">Portfolio</a>
+        <a href="family.html">Gallery</a>
+        <a href="index.html#contact" class="btn btn-navy btn-sm">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
 
-  <!-- Navigation -->
-  <nav id="navbar">
-    <a href="index.html" class="logo"><img src="assets/images/logo-nav.png" alt="Jeremiah Gutierrez" class="logo-img"></a>
-    <div class="nav-inline">
-      <a href="index.html#about">About</a>
-      <a href="index.html#services">Services</a>
-      <a href="consulting.html" class="nav-inline-active">Consulting</a>
-      <a href="links.html">Portfolio</a>
-      <a href="family.html">Gallery</a>
-      <a href="apothecary.html">Behind The Apron</a>
-      <a href="beta.html">Beta</a>
-      <a href="index.html#contact">Contact</a>
-    </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-    <div class="nav-overlay" id="navOverlay">
-      <div class="nav-overlay-content">
-        <div class="nav-links-big">
-          <a href="index.html#about" class="nav-link-big" data-num="01">About</a>
-          <a href="index.html#services" class="nav-link-big" data-num="02">Services</a>
-          <a href="consulting.html" class="nav-link-big nav-link-active" data-num="03">Consulting</a>
-          <a href="index.html#philosophy" class="nav-link-big" data-num="04">Philosophy</a>
-          <a href="index.html#credentials" class="nav-link-big" data-num="05">Credentials</a>
-          <a href="index.html#proof" class="nav-link-big" data-num="06">Proof</a>
-          <a href="index.html#contact" class="nav-link-big" data-num="07">Contact</a>
-          <a href="links.html" class="nav-link-big" data-num="08">Portfolio</a>
-          <a href="family.html" class="nav-link-big" data-num="09">Gallery</a>
-          <a href="apothecary.html" class="nav-link-big" data-num="10">Behind The Apron</a>
-          <a href="beta.html" class="nav-link-big" data-num="11">Beta</a>
-        </div>
-        <div class="nav-overlay-footer">
-          <div class="nav-footer-col">
-            <span class="nav-footer-label">Email</span>
-            <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
-          </div>
-          <div class="nav-footer-col">
-            <span class="nav-footer-label">Location</span>
-            <span>Fort Lauderdale, FL</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html#about" onclick="closeNav()">About</a>
+    <a href="index.html#services" onclick="closeNav()">Services</a>
+    <a href="consulting.html" onclick="closeNav()">Consulting</a>
+    <a href="links.html" onclick="closeNav()">Portfolio</a>
+    <a href="family.html" onclick="closeNav()">Gallery</a>
+    <a href="apothecary.html" onclick="closeNav()">Behind The Apron</a>
+    <a href="index.html#contact" onclick="closeNav()">Contact</a>
   </nav>
 
   <!-- Hero -->
-  <section class="consult-hero">
-    <div class="consult-hero-inner">
-      <p class="consult-hero-tag">Outsourced Performance Management / Family Offices / HNW Principals</p>
-      <h1>Your people aren't <em>underperforming.</em> They were never told what <em>great</em> looks like.</h1>
-      <p class="consult-hero-sub">Most C-suite executives know exactly what they expect. They just can't articulate it in a way their people understand. I've been there. I get it. That gap between expectation and execution is where performance dies &mdash; and it's exactly where I work.</p>
-      <a href="#contact-consult" class="consult-hero-cta">Start the conversation &darr;</a>
+  <section class="hero" style="padding-bottom:72px">
+    <div class="container">
+      <div>
+        <div class="section-label">Outsourced Performance Management</div>
+        <h1>Your people aren't underperforming. They were never told what great looks like.</h1>
+        <p class="hero-lead">Most C-suite executives know exactly what they expect. They just can't articulate it in a way their people understand. That gap between expectation and execution is where performance dies — and it's exactly where I work.</p>
+        <div class="hero-buttons">
+          <a href="#contact-consult" class="btn btn-navy">Start the conversation</a>
+          <a href="#process" class="btn btn-outline">How it works</a>
+        </div>
+      </div>
+      <div></div>
+    </div>
+  </section>
+
+  <!-- HR Help Promo -->
+  <section style="background:var(--hr-ochre-100);padding:32px 0;border-bottom:1px solid var(--hr-ochre)">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+      <div>
+        <p style="font-family:var(--font-display);font-weight:700;color:var(--hr-navy);font-size:var(--text-h3);margin-bottom:4px">Need HR help for your small business?</p>
+        <p style="color:var(--hr-slate);font-size:var(--text-small)">Handbooks, compliance, onboarding, and the wage rules nobody told you about. Starting at $750/month.</p>
+      </div>
+      <a href="https://hrhelpforsmallbusiness.com" class="btn btn-navy btn-sm" target="_blank" rel="noopener">Visit HR Help &rarr;</a>
     </div>
   </section>
 
   <!-- The Problem -->
-  <section class="consult-problem">
-    <div class="consult-problem-inner">
-      <span class="label">01 / The Problem</span>
-      <div class="consult-problem-grid">
-        <div class="consult-problem-left">
-          <h2>The honest truth about your <em>team.</em></h2>
-          <p style="color: var(--ink-light); font-size: 1rem; line-height: 1.7; margin-top: 16px;">You're not wrong for being frustrated. But your team isn't getting the feedback they need from someone who isn't afraid to give it.</p>
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-label">The Problem</div>
+      <h2 style="margin-bottom:12px">The honest truth about your team.</h2>
+      <p style="color:var(--hr-slate-soft);margin-bottom:48px">You're not wrong for being frustrated. But your team isn't getting the feedback they need from someone who isn't afraid to give it.</p>
+
+      <div class="cards-grid">
+        <div class="card reveal-up">
+          <h3>Expectations live in your head.</h3>
+          <p>You know what excellence looks like. But you've never translated that into language your EA, PA, or Chief of Staff can actually execute against. They're guessing — and you're frustrated when they guess wrong.</p>
         </div>
-        <div class="consult-problem-right">
-          <div class="problem-card reveal-up">
-            <span class="problem-card-num">Problem 01</span>
-            <h3>Expectations live in your head.</h3>
-            <p>You know what excellence looks like. But you've never translated that into language your EA, PA, or Chief of Staff can actually execute against. They're guessing &mdash; and you're frustrated when they guess wrong.</p>
-          </div>
-          <div class="problem-card reveal-up">
-            <span class="problem-card-num">Problem 02</span>
-            <h3>Internal HR can't give honest feedback.</h3>
-            <p>Your people will never tell you the full truth. Neither will the HR department that reports to you. You need an outsider with no political agenda &mdash; someone whose only job is to make your operation better.</p>
-          </div>
-          <div class="problem-card reveal-up">
-            <span class="problem-card-num">Problem 03</span>
-            <h3>You've outgrown your team's capability.</h3>
-            <p>Your business evolved. Your standards raised. But your team's skills stayed the same. Nobody invested in closing that gap &mdash; so now you're doing the work of three people because it's faster than explaining it again.</p>
-          </div>
-          <div class="problem-card reveal-up">
-            <span class="problem-card-num">Problem 04</span>
-            <h3>Annual reviews are fiction.</h3>
-            <p>Once-a-year check-ins are performance theater. By the time you give feedback, the damage is done. Real performance management happens daily, weekly, monthly &mdash; not in a December slide deck.</p>
-          </div>
+        <div class="card reveal-up">
+          <h3>Internal HR can't give honest feedback.</h3>
+          <p>Your people will never tell you the full truth. Neither will the HR department that reports to you. You need an outsider with no political agenda — someone whose only job is to make your operation better.</p>
+        </div>
+        <div class="card reveal-up">
+          <h3>You've outgrown your team's capability.</h3>
+          <p>Your business evolved. Your standards raised. But your team's skills stayed the same. Nobody invested in closing that gap — so now you're doing the work of three people because it's faster than explaining it again.</p>
+        </div>
+        <div class="card reveal-up">
+          <h3>Annual reviews are fiction.</h3>
+          <p>Once-a-year check-ins are performance theater. By the time you give feedback, the damage is done. Real performance management happens daily, weekly, monthly — not in a December slide deck.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Who It's For -->
-  <section class="consult-who">
-    <div class="consult-who-inner">
-      <span class="label" style="color: var(--accent-gold);">02 / Who This Is For</span>
-      <h2>Built for people who demand <em>excellence.</em></h2>
-      <div class="who-grid">
-        <div class="who-card reveal-up">
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-label">Who This Is For</div>
+      <h2 style="margin-bottom:48px">Built for people who demand excellence.</h2>
+
+      <div class="cards-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card reveal-up">
           <h3>Family Offices</h3>
           <p>Your household and office staff are extensions of your life. They handle everything from travel logistics to financial coordination. When they underperform, it's personal.</p>
-          <ul>
-            <li>Executive Assistants</li>
-            <li>Personal Assistants</li>
-            <li>Chiefs of Staff</li>
-            <li>Estate Managers</li>
-            <li>Household Staff</li>
-          </ul>
+          <p style="margin-top:16px;font-size:var(--text-micro);color:var(--hr-slate-soft);line-height:1.8">Executive Assistants &middot; Personal Assistants &middot; Chiefs of Staff &middot; Estate Managers &middot; Household Staff</p>
         </div>
-        <div class="who-card reveal-up">
+        <div class="card reveal-up">
           <h3>HNW Principals</h3>
-          <p>You run multiple entities, sit on boards, and move at a pace most people can't match. Your inner circle needs to operate at that same speed &mdash; or they become the bottleneck.</p>
-          <ul>
-            <li>Private Office Teams</li>
-            <li>Investment Coordinators</li>
-            <li>Philanthropic Staff</li>
-            <li>Security Details</li>
-            <li>Travel Coordinators</li>
-          </ul>
+          <p>You run multiple entities, sit on boards, and move at a pace most people can't match. Your inner circle needs to operate at that same speed — or they become the bottleneck.</p>
+          <p style="margin-top:16px;font-size:var(--text-micro);color:var(--hr-slate-soft);line-height:1.8">Private Office Teams &middot; Investment Coordinators &middot; Philanthropic Staff &middot; Security Details &middot; Travel Coordinators</p>
         </div>
-        <div class="who-card reveal-up">
+        <div class="card reveal-up">
           <h3>Operating Companies</h3>
-          <p>Departments and teams that need structured performance management without the politics of internal HR. Honest, outsourced, embedded &mdash; and accountable to results.</p>
-          <ul>
-            <li>Department Heads</li>
-            <li>Mid-Level Managers</li>
-            <li>Administrative Teams</li>
-            <li>Operations Staff</li>
-            <li>New Hires (90-day onboarding)</li>
-          </ul>
+          <p>Departments and teams that need structured performance management without the politics of internal HR. Honest, outsourced, embedded — and accountable to results.</p>
+          <p style="margin-top:16px;font-size:var(--text-micro);color:var(--hr-slate-soft);line-height:1.8">Department Heads &middot; Mid-Level Managers &middot; Administrative Teams &middot; Operations Staff &middot; New Hires (90-day)</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- The Process -->
-  <section class="consult-process">
-    <div class="consult-process-inner">
-      <span class="label">03 / The Process</span>
-      <h2>How we <em>work.</em></h2>
-      <p class="process-sub">We don't parachute in with a binder. We embed into your culture, learn what's actually happening, and build a system that stays after we leave.</p>
-      <div class="process-phases">
-        <div class="process-phase reveal-up">
-          <span class="process-phase-num">Phase 01</span>
+  <section id="process" class="section section-white">
+    <div class="container">
+      <div class="section-label">The Process</div>
+      <h2 style="margin-bottom:12px">How we work.</h2>
+      <p style="color:var(--hr-slate-soft);margin-bottom:48px">We don't parachute in with a binder. We embed into your culture, learn what's actually happening, and build a system that stays after we leave.</p>
+
+      <div class="cards-grid cards-grid-4">
+        <div class="card reveal-up">
+          <div class="belief-num">01</div>
           <h3>Embed</h3>
-          <p>We immerse ourselves in your operation. Shadow your team, understand the culture, learn how decisions get made, and identify the gap between what you expect and what's being delivered. No surveys. Real observation.</p>
+          <p>We immerse ourselves in your operation. Shadow your team, understand the culture, learn how decisions get made, and identify the gap between what you expect and what's being delivered.</p>
         </div>
-        <div class="process-phase reveal-up">
-          <span class="process-phase-num">Phase 02</span>
+        <div class="card reveal-up">
+          <div class="belief-num">02</div>
           <h3>Discover</h3>
-          <p>Confidential interviews with current and former employees. We hear what nobody says to your face. We build a true 360-degree view of your organization &mdash; not the sanitized version HR puts on a slide.</p>
+          <p>Confidential interviews with current and former employees. We hear what nobody says to your face. We build a true 360-degree view — not the sanitized version HR puts on a slide.</p>
         </div>
-        <div class="process-phase reveal-up">
-          <span class="process-phase-num">Phase 03</span>
+        <div class="card reveal-up">
+          <div class="belief-num">03</div>
           <h3>Deep Dive</h3>
-          <p>We present our findings &mdash; the uncomfortable ones included. Where expectations aren't being communicated. Where talent is misaligned. Where culture says one thing but behavior says another.</p>
+          <p>We present our findings — the uncomfortable ones included. Where expectations aren't communicated. Where talent is misaligned. Where culture says one thing but behavior says another.</p>
         </div>
-        <div class="process-phase reveal-up">
-          <span class="process-phase-num">Phase 04</span>
+        <div class="card reveal-up">
+          <div class="belief-num">04</div>
           <h3>Manage</h3>
           <p>Action plans, performance frameworks, training programs, and ongoing management. In some cases, we hire and fire on your behalf. We stay as long as it takes to make the change permanent.</p>
         </div>
@@ -700,116 +160,150 @@
   </section>
 
   <!-- Assessment Cadence -->
-  <section class="consult-cadence">
-    <div class="consult-cadence-inner">
-      <span class="label">04 / Assessment Cadence</span>
-      <h2>Performance is a <em>rhythm,</em> not an event.</h2>
-      <div class="cadence-grid">
-        <div class="cadence-item reveal-up">
-          <span class="cadence-freq">Daily</span>
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Assessment Cadence</div>
+      <h2 style="margin-bottom:48px">Performance is a rhythm, not an event.</h2>
+
+      <div class="cards-grid cards-grid-4">
+        <div class="card reveal-up" style="border-top:3px solid var(--hr-ochre)">
+          <p style="font-size:var(--text-micro);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--hr-ochre);margin-bottom:12px">Daily</p>
           <h3>Pulse Checks</h3>
-          <p>Quick alignment touchpoints. Are priorities clear? Are blockers being flagged? Is work product meeting standard? We catch drift before it becomes a problem.</p>
+          <p>Quick alignment touchpoints. Are priorities clear? Are blockers being flagged? We catch drift before it becomes a problem.</p>
         </div>
-        <div class="cadence-item reveal-up">
-          <span class="cadence-freq">Weekly</span>
+        <div class="card reveal-up" style="border-top:3px solid var(--hr-ochre)">
+          <p style="font-size:var(--text-micro);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--hr-ochre);margin-bottom:12px">Weekly</p>
           <h3>Performance Reviews</h3>
-          <p>Structured 1-on-1s that focus on growth, not grievances. We coach your team through what's working, what's not, and what needs to change this week &mdash; not next quarter.</p>
+          <p>Structured 1-on-1s that focus on growth, not grievances. What's working, what's not, and what needs to change this week — not next quarter.</p>
         </div>
-        <div class="cadence-item reveal-up">
-          <span class="cadence-freq">Monthly</span>
+        <div class="card reveal-up" style="border-top:3px solid var(--hr-ochre)">
+          <p style="font-size:var(--text-micro);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--hr-ochre);margin-bottom:12px">Monthly</p>
           <h3>Deep Assessments</h3>
-          <p>Comprehensive performance evaluations against the expectations you've set. We measure, we document, and we present findings with zero spin. You get the truth.</p>
+          <p>Comprehensive evaluations against expectations. We measure, document, and present findings with zero spin. You get the truth.</p>
         </div>
-        <div class="cadence-item reveal-up">
-          <span class="cadence-freq">Annual</span>
+        <div class="card reveal-up" style="border-top:3px solid var(--hr-ochre)">
+          <p style="font-size:var(--text-micro);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--hr-ochre);margin-bottom:12px">Annual</p>
           <h3>Strategic Reviews</h3>
-          <p>Full organizational health review. Team composition, role alignment, compensation benchmarking, succession planning. The big picture &mdash; supported by a year of data.</p>
+          <p>Full organizational health review. Team composition, role alignment, compensation benchmarking, succession planning. The big picture — supported by a year of data.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What We Do -->
-  <section class="consult-services">
-    <div class="consult-services-inner">
-      <span class="label" style="color: var(--accent-gold);">05 / What We Deliver</span>
-      <h2>Beyond <em>assessments.</em></h2>
-      <div class="services-list">
-        <div class="service-item reveal-up">
-          <h3>Peak Performance Training</h3>
-          <p>Custom courses for EAs, PAs, Chiefs of Staff, and support teams. We teach them how to anticipate, communicate, and execute at the level you expect &mdash; because nobody else does.</p>
+  <!-- What We Deliver -->
+  <section class="section section-navy">
+    <div class="container">
+      <div class="section-label">What We Deliver</div>
+      <h2 style="margin-bottom:48px">Beyond assessments.</h2>
+
+      <div class="cards-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:28px" class="reveal-up">
+          <h3 style="font-size:var(--text-body);margin-bottom:8px">Peak Performance Training</h3>
+          <p style="color:var(--hr-slate-soft);font-size:var(--text-small);line-height:1.7">Custom courses for EAs, PAs, Chiefs of Staff, and support teams. We teach them how to anticipate, communicate, and execute at the level you expect.</p>
         </div>
-        <div class="service-item reveal-up">
-          <h3>C-Suite Feedback Sessions</h3>
-          <p>A confidential space for executives to vent frustrations and receive honest, structured feedback from an outsourced agency with no internal politics. The conversation you can't have with HR.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:28px" class="reveal-up">
+          <h3 style="font-size:var(--text-body);margin-bottom:8px">C-Suite Feedback Sessions</h3>
+          <p style="color:var(--hr-slate-soft);font-size:var(--text-small);line-height:1.7">A confidential space for executives to vent frustrations and receive honest, structured feedback from someone with no internal politics.</p>
         </div>
-        <div class="service-item reveal-up">
-          <h3>360-Degree Organizational Reviews</h3>
-          <p>We interview current and former employees to build an unfiltered picture of your organization. What's working. What's broken. What people say about you when you're not in the room.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:28px" class="reveal-up">
+          <h3 style="font-size:var(--text-body);margin-bottom:8px">360-Degree Reviews</h3>
+          <p style="color:var(--hr-slate-soft);font-size:var(--text-small);line-height:1.7">We interview current and former employees to build an unfiltered picture. What's working. What's broken. What people say when you're not in the room.</p>
         </div>
-        <div class="service-item reveal-up">
-          <h3>Expectation Translation</h3>
-          <p>We take the standards that live in your head and turn them into clear, documented, measurable expectations your team can actually execute against. No more guessing games.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:28px" class="reveal-up">
+          <h3 style="font-size:var(--text-body);margin-bottom:8px">Expectation Translation</h3>
+          <p style="color:var(--hr-slate-soft);font-size:var(--text-small);line-height:1.7">We take the standards in your head and turn them into clear, documented, measurable expectations your team can execute against. No more guessing.</p>
         </div>
-        <div class="service-item reveal-up">
-          <h3>Hiring &amp; Termination Support</h3>
-          <p>When it's time to make changes, we handle it. From sourcing and vetting to the difficult conversations &mdash; we act on your behalf with professionalism and discretion.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:28px" class="reveal-up">
+          <h3 style="font-size:var(--text-body);margin-bottom:8px">Hiring & Termination Support</h3>
+          <p style="color:var(--hr-slate-soft);font-size:var(--text-small);line-height:1.7">When it's time to make changes, we handle it. From sourcing to the difficult conversations — we act on your behalf with professionalism and discretion.</p>
         </div>
-        <div class="service-item reveal-up">
-          <h3>Culture Embedding</h3>
-          <p>We don't just observe your culture &mdash; we help codify it. Values, standards, and behavioral expectations become documented, trainable, and enforceable. Culture stops being abstract and starts being operational.</p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:28px" class="reveal-up">
+          <h3 style="font-size:var(--text-body);margin-bottom:8px">Culture Embedding</h3>
+          <p style="color:var(--hr-slate-soft);font-size:var(--text-small);line-height:1.7">We help codify your culture. Values, standards, and behavioral expectations become documented, trainable, and enforceable. Culture stops being abstract.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- HR Help Promo (bottom) -->
+  <section style="background:var(--hr-green-100);padding:48px 0">
+    <div class="container" style="text-align:center">
+      <h3 style="margin-bottom:8px">Small business? We have a dedicated offering for you.</h3>
+      <p style="color:var(--hr-slate);font-size:var(--text-body);margin:0 auto 24px;max-width:560px">HR Help for Small Business provides handbooks, compliance audits, onboarding systems, and ongoing HR support — starting at $750/month with a $2,500 one-time baseline.</p>
+      <a href="https://hrhelpforsmallbusiness.com" class="btn btn-green" target="_blank" rel="noopener">hrhelpforsmallbusiness.com &rarr;</a>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="consult-cta" id="contact-consult">
-    <h2>Your team can be <em>better.</em><br>Let's prove it.</h2>
+  <section id="contact-consult" class="cta-banner">
+    <h2>Your team can be better.<br>Let's prove it.</h2>
     <p>Every engagement starts with a confidential conversation. No pitch deck. No sales pressure. Just an honest assessment of whether we're the right fit.</p>
-    <a href="mailto:jeremiah@jeremiahgutierrez.com?subject=Performance%20Management%20Inquiry" class="consult-cta-btn">Start the conversation &rarr;</a>
+    <a href="mailto:jeremiah@jeremiahgutierrez.com?subject=Performance%20Management%20Inquiry" class="btn btn-green" style="height:52px;padding:0 32px;font-size:var(--text-body)">Start the conversation &rarr;</a>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <span class="footer-col-label">Jeremiah Gutierrez</span>
-        <span class="footer-col-text">Fort Lauderdale, FL</span>
-        <a href="mailto:jeremiah@jeremiahgutierrez.com" class="footer-col-link">jeremiah@jeremiahgutierrez.com</a>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <span class="footer-col-label">Jeremiah Gutierrez</span>
+          <span class="footer-col-text">Fort Lauderdale, FL</span>
+          <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Site</span>
+          <a href="index.html#about">About</a>
+          <a href="index.html#services">Services</a>
+          <a href="consulting.html">Consulting</a>
+          <a href="links.html">Portfolio</a>
+          <a href="family.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Family</span>
+          <a href="https://gutierrezrose.com" target="_blank" rel="noopener">Gutierrez & Rose</a>
+          <a href="https://brettadamrose.com" target="_blank" rel="noopener">Brett A. Rose</a>
+          <a href="https://parkeroliver.com" target="_blank" rel="noopener">Parker Oliver</a>
+          <a href="https://mackenzieabigail.com" target="_blank" rel="noopener">Mackenzie Abigail</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Social</span>
+          <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener">Facebook</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <span class="footer-col-label">Site</span>
-        <a href="index.html#about" class="footer-col-link">About</a>
-        <a href="index.html#services" class="footer-col-link">Services</a>
-        <a href="consulting.html" class="footer-col-link">Consulting</a>
-        <a href="links.html" class="footer-col-link">Portfolio</a>
-        <a href="family.html" class="footer-col-link">Gallery</a>
-        <a href="apothecary.html" class="footer-col-link">Behind The Apron</a>
-        <a href="beta.html" class="footer-col-link">Beta</a>
-        <a href="index.html#contact" class="footer-col-link">Contact</a>
-        <a href="beta-admin.html" class="footer-col-link">Admin</a>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Jeremiah Gutierrez</span>
+        <a href="#">Back to top &uarr;</a>
       </div>
-      <div class="footer-col">
-        <span class="footer-col-label">Family</span>
-        <a href="https://gutierrezrose.com" target="_blank" rel="noopener" class="footer-col-link">Gutierrez &amp; Rose</a>
-        <a href="https://brettadamrose.com" target="_blank" rel="noopener" class="footer-col-link">Brett A. Rose</a>
-        <a href="https://parkeroliver.com" target="_blank" rel="noopener" class="footer-col-link">Parker Oliver</a>
-        <a href="https://mackenzieabigail.com" target="_blank" rel="noopener" class="footer-col-link">Mackenzie Abigail</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-label">Social</span>
-        <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener" class="footer-col-link">LinkedIn</a>
-        <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener" class="footer-col-link">Instagram</a>
-        <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener" class="footer-col-link">Facebook</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 Jeremiah Gutierrez</span>
-      <a href="#" class="footer-top">Back to top &uarr;</a>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', function() {
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeNav() { mobileNav.classList.remove('open'); document.body.style.overflow = ''; }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    var reveals = document.querySelectorAll('.reveal-up');
+    if (reveals.length) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(function(el) { obs.observe(el); });
+    }
+  </script>
 </body>
 </html>
