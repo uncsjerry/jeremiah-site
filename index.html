@@ -3,274 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jeremiah Gutierrez — Leadership That Hits Different</title>
-  <meta name="description" content="Jeremiah Gutierrez — President of UNCS, operator, leadership developer, and forum facilitator. Executive coaching, employee training, and peer group facilitation. No fluff. Just results.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="light">
+  <title>Jeremiah Gutierrez — Operator. Leader. Builder.</title>
+  <meta name="description" content="President of UNCS, 14-year YPO member, leadership developer, and forum facilitator. Executive coaching, employee training, and peer group facilitation. Fort Lauderdale, FL.">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon-180.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Custom cursor -->
-  <div class="cursor" id="cursor"></div>
-
-  <!-- Navigation — minimal, left-aligned -->
-  <nav id="navbar">
-    <a href="#" class="logo"><img src="assets/images/logo-nav.png" alt="Jeremiah Gutierrez" class="logo-img"></a>
-    <div class="nav-inline">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="consulting.html">Consulting</a>
-      <a href="links.html">Portfolio</a>
-      <a href="family.html">Gallery</a>
-      <a href="https://vault.gutierrezrose.com/site/gutierrez-rose/jeremiah" target="_blank">Photo Vault</a>
-      <a href="apothecary.html">Behind The Apron</a>
-      <a href="beta.html">Beta</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-    <div class="nav-overlay" id="navOverlay">
-      <div class="nav-overlay-content">
-        <div class="nav-links-big">
-          <a href="#about" class="nav-link-big" data-num="01">About</a>
-          <a href="#services" class="nav-link-big" data-num="02">Services</a>
-          <a href="consulting.html" class="nav-link-big" data-num="03">Consulting</a>
-          <a href="#philosophy" class="nav-link-big" data-num="04">Philosophy</a>
-          <a href="#credentials" class="nav-link-big" data-num="05">Credentials</a>
-          <a href="#proof" class="nav-link-big" data-num="06">Proof</a>
-          <a href="#contact" class="nav-link-big" data-num="07">Contact</a>
-          <a href="links.html" class="nav-link-big" data-num="08">Portfolio</a>
-          <a href="family.html" class="nav-link-big" data-num="09">Gallery</a>
-          <a href="https://vault.gutierrezrose.com/site/gutierrez-rose/jeremiah" class="nav-link-big" data-num="10" target="_blank">Photo Vault</a>
-          <a href="apothecary.html" class="nav-link-big" data-num="11">Behind The Apron</a>
-          <a href="beta.html" class="nav-link-big" data-num="12">Beta</a>
-        </div>
-        <div class="nav-overlay-footer">
-          <div class="nav-footer-col">
-            <span class="nav-footer-label">Email</span>
-            <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
-          </div>
-          <div class="nav-footer-col">
-            <span class="nav-footer-label">Location</span>
-            <span>Fort Lauderdale, FL</span>
-          </div>
-          <div class="nav-footer-col">
-            <span class="nav-footer-label">Social</span>
-            <div class="nav-social">
-              <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener">Instagram</a>
-              <a href="#">X</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero — full viewport, editorial -->
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="hero-tag">Leadership Development / Group Facilitation / Executive Coaching / Employee Training</p>
-      <h1 class="hero-headline">
-        <span class="line"><span class="line-inner">I help leaders</span></span>
-        <span class="line"><span class="line-inner"><em>stop</em> playing</span></span>
-        <span class="line"><span class="line-inner">small<span class="period">.</span></span></span>
-      </h1>
-      <div class="hero-bottom">
-        <div class="hero-scroll-indicator">
-          <div class="scroll-line"></div>
-          <span>Scroll</span>
-        </div>
-        <p class="hero-intro">President of UNCS. Operator, husband, dad. 20+ years turning good managers into great leaders, facilitating peer groups that drive real growth, and coaching executives through the decisions that matter. No trust falls. Just the work that works.</p>
-        <a href="#contact" class="hero-cta">Book a call &darr;</a>
-      </div>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="header-logo">
+        <img src="assets/images/logo-nav.png" alt="Jeremiah Gutierrez" height="36">
+      </a>
+      <nav class="header-nav">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="consulting.html">Consulting</a>
+        <a href="links.html">Portfolio</a>
+        <a href="family.html">Gallery</a>
+        <a href="apothecary.html">Behind The Apron</a>
+        <a href="#contact" class="btn btn-navy btn-sm">Contact</a>
+      </nav>
+      <button class="menu-toggle" id="menuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </header>
 
-  <!-- Ticker -->
-  <section class="ticker">
-    <div class="ticker-track">
-      <div class="ticker-content">
-        <span>Employee Training</span>
-        <span class="ticker-sep">/</span>
-        <span>Forum Facilitation</span>
-        <span class="ticker-sep">/</span>
-        <span>Leadership Programs</span>
-        <span class="ticker-sep">/</span>
-        <span>C-Suite Coaching</span>
-        <span class="ticker-sep">/</span>
-        <span>Peer Group Design</span>
-        <span class="ticker-sep">/</span>
-        <span>Psychological Safety</span>
-        <span class="ticker-sep">/</span>
-        <span>Team Dynamics</span>
-        <span class="ticker-sep">/</span>
-        <span>Keynote Speaking</span>
-        <span class="ticker-sep">/</span>
-        <span>Employee Training</span>
-        <span class="ticker-sep">/</span>
-        <span>Forum Facilitation</span>
-        <span class="ticker-sep">/</span>
-        <span>Leadership Programs</span>
-        <span class="ticker-sep">/</span>
-        <span>C-Suite Coaching</span>
-        <span class="ticker-sep">/</span>
-        <span>Peer Group Design</span>
-        <span class="ticker-sep">/</span>
-        <span>Psychological Safety</span>
-        <span class="ticker-sep">/</span>
-        <span>Team Dynamics</span>
-        <span class="ticker-sep">/</span>
-        <span>Keynote Speaking</span>
-        <span class="ticker-sep">/</span>
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#services" onclick="closeNav()">Services</a>
+    <a href="consulting.html" onclick="closeNav()">Consulting</a>
+    <a href="links.html" onclick="closeNav()">Portfolio</a>
+    <a href="family.html" onclick="closeNav()">Gallery</a>
+    <a href="https://vault.gutierrezrose.com/site/gutierrez-rose/jeremiah" onclick="closeNav()">Photo Vault</a>
+    <a href="apothecary.html" onclick="closeNav()">Behind The Apron</a>
+    <a href="beta.html" onclick="closeNav()">Beta</a>
+    <a href="#contact" onclick="closeNav()">Contact</a>
+    <a href="mailto:jeremiah@jeremiahgutierrez.com" class="btn btn-navy" style="margin-top:16px" onclick="closeNav()">Email me</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div>
+        <h1>I help leaders stop playing small.</h1>
+        <p class="hero-lead">President of UNCS. Operator, husband, dad. 20+ years turning good managers into great leaders, facilitating peer groups that drive real growth, and coaching executives through the decisions that matter.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-navy">Let's talk</a>
+          <a href="#services" class="btn btn-outline">What I do</a>
+        </div>
+        <p class="hero-trust">No trust falls. Just the work that works.</p>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/images/headshot.jpg" alt="Jeremiah Gutierrez" width="520" height="520">
       </div>
     </div>
   </section>
 
-  <!-- About — split screen -->
-  <section id="about" class="about">
-    <div class="split">
-      <div class="split-left">
-        <div class="sticky-block">
-          <span class="label">01 / About</span>
-          <h2 class="split-heading">Not your<br>typical<br><em>leadership</em><br>guru.</h2>
+  <!-- About -->
+  <section id="about" class="section section-white">
+    <div class="container">
+      <div class="section-label">About</div>
+      <h2 style="margin-bottom:32px">Not your typical leadership guru.</h2>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:64px;align-items:start">
+        <div>
+          <p class="reveal-up" style="font-size:var(--text-lead);line-height:1.7;margin-bottom:24px">I'm the President of <a href="https://www.uncs.com" target="_blank" rel="noopener">UNCS</a>, a national closeout distribution company — and I've spent two decades in the trenches: building teams, scaling companies, facilitating peer groups, and figuring out what actually makes people step up and lead.</p>
+          <p class="reveal-up" style="margin-bottom:24px">I've coached executives through the kind of decisions that keep you up at night. I've trained thousands of employees across industries — and I've seen what works and what's just expensive theater. I'm also a husband and a dad to two kids, which is its own masterclass in leadership.</p>
+          <p class="reveal-up" style="margin-bottom:24px">I'm a 14-year YPO member, a founding board member of the YPO Fort Lauderdale Integrated Chapter, and Past Chair. I started as Assistant Learning Officer (2022-2024), became Learning Officer (2024-2025), and served as Chapter Chair (2025-2026). Before Fort Lauderdale, I served as Spouse Forum Officer for YPO Miami (2020-2021), seeding and facilitating the chapter's first professional spouse forum from the ground up.</p>
+          <p class="reveal-up">My approach is direct, human, and built on real experience. I'm not here to give you a framework you'll forget by Friday. I'm here to change how your people show up — permanently. <em style="font-family:var(--font-display);font-style:italic">Podemos facilitar en espa&ntilde;ol</em> — I facilitate in both English and Spanish.</p>
         </div>
-      </div>
-      <div class="split-right">
-        <div class="text-block reveal-up">
-          <p class="big-text">I'm the President of <a href="https://www.uncs.com" target="_blank" rel="noopener">UNCS</a>, a national closeout distribution company — and I've spent two decades in the trenches alongside being an operator: building teams, scaling companies, facilitating peer groups, and figuring out what actually makes people step up and lead.</p>
-        </div>
-        <div class="text-block reveal-up">
-          <p>I'm an operator first — running day-to-day operations at a company I've helped build for over two decades. I've coached executives through the kind of decisions that keep you up at night. I've trained thousands of employees across industries — and I've seen what works and what's just expensive theater. I'm also a husband and a dad to two kids, which is its own masterclass in leadership.</p>
-        </div>
-        <div class="text-block reveal-up">
-          <p>I'm a 14-year YPO member, a founding board member of the YPO Fort Lauderdale Integrated Chapter, and Past Chair. I started as Assistant Learning Officer (2022–2024), became Learning Officer (2024–2025), and served as Chapter Chair (2025–2026) — watching something we built from scratch grow into a thriving community. Before Fort Lauderdale, I served as Spouse Forum Officer for YPO Miami (2020–2021), seeding and facilitating the chapter's first professional spouse forum from the ground up. I also built a Forum for Business program inside my own organization using the YPO International framework. I know what it takes to build trust, create psychological safety, and hold space for the conversations that drive real growth.</p>
-        </div>
-        <div class="text-block reveal-up">
-          <p>My approach is direct, human, and built on real experience. I'm not here to give you a framework you'll forget by Friday. I'm here to change how your people show up — permanently. <em>Podemos facilitar en espa&ntilde;ol</em> — I facilitate in both English and Spanish.</p>
-        </div>
-        <div class="stat-row reveal-up">
-          <div class="stat">
-            <span class="stat-num counter" data-target="500">0</span>
-            <span class="stat-label">Leaders<br>developed</span>
+        <div class="stats-row" style="grid-template-columns:1fr;margin-top:0">
+          <div class="stat-card reveal-up">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Leaders developed</span>
           </div>
-          <div class="stat">
-            <span class="stat-num counter" data-target="14">0</span>
-            <span class="stat-label">Years in<br>YPO Forum</span>
+          <div class="stat-card reveal-up">
+            <span class="stat-num">14</span>
+            <span class="stat-label">Years in YPO Forum</span>
           </div>
-          <div class="stat">
+          <div class="stat-card reveal-up">
             <span class="stat-num">F500</span>
-            <span class="stat-label">Clients<br>served</span>
+            <span class="stat-label">Clients served</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services — horizontal scroll panels -->
-  <section id="services" class="services">
-    <div class="services-header">
-      <span class="label">02 / Services</span>
-      <h2 class="section-mega-title reveal-up">What I <em>actually</em> do.</h2>
-      <p class="services-sub reveal-up">Every engagement is custom-built. Cookie-cutter programs are for cookies.</p>
-    </div>
-    <div class="hscroll-wrapper">
-      <div class="hscroll-track" id="hscrollTrack">
+  <!-- Services -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="section-label">Services</div>
+      <h2 style="margin-bottom:12px">What I actually do.</h2>
+      <p style="color:var(--hr-slate-soft);margin-bottom:48px;font-size:var(--text-lead)">Every engagement is custom-built. Cookie-cutter programs are for cookies.</p>
 
-        <article class="panel panel-dark">
-          <span class="panel-num">01</span>
-          <h3 class="panel-title">Employee<br>Training</h3>
-          <p class="panel-subtitle">Build teams that don't need babysitting.</p>
-          <p class="panel-body">Custom programs that turn disengaged employees into owners. Communication, accountability, emotional intelligence — the stuff that actually drives performance.</p>
-          <ul class="panel-list">
-            <li>Custom curriculum design</li>
-            <li>On-site & virtual delivery</li>
-            <li>Team dynamics workshops</li>
-            <li>Measurable outcome tracking</li>
-          </ul>
-          <a href="#contact" class="panel-cta">Start here &rarr;</a>
-        </article>
-
-        <article class="panel panel-accent">
-          <span class="panel-num">02</span>
-          <h3 class="panel-title">Leadership<br>Development</h3>
-          <p class="panel-subtitle">Grow leaders at every level.</p>
-          <p class="panel-body">From frontline managers to VPs — I build leadership programs that create real capability. Not attendance certificates. Your people learn to lead, not just manage.</p>
-          <ul class="panel-list">
-            <li>Emerging leader programs</li>
-            <li>Manager-to-leader transitions</li>
-            <li>Leadership pipeline strategy</li>
-            <li>360-degree assessments</li>
-          </ul>
-          <a href="#contact" class="panel-cta">Start here &rarr;</a>
-        </article>
-
-        <article class="panel panel-dark">
-          <span class="panel-num">03</span>
-          <h3 class="panel-title">C-Level<br>Coaching</h3>
-          <p class="panel-subtitle">The advisor in your corner.</p>
-          <p class="panel-body">Being at the top is lonely. I work 1-on-1 with CEOs, COOs, and senior leaders who need a confidential thinking partner — someone who tells the truth, not what you want to hear.</p>
-          <ul class="panel-list">
-            <li>1-on-1 executive coaching</li>
-            <li>Strategic decision support</li>
-            <li>Succession planning</li>
-            <li>Conflict resolution</li>
-          </ul>
-          <a href="#contact" class="panel-cta">Start here &rarr;</a>
-        </article>
-
-        <article class="panel panel-accent">
-          <span class="panel-num">04</span>
-          <h3 class="panel-title">Forum<br>Facilitation</h3>
-          <p class="panel-subtitle">Build trust that transforms.</p>
-          <p class="panel-body">I design and facilitate peer forum experiences rooted in psychological safety, confidentiality, and real vulnerability. From seeding new groups to developing moderators — I build Forums that last.</p>
-          <ul class="panel-list">
-            <li>Forum seeding & launch</li>
-            <li>Moderator development</li>
-            <li>Forum for Business programs</li>
-            <li>Retreat design & facilitation</li>
-          </ul>
-          <a href="#contact" class="panel-cta">Start here &rarr;</a>
-        </article>
-
+      <div class="cards-grid">
+        <div class="card reveal-up">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Employee Training</h3>
+          <p>Custom programs that turn disengaged employees into owners. Communication, accountability, emotional intelligence — the stuff that actually drives performance.</p>
+          <a href="#contact">Start here &rarr;</a>
+        </div>
+        <div class="card reveal-up">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h3>Leadership Development</h3>
+          <p>From frontline managers to VPs — I build leadership programs that create real capability. Not attendance certificates. Your people learn to lead, not just manage.</p>
+          <a href="#contact">Start here &rarr;</a>
+        </div>
+        <div class="card reveal-up">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>C-Level Coaching</h3>
+          <p>Being at the top is lonely. I work 1-on-1 with CEOs, COOs, and senior leaders who need a confidential thinking partner — someone who tells the truth, not what you want to hear.</p>
+          <a href="#contact">Start here &rarr;</a>
+        </div>
+        <div class="card reveal-up">
+          <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Forum Facilitation</h3>
+          <p>I design and facilitate peer forum experiences rooted in psychological safety, confidentiality, and real vulnerability. From seeding new groups to developing moderators — I build Forums that last.</p>
+          <a href="#contact">Start here &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Philosophy — manifesto style -->
-  <section id="philosophy" class="philosophy">
-    <div class="philosophy-inner">
-      <span class="label">03 / Philosophy</span>
-      <div class="manifesto reveal-up">
-        <p><span class="strike">Death by PowerPoint.</span></p>
-        <p><span class="strike">Trust falls.</span></p>
-        <p><span class="strike">Motivational posters.</span></p>
-        <p><span class="strike">Corporate buzzword bingo.</span></p>
+  <!-- Philosophy -->
+  <section id="philosophy" class="section section-alt">
+    <div class="container">
+      <div class="section-label">Philosophy</div>
+
+      <div class="reveal-up" style="margin-bottom:40px">
+        <p class="strike" style="margin-bottom:8px">Death by PowerPoint.</p>
+        <p class="strike" style="margin-bottom:8px">Trust falls.</p>
+        <p class="strike" style="margin-bottom:8px">Motivational posters.</p>
+        <p class="strike">Corporate buzzword bingo.</p>
       </div>
-      <h2 class="philosophy-title reveal-up">Here's what I <em>do</em> believe in.</h2>
-      <div class="beliefs-grid">
-        <div class="belief reveal-up">
-          <span class="belief-num">01</span>
+
+      <h2 style="margin-bottom:48px">Here's what I do believe in.</h2>
+
+      <div class="cards-grid-4 cards-grid">
+        <div class="card reveal-up">
+          <div class="belief-num">01</div>
           <h3>Diagnose first.</h3>
           <p>I dig into what's actually happening — not the sanitized version. Culture audits, stakeholder interviews, the uncomfortable truths nobody says out loud.</p>
         </div>
-        <div class="belief reveal-up">
-          <span class="belief-num">02</span>
+        <div class="card reveal-up">
+          <div class="belief-num">02</div>
           <h3>Design for your people.</h3>
           <p>No off-the-shelf modules. Every exercise, conversation, and framework is built for your specific team and your specific challenges.</p>
         </div>
-        <div class="belief reveal-up">
-          <span class="belief-num">03</span>
+        <div class="card reveal-up">
+          <div class="belief-num">03</div>
           <h3>Deliver with intensity.</h3>
           <p>High-energy sessions people actually want to attend. The intensity of a keynote combined with the depth of a workshop — every single time.</p>
         </div>
-        <div class="belief reveal-up">
-          <span class="belief-num">04</span>
+        <div class="card reveal-up">
+          <div class="belief-num">04</div>
           <h3>Make it stick.</h3>
           <p>The real work happens after training. Accountability systems, follow-up coaching, and measurement so the growth actually lasts.</p>
         </div>
@@ -279,200 +176,241 @@
   </section>
 
   <!-- Credentials -->
-  <section id="credentials" class="credentials">
-    <div class="credentials-inner">
-      <span class="label">04 / Credentials</span>
-      <h2 class="section-mega-title reveal-up">Built in the<br><em>arena.</em></h2>
-      <div class="credentials-grid">
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
-          <h3>YPO Past Chapter Chair & Founding Board Member</h3>
-          <p>Founding Board Member and Past Chair of the YPO Fort Lauderdale Integrated Chapter. Progressed from Assistant Learning Officer (2022–2024) to Learning Officer (2024–2025) to Chapter Chair (2025–2026). Previously served as Spouse Forum Officer for YPO Miami (2020–2021), seeding and facilitating the chapter's first professional spouse forum.</p>
+  <section id="credentials" class="section section-white">
+    <div class="container">
+      <div class="section-label">Credentials & Ventures</div>
+      <h2 style="margin-bottom:48px">Built in the arena.</h2>
+
+      <div class="cards-grid cards-grid-3" style="margin-bottom:32px">
+        <div class="cred-card reveal-up">
+          <h3>YPO Past Chapter Chair</h3>
+          <p>Founding Board Member and Past Chair of the YPO Fort Lauderdale Integrated Chapter. ALO (2022-2024), LO (2024-2025), Chair (2025-2026). Previously Spouse Forum Officer, YPO Miami (2020-2021).</p>
         </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
+        <div class="cred-card reveal-up">
           <h3>Forum for Business Facilitator</h3>
-          <p>Seeded a Forum for Business program inside my own organization using the YPO International framework — bringing structured peer group experiences that drive honest conversation, accountability, and growth to my leadership team.</p>
+          <p>Seeded a Forum for Business program inside my own organization using the YPO International framework — bringing structured peer group experiences to my leadership team.</p>
         </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
+        <div class="cred-card reveal-up">
           <h3>President & Operator — UNCS</h3>
-          <p>President of United National Consumer Suppliers, a national closeout distribution company. Running operations for 20+ years — leading teams through high-growth, crisis, and transformation with the scars and perspective that only come from sitting in the chair every day.</p>
+          <p>President of United National Consumer Suppliers, a national closeout distribution company. Running operations for 20+ years — leading teams through high-growth, crisis, and transformation.</p>
         </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
-          <h3>Certified Forum Facilitator (CFF)</h3>
-          <p>Currently pursuing YPO Certified Forum Facilitator certification — formalizing two decades of group facilitation, emotional intelligence, and leadership development into recognized expertise.</p>
+        <div class="cred-card reveal-up">
+          <h3>Certified Forum Facilitator</h3>
+          <p>Currently pursuing YPO Certified Forum Facilitator certification — formalizing two decades of group facilitation into recognized expertise.</p>
         </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
+        <div class="cred-card reveal-up">
           <h3><a href="https://ceosummercamp.com" target="_blank" rel="noopener">CEO Summer Camp</a></h3>
-          <p>A YPO-inspired leadership experience that brings the spirit of summer camp to CEOs and executives. Campfires, color wars, and real connection — because the best leaders never stop playing. Built on two decades of forum facilitation and the belief that vulnerability scales.</p>
+          <p>A YPO-inspired leadership experience that brings the spirit of summer camp to CEOs. Campfires, color wars, and real connection — because the best leaders never stop playing.</p>
         </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
-          <h3><a href="https://exerciseroulette.com" target="_blank" rel="noopener">Exercise Roulette</a></h3>
-          <p>I believe the best leaders take care of themselves first. Exercise Roulette is an AI-powered fitness platform I built to make working out fun, unpredictable, and accessible — because discipline in the gym translates directly to discipline in the boardroom. Health isn't a side project; it's the foundation everything else is built on.</p>
-        </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
-          <h3><a href="https://singlesadvocate.com" target="_blank" rel="noopener">Singles Advocate</a></h3>
-          <p>Dating is broken because strangers are terrible judges of compatibility — but your friends aren't. Singles Advocate is a platform where the people who know you best advocate on your behalf, vetting and matching so you don't have to swipe through the noise. Real relationships start with real trust.</p>
-        </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
-          <h3><a href="https://morrowmark.com" target="_blank" rel="noopener">MorrowMark</a></h3>
-          <p>Some things are too important to leave to chance. MorrowMark is a digital legacy platform I built to make sure my kids — and their kids — always hear from me. It captures your stories, your humor, your values, and your way of saying "I love you," then delivers AI-generated messages on birthdays, milestones, and the moments that matter. In your voice. In perpetuity. Because the mark you leave shouldn't end when you do.</p>
-        </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
+        <div class="cred-card reveal-up">
           <h3><a href="https://hrhelpforsmallbusiness.com" target="_blank" rel="noopener">HR Help for Small Business</a></h3>
-          <p>HR compliance and people operations guidance for small businesses — hiring, termination, handbooks, and everything in between. Built from two decades of managing teams and learning the hard way what works.</p>
+          <p>HR compliance and people operations guidance for small businesses — hiring, termination, handbooks, and everything in between. Built from two decades of managing teams.</p>
         </div>
-        <div class="credential reveal-up">
-          <span class="credential-icon">&#9670;</span>
+        <div class="cred-card reveal-up">
+          <h3><a href="https://exerciseroulette.com" target="_blank" rel="noopener">Exercise Roulette</a></h3>
+          <p>AI-powered fitness platform that makes working out fun and unpredictable. Discipline in the gym translates directly to discipline in the boardroom.</p>
+        </div>
+        <div class="cred-card reveal-up">
+          <h3><a href="https://singlesadvocate.com" target="_blank" rel="noopener">Singles Advocate</a></h3>
+          <p>Dating platform where your friends advocate on your behalf. Real relationships start with real trust — not swiping through noise.</p>
+        </div>
+        <div class="cred-card reveal-up">
+          <h3><a href="https://morrowmark.com" target="_blank" rel="noopener">MorrowMark</a></h3>
+          <p>Digital legacy platform that captures your stories and delivers AI-generated messages to your family on birthdays and milestones. In your voice. In perpetuity.</p>
+        </div>
+        <div class="cred-card reveal-up">
           <h3><a href="budget.html">Balanced Life Budget</a></h3>
-          <p>A free interactive budget tool built on the 50/30/20 framework. Upload your bills, enter your numbers, and get personalized savings advice with interest rate analysis. No signup required — everything stays in your browser.</p>
+          <p>Free interactive budget tool built on the 50/30/20 framework. Upload bills, get savings advice with interest rate analysis. No signup required.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Proof — track record -->
-  <section id="proof" class="proof">
-    <div class="proof-inner">
-      <span class="label">05 / Proof</span>
-      <h2 class="section-mega-title reveal-up">The track<br>record.</h2>
+  <!-- Proof -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-label">Track Record</div>
+      <h2 style="margin-bottom:48px">The proof.</h2>
 
-      <div class="proof-stats reveal-up">
-        <div class="proof-stat">
+      <div class="cards-grid cards-grid-3" style="margin-bottom:40px">
+        <div class="proof-stat reveal-up">
           <span class="proof-stat-num">20+</span>
-          <span class="proof-stat-desc">years leading teams, scaling companies, and developing leaders across industries</span>
+          <span class="proof-stat-desc">Years leading teams, scaling companies, and developing leaders across industries</span>
         </div>
-        <div class="proof-stat">
+        <div class="proof-stat reveal-up">
           <span class="proof-stat-num">14</span>
-          <span class="proof-stat-desc">years in the YPO ecosystem — founding board member, Past Chapter Chair, and forum officer across two chapters</span>
+          <span class="proof-stat-desc">Years in the YPO ecosystem — founding board member, Past Chapter Chair, and forum officer across two chapters</span>
         </div>
-        <div class="proof-stat">
+        <div class="proof-stat reveal-up">
           <span class="proof-stat-num">1st</span>
-          <span class="proof-stat-desc">professional spouse forum seeded and facilitated for YPO Miami</span>
+          <span class="proof-stat-desc">Professional spouse forum seeded and facilitated for YPO Miami</span>
         </div>
       </div>
 
-      <div class="testimonials">
-        <blockquote class="testimonial reveal-up">
-          <p class="testimonial-text">This site was designed and built with AI — the same way I approach everything: leverage the best tools available, stay hands-on, and make sure the output actually reflects who I am. Every word on this site is rooted in real experience.</p>
-          <footer>
-            <strong>Jeremiah Gutierrez</strong>
-            <span>On building with intention</span>
-          </footer>
-        </blockquote>
+      <div class="testi-card reveal-up" style="max-width:720px">
+        <blockquote>"This site was designed and built with AI — the same way I approach everything: leverage the best tools available, stay hands-on, and make sure the output actually reflects who I am. Every word on this site is rooted in real experience."</blockquote>
+        <cite>Jeremiah Gutierrez</cite>
+        <span class="testi-role">On building with intention</span>
       </div>
     </div>
   </section>
 
-  <!-- Big CTA -->
-  <section class="big-cta">
-    <div class="big-cta-inner reveal-up">
-      <h2>Ready to stop<br>managing and start<br><em>leading?</em></h2>
-      <a href="#contact" class="cta-button">Let's talk &darr;</a>
-    </div>
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <h2>Ready to stop managing<br>and start leading?</h2>
+    <p>The conversation is free. The transformation is priceless.</p>
+    <a href="#contact" class="btn btn-green" style="height:52px;padding:0 32px;font-size:var(--text-body)">Let's talk</a>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="contact">
-    <div class="contact-inner">
-      <div class="contact-left">
-        <span class="label">06 / Contact</span>
-        <h2 class="contact-heading reveal-up">Let's make<br>something<br><em>happen.</em></h2>
-        <div class="contact-info reveal-up">
-          <a href="mailto:jeremiah@jeremiahgutierrez.com" class="contact-link">jeremiah@jeremiahgutierrez.com</a>
-          <span class="contact-location">Fort Lauderdale, FL</span>
+  <section id="contact" class="section section-white">
+    <div class="container">
+      <div class="section-label">Contact</div>
+      <h2 style="margin-bottom:48px">Let's make something happen.</h2>
+
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info reveal-up">
+            <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+            <span class="contact-location">Fort Lauderdale, FL</span>
+          </div>
+          <div class="contact-socials reveal-up">
+            <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener">Facebook</a>
+          </div>
         </div>
-        <div class="contact-socials reveal-up">
-          <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener">Instagram</a>
-          <a href="#">X</a>
-          <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener">Facebook</a>
+        <div class="reveal-up">
+          <form class="contact-form" id="contactForm">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" autocomplete="organization">
+            </div>
+            <div class="field">
+              <label for="interest">I need help with</label>
+              <select id="interest" name="interest" required>
+                <option value="" disabled selected>Select</option>
+                <option value="employee-training">Employee Training</option>
+                <option value="leadership">Leadership Development</option>
+                <option value="coaching">C-Level Coaching</option>
+                <option value="performance-mgmt">Outsourced Performance Management</option>
+                <option value="forum">Forum Facilitation</option>
+                <option value="keynote">Keynote Speaking</option>
+                <option value="other">Something Else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">What's going on?</label>
+              <textarea id="message" name="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">Send it &rarr;</button>
+          </form>
         </div>
-      </div>
-      <div class="contact-right reveal-up">
-        <form class="contact-form" id="contactForm">
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="company">Company</label>
-            <input type="text" id="company" name="company" autocomplete="organization">
-          </div>
-          <div class="field">
-            <label for="interest">I need help with</label>
-            <select id="interest" name="interest" required>
-              <option value="" disabled selected>Select</option>
-              <option value="employee-training">Employee Training</option>
-              <option value="leadership">Leadership Development</option>
-              <option value="coaching">C-Level Coaching</option>
-              <option value="performance-mgmt">Outsourced Performance Management</option>
-              <option value="forum">Forum Facilitation</option>
-              <option value="keynote">Keynote Speaking</option>
-              <option value="other">Something Else</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">What's going on?</label>
-            <textarea id="message" name="message" rows="4"></textarea>
-          </div>
-          <button type="submit" class="submit-btn" id="submitBtn">Send it &rarr;</button>
-        </form>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <span class="footer-col-label">Jeremiah Gutierrez</span>
-        <span class="footer-col-text">Fort Lauderdale, FL</span>
-        <a href="mailto:jeremiah@jeremiahgutierrez.com" class="footer-col-link">jeremiah@jeremiahgutierrez.com</a>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <span class="footer-col-label">Jeremiah Gutierrez</span>
+          <span class="footer-col-text">Fort Lauderdale, FL</span>
+          <a href="mailto:jeremiah@jeremiahgutierrez.com">jeremiah@jeremiahgutierrez.com</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Site</span>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="consulting.html">Consulting</a>
+          <a href="links.html">Portfolio</a>
+          <a href="family.html">Gallery</a>
+          <a href="apothecary.html">Behind The Apron</a>
+          <a href="beta.html">Beta</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Family</span>
+          <a href="https://gutierrezrose.com" target="_blank" rel="noopener">Gutierrez & Rose</a>
+          <a href="https://brettadamrose.com" target="_blank" rel="noopener">Brett A. Rose</a>
+          <a href="https://parkeroliver.com" target="_blank" rel="noopener">Parker Oliver</a>
+          <a href="https://mackenzieabigail.com" target="_blank" rel="noopener">Mackenzie Abigail</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Social</span>
+          <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener">Facebook</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <span class="footer-col-label">Site</span>
-        <a href="index.html#about" class="footer-col-link">About</a>
-        <a href="index.html#services" class="footer-col-link">Services</a>
-        <a href="consulting.html" class="footer-col-link">Consulting</a>
-        <a href="links.html" class="footer-col-link">Portfolio</a>
-        <a href="family.html" class="footer-col-link">Gallery</a>
-        <a href="apothecary.html" class="footer-col-link">Behind The Apron</a>
-        <a href="beta.html" class="footer-col-link">Beta</a>
-        <a href="#contact" class="footer-col-link">Contact</a>
-        <a href="beta-admin.html" class="footer-col-link">Admin</a>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Jeremiah Gutierrez</span>
+        <a href="#">Back to top &uarr;</a>
       </div>
-      <div class="footer-col">
-        <span class="footer-col-label">Family</span>
-        <a href="https://gutierrezrose.com" target="_blank" rel="noopener" class="footer-col-link">Gutierrez &amp; Rose</a>
-        <a href="https://brettadamrose.com" target="_blank" rel="noopener" class="footer-col-link">Brett A. Rose</a>
-        <a href="https://parkeroliver.com" target="_blank" rel="noopener" class="footer-col-link">Parker Oliver</a>
-        <a href="https://mackenzieabigail.com" target="_blank" rel="noopener" class="footer-col-link">Mackenzie Abigail</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-col-label">Social</span>
-        <a href="https://www.linkedin.com/in/jeremiahgutierrez/" target="_blank" rel="noopener" class="footer-col-link">LinkedIn</a>
-        <a href="https://www.instagram.com/fiveacts/" target="_blank" rel="noopener" class="footer-col-link">Instagram</a>
-        <a href="https://www.facebook.com/fiveacts" target="_blank" rel="noopener" class="footer-col-link">Facebook</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">&copy; 2026 Jeremiah Gutierrez</span>
-      <a href="#" class="footer-top">Back to top &uarr;</a>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script>
+    // Menu
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', function() {
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeNav() {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Reveal on scroll
+    var reveals = document.querySelectorAll('.reveal-up');
+    if (reveals.length) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(function(el) { obs.observe(el); });
+    }
+
+    // Contact form
+    var form = document.getElementById('contactForm');
+    var submitBtn = document.getElementById('submitBtn');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var orig = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        setTimeout(function() {
+          submitBtn.textContent = 'Sent! Talk soon.';
+          submitBtn.classList.add('success');
+          form.reset();
+          setTimeout(function() {
+            submitBtn.textContent = orig;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('success');
+          }, 3000);
+        }, 1500);
+      });
+    }
+  </script>
 </body>
 </html>
